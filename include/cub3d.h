@@ -6,13 +6,12 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 16:03:47 by ayarab            #+#    #+#             */
-/*   Updated: 2025/01/11 20:54:01 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/01/11 21:21:22 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef cube3d_h
 # define cube3d_h
-
 
 # include "../minilibx-linux/mlx.h"
 # include "./../libft/get_next_line/get_next_line.h"
@@ -33,6 +32,7 @@ typedef struct s_cub3d
 	char		*WE;
 	char		*SO;
 	char		*NO;
+	char		*S;
 	char		*F;
 	char		*C;
 	int			ac;
@@ -46,22 +46,20 @@ typedef struct s_mlx_data
 
 typedef struct s_map_info
 {
-	//information sur la map
-    int screen_width; // largeur 
-    int screen_height; // hauteur
-	void 	*no_img;
-	void	*so_img;
-	void	*we_img;
-	void	*ea_img;
-	void	*sprite_img;
-	void	*floor_img;
-	void	*ceiling_img;
-	
-	
-    t_cub3d		infos;
+	// information sur la map
+	int screen_width;  // largeur
+	int screen_height; // hauteur
+	void		*no_img;
+	void		*so_img;
+	void		*we_img;
+	void		*ea_img;
+	void		*sprite_img;
+	void		*floor_img;
+	void		*ceiling_img;
+
+	t_cub3d		infos;
 	t_mlx_data	mlx;
 }				t_map_info;
-
 
 typedef struct s_player
 {
@@ -98,16 +96,15 @@ int				ft_fill_data(int ac, char **av, t_cub3d *cube3d);
 int				ft_search_cardinal_points(t_cub3d *cube3d);
 int				ft_search_info(char *av1, t_cub3d *cube3d);
 
-
 /* screen handler */
-int	init_mlx(t_map_info *data);
-int	close_window(t_map_info *data);
-void	cleanup(t_map_info *data);
+int				init_mlx(t_map_info *data);
+int				close_window(t_map_info *data);
+void			cleanup(t_map_info *data);
 /* event in game */
 
-int	key_press(int keycode, t_map_info *map);
+int				key_press(int keycode, t_map_info *map);
 
 /* init data */
-void init_struct_temp(t_map_info *data);
+void			init_struct_temp(t_map_info *data);
 
 #endif
