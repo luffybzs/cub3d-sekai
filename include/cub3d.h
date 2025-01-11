@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 16:03:47 by ayarab            #+#    #+#             */
-/*   Updated: 2025/01/11 17:46:20 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/01/11 18:26:33 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,9 @@ int				ft_search_info(char *av1, t_cub3d *cube3d);
 int	init_mlx(t_map_info *data);
 int	close_window(t_map_info *data);
 void	cleanup(t_map_info *data);
+/* event in game */
 
+int	key_press(int keycode, t_map_info *map);
 
 /* init data */
 void init_struct_temp(t_map_info *data);

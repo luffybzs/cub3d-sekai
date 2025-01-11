@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 16:33:27 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/01/11 17:45:22 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/01/11 18:12:12 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,9 @@ int	main(int ac, char **av) // temporaire raycasting
 	if (init_mlx(&map) || !map.mlx.mlx || !map.mlx.win)
 		return (printf("fail to init\n"));
 	mlx_hook(map.mlx.win, 17, 0, close_window, &map);
-    mlx_loop_hook(map.mlx.mlx,/* render frame qui dessine*/,&map);
-    mlx_loop(map.mlx.mlx);
-    cleanup(&map);
+	mlx_hook(map.mlx.win, 2, 1L << 0, key_press, &map);
+	mlx_loop_hook(map.mlx.mlx, /* render frame qui dessine*/ NULL, &map);
+	mlx_loop(map.mlx.mlx);
+	cleanup(&map);
 	return (0);
 }
