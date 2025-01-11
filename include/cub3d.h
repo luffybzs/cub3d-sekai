@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 16:03:47 by ayarab            #+#    #+#             */
-/*   Updated: 2025/01/11 18:26:33 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/01/11 18:34:54 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,11 @@ typedef struct s_mlx_data
 
 typedef struct s_map_info
 {
+	//information sur la map
     int screen_width; // largeur 
     int screen_height; // hauteur
-    
+	
+    t_cub3d		infos;
 	t_mlx_data	mlx;
 }				t_map_info;
 
