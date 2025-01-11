@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+         #
+#    By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 16:20:22 by ayarab            #+#    #+#              #
-#    Updated: 2025/01/11 03:13:12 by ayarab           ###   ########.fr        #
+#    Updated: 2025/01/11 16:06:36 by wdaoudi-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 
-SRCS = $(addprefix src/, main.c)
+SRCS = $(addprefix src/, main.c ./raycasting/init_data.c ./raycasting/init_screen.c )
 
 INCLUDES = -I ./include -I ./libft
 

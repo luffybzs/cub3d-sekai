@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 16:03:47 by ayarab            #+#    #+#             */
-/*   Updated: 2025/01/11 15:22:51 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/01/11 16:16:38 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "./../libft/get_next_line/get_next_line.h"
 # include "./../libft/libft.h"
 # include "gc.h"
+# include "ft_s_printf.h"
 # include <math.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -24,17 +25,31 @@
 
 typedef struct s_cub3d
 {
-	char	**all_maps;
-	char	**map;
-	char	*av1;
-	char	*EA;
-	char	*WE;
-	char	*SO;
-	char	*NO;
-	char	*F;
-	char	*C;
-	int		ac;
-}			t_cub3d;
+	char		**all_maps;
+	char		**map;
+	char		*av1;
+	char		*EA;
+	char		*WE;
+	char		*SO;
+	char		*NO;
+	char		*F;
+	char		*C;
+	int			ac;
+}				t_cub3d;
+
+typedef struct s_map_info
+{
+    int screen_width; // largeur 
+    int screen_height; // hauteur
+    
+	t_mlx_data	mlx;
+}				t_map_info;
+
+typedef struct s_mlx_data
+{
+	void		*mlx;
+	void		*win;
+}				t_mlx_data;
 
 typedef struct s_player
 {
@@ -46,7 +61,7 @@ typedef struct s_player
 	double planeY;    // Plan caméra Y (pour le FOV)
 	double moveSpeed; // Vitesse de déplacement
 	double rotSpeed;  // Vitesse de rotation
-}			t_player;
+}				t_player;
 
 typedef struct s_ray
 {
@@ -63,12 +78,12 @@ typedef struct s_ray
 	int stepX;           // Direction du pas en X (-1 ou 1)
 	int stepY;           // Direction du pas en Y (-1 ou 1)
 	int side;            // Quel côté du mur est touché (NS ou EW)
-}			t_ray;
+}				t_ray;
 
-int			ft_check_av1(t_cub3d *cube3d);
-void		ft_fail_free(t_cub3d *cube3d);
-int			ft_fill_data(int ac, char **av, t_cub3d *cube3d);
-int			ft_search_cardinal_points(t_cub3d *cube3d);
-int			ft_search_info(char *av1, t_cub3d *cube3d);
+int				ft_check_av1(t_cub3d *cube3d);
+void			ft_fail_free(t_cub3d *cube3d);
+int				ft_fill_data(int ac, char **av, t_cub3d *cube3d);
+int				ft_search_cardinal_points(t_cub3d *cube3d);
+int				ft_search_info(char *av1, t_cub3d *cube3d);
 
 #endif

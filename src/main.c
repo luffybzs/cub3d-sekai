@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 16:03:03 by ayarab            #+#    #+#             */
-/*   Updated: 2025/01/11 04:45:07 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/01/11 16:33:46 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,23 +94,6 @@ int ft_fill_data(int ac, char **av, t_cub3d *cube3d)
 	return (EXIT_SUCCESS);
 }
 
-int main(int ac, char **av)
-{
-    t_cub3d cube3d;
-	int i = 0;
-
-    if (ac != 2)
-        return(1);
-    if (ft_fill_data(ac, av, &cube3d) == EXIT_FAILURE)
-		return (ft_fail_free(&cube3d),EXIT_FAILURE);
-	
-	while (cube3d.all_maps[i])
-	{
-		printf("%s\n", cube3d.all_maps[i]);
-		i++;
-	}
-    return (ft_fail_free(&cube3d),EXIT_SUCCESS);
-}
 
 void ft_fail_free(t_cub3d *cube3d)
 {
@@ -136,3 +119,22 @@ void ft_fail_free(t_cub3d *cube3d)
 		printf("%s\n", cube3d.WE);
 		printf("%s\n", cube3d.SO);
 		printf("%s\n", cube3d.EA);*/
+
+int main(int ac, char **av)
+{
+    t_cub3d cube3d;
+	int i = 0;
+
+    if (ac != 2)
+        return(1);
+    if (ft_fill_data(ac, av, &cube3d) == EXIT_FAILURE)
+		return (ft_fail_free(&cube3d),EXIT_FAILURE);
+	
+	while (cube3d.all_maps[i])
+	{
+		printf("%s\n", cube3d.all_maps[i]);
+		i++;
+	}
+    return (ft_fail_free(&cube3d),EXIT_SUCCESS);
+}
+
