@@ -3,18 +3,18 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+         #
+#    By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 16:20:22 by ayarab            #+#    #+#              #
-#    Updated: 2025/01/10 16:08:54 by wdaoudi-         ###   ########.fr        #
+#    Updated: 2025/01/11 03:13:12 by ayarab           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 
-SRCS = $(addprefix src/,  main.c)
+SRCS = $(addprefix src/, main.c)
 
-INCLUDES = ./include -I ./libft/libft.h
+INCLUDES = -I ./include -I ./libft
 
 LIBFT = libft.a
 LIB_DIR = ./libft
@@ -26,23 +26,23 @@ CFLAGS = -Wall -Wextra -Werror -g3
 
 NAME = cube3d
 
-all : $(MINI_LIBX) $(LIBFT) $(NAME)
+all: $(MINI_LIBX) $(LIBFT) $(NAME)
 
-%.o : %.c
-	$(CC) $(CFLAGS) -I $(INCLUDES) -c  $< -o $@ 
+%.o: %.c
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 $(LIBFT):
-	make -C ./libft
+	make -C $(LIB_DIR)
 
-$(MINI_LIBX) :
+$(MINI_LIBX):
 	make -C $(MINI_LIBX_DIR)
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) -I $(INCLUDES)  $(OBJS) -o $(NAME) -L$(LIB_DIR) -lft -L$(MINI_LIBX_DIR) -lmlx -lX11 -lXext
+	$(CC) $(CFLAGS) $(INCLUDES) $(OBJS) -o $(NAME) -L$(LIB_DIR) -lft -L$(MINI_LIBX_DIR) -lmlx -lX11 -lXext
 
 clean:
 	rm -f $(OBJS)
-	make clean -C ./libft
+	make clean -C $(LIB_DIR)
 	make clean -C $(MINI_LIBX_DIR)
 
 fclean: clean

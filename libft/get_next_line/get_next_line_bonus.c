@@ -6,7 +6,7 @@
 /*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 20:11:39 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2024/12/01 01:36:47 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/01/11 03:20:16 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,11 @@ char	*ft_save(char *string)
 		i++;
 	if (!string[i])
 	{
-		ft_free(string);
+		free(string);
 		return (NULL);
 	}
 	tmp = ft_substr_spe(string, i + 1, ft_strlen(string));
-	ft_free(string);
+	free(string);
 	return (tmp);
 }
 
@@ -50,7 +50,7 @@ char	*ft_read_fd(int fd, char *string)
 	char	*buffer;
 	int		res;
 
-	buffer = ft_malloc((BUFFER_SIZE + 1) * sizeof(char));
+	buffer = malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!buffer)
 		return (NULL);
 	res = 1;
@@ -58,11 +58,11 @@ char	*ft_read_fd(int fd, char *string)
 	{
 		res = read(fd, buffer, BUFFER_SIZE);
 		if (res == -1)
-			return (ft_free(buffer), ft_free(string), NULL);
+			return (free(buffer), free(string), NULL);
 		buffer[res] = '\0';
 		string = ft_strjoin(string, buffer);
 	}
-	ft_free(buffer);
+	free(buffer);
 	return (string);
 }
 

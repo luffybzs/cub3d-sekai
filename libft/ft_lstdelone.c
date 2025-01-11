@@ -6,7 +6,7 @@
 /*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 18:31:56 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2024/12/01 01:36:47 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/01/11 03:19:39 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,6 @@ void	ft_lstdelone(t_list *lst, void (*del)(void *))
 	if (lst)
 	{
 		del(lst->content);
-		ft_free(lst);
+		free(lst);
 	}
 }

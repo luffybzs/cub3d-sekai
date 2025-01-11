@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin_2d.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 22:42:46 by ayarab            #+#    #+#             */
-/*   Updated: 2024/12/12 17:01:41 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/01/11 04:32:11 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 static void	free_tab_and_return(char **res, int i)
 {
 	while (--i >= 0)
-		ft_free(res[i]);
-	ft_free(res);
+		free(res[i]);
+	free(res);
 }
 
 char	**ft_strjoin_2d(char **tab, char *str)
@@ -30,7 +30,7 @@ char	**ft_strjoin_2d(char **tab, char *str)
 	len = 0;
 	while (tab[len])
 		len++;
-	res = ft_malloc(sizeof(char *) * (len + 2));
+	res = malloc(sizeof(char *) * (len + 2));
 	if (!res)
 		return (NULL);
 	i = 0;
@@ -57,8 +57,8 @@ void	ft_free_2d(char **tab)
 	i = 0;
 	while (tab[i])
 	{
-		ft_free(tab[i]);
+		free(tab[i]);
 		i++;
 	}
-	ft_free(tab);
+	free(tab);
 }

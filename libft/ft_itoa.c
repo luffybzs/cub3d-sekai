@@ -6,7 +6,7 @@
 /*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 14:59:23 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2024/12/01 01:36:47 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/01/11 03:20:16 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char	*ft_itoa(int n)
 
 	nbr = n;
 	i = taille(nbr);
-	str = ft_malloc((i + 1) * sizeof(char));
+	str = malloc((i + 1) * sizeof(char));
 	if (!str)
 		return (NULL);
 	str[i] = '\0';
@@ -71,7 +71,7 @@ char	*ft_itoa(int n)
 // 		if (str)
 // 		{
 // 			printf("Integer: %d -> String: %s\n", numbers[i], str);
-// 			ft_free(str);
+// 			free(str);
 // 		}
 // 		else
 // 		{

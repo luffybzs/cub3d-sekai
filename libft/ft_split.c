@@ -6,7 +6,7 @@
 /*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 14:58:36 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2024/12/01 01:36:47 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/01/11 03:20:16 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	lenght_word(char const *s, char c, int i)
 	return (n);
 }
 
-void	*ft_free_split(char **str, int count)
+void	*free_split(char **str, int count)
 {
 	int	i;
 
@@ -52,10 +52,10 @@ void	*ft_free_split(char **str, int count)
 		return (NULL);
 	while (i < count)
 	{
-		ft_free(str[i]);
+		free(str[i]);
 		i++;
 	}
-	ft_free(str);
+	free(str);
 	return (NULL);
 }
 
@@ -72,9 +72,9 @@ char	**sous_split(char const *s, char c, char **str)
 	while (s[i])
 	{
 		k = 0;
-		str[j] = ft_malloc((lenght_word(s, c, i) + 1) * sizeof(char));
+		str[j] = malloc((lenght_word(s, c, i) + 1) * sizeof(char));
 		if (str[j] == NULL)
-			return (ft_free_split(str, j));
+			return (free_split(str, j));
 		while (s[i] && s[i] != c)
 			str[j][k++] = s[i++];
 		str[j][k] = 0;
@@ -92,7 +92,7 @@ char	**ft_split(char const *s, char c)
 
 	if (!s)
 		return (NULL);
-	str = ft_malloc(sizeof(char *) * (count_words(s, c) + 1));
+	str = malloc(sizeof(char *) * (count_words(s, c) + 1));
 	if (str == NULL)
 		return (str);
 	return (sous_split(s, c, str));

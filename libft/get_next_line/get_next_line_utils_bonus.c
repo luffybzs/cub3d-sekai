@@ -6,7 +6,7 @@
 /*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 20:11:28 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2024/12/01 01:36:47 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/01/11 03:20:16 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,12 @@ char	*ft_strjoin(char *s1, char *s2)
 
 	if (!s1)
 	{
-		s1 = (char *)ft_malloc(1 * sizeof(char));
+		s1 = (char *)malloc(1 * sizeof(char));
 		s1[0] = '\0';
 	}
 	if (!s1 || !s2)
 		return (NULL);
-	str = ft_malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
+	str = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
 	if (str == NULL)
 		return (NULL);
 	i = -1;
@@ -66,7 +66,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	while (s2[c] != '\0')
 		str[i++] = s2[c++];
 	str[ft_strlen(s1) + ft_strlen(s2)] = '\0';
-	ft_free(s1);
+	free(s1);
 	return (str);
 }
 
@@ -82,7 +82,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		return (NULL);
 	if (ft_strlen(s) < len)
 		len = ft_strlen(s);
-	str = ft_malloc(sizeof(char const) * (len + 1));
+	str = malloc(sizeof(char const) * (len + 1));
 	if (!str)
 		return (NULL);
 	while (s[i])

@@ -6,7 +6,7 @@
 /*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 18:40:52 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2024/12/01 01:36:47 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/01/11 03:20:16 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	char			*str;
 
 	i = 0;
-	str = ft_malloc(sizeof(char) * (ft_strlen(s) + 1));
+	str = malloc(sizeof(char) * (ft_strlen(s) + 1));
 	if (str == NULL)
 		return (NULL);
 	while (i < ft_strlen(s))
@@ -61,14 +61,14 @@ int	main(void)
 	if (result)
 	{
 		printf("t1 %s\n", result);
-		ft_free(result);
+		free(result);
 	}
 
 	result = ft_strmapi(test1, ttoupper);
 	if (result)
 	{
 		printf("t2: %s\n", result);
-		ft_free(result);
+		free(result);
 	}
 	return (0);
 }*/
