@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 15:31:23 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/01/11 21:28:22 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/01/11 21:41:20 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,9 @@ void init_struct_temp(t_map_info *data)
     
     data->screen_width = 1920;
     data->screen_height = 1080;
-    data->
+//reprendre a partir d ici et essayer de
+// reussir a afficher en 3d
+    
     if (img_init(data))
         return (printf("echec init image\n"),1);    
 }
