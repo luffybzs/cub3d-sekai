@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 16:03:47 by ayarab            #+#    #+#             */
-/*   Updated: 2025/01/11 18:34:54 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/01/11 20:54:01 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,14 @@ typedef struct s_map_info
 	//information sur la map
     int screen_width; // largeur 
     int screen_height; // hauteur
+	void 	*no_img;
+	void	*so_img;
+	void	*we_img;
+	void	*ea_img;
+	void	*sprite_img;
+	void	*floor_img;
+	void	*ceiling_img;
+	
 	
     t_cub3d		infos;
 	t_mlx_data	mlx;
