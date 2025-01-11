@@ -6,17 +6,18 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 16:03:47 by ayarab            #+#    #+#             */
-/*   Updated: 2025/01/11 16:16:38 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/01/11 16:40:33 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef cube3d_h
 # define cube3d_h
 
+
+# include "../minilibx-linux/mlx.h"
 # include "./../libft/get_next_line/get_next_line.h"
 # include "./../libft/libft.h"
 # include "gc.h"
-# include "ft_s_printf.h"
 # include <math.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -37,6 +38,12 @@ typedef struct s_cub3d
 	int			ac;
 }				t_cub3d;
 
+typedef struct s_mlx_data
+{
+	void		*mlx;
+	void		*win;
+}				t_mlx_data;
+
 typedef struct s_map_info
 {
     int screen_width; // largeur 
@@ -45,11 +52,6 @@ typedef struct s_map_info
 	t_mlx_data	mlx;
 }				t_map_info;
 
-typedef struct s_mlx_data
-{
-	void		*mlx;
-	void		*win;
-}				t_mlx_data;
 
 typedef struct s_player
 {
@@ -85,5 +87,12 @@ void			ft_fail_free(t_cub3d *cube3d);
 int				ft_fill_data(int ac, char **av, t_cub3d *cube3d);
 int				ft_search_cardinal_points(t_cub3d *cube3d);
 int				ft_search_info(char *av1, t_cub3d *cube3d);
+
+
+/* screen handler */
+int	init_mlx(t_map_info *data);
+
+/* init data */
+void init_struct_temp(t_map_info *data);
 
 #endif
