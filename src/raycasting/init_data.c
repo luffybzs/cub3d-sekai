@@ -6,43 +6,58 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 15:31:23 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/01/11 21:41:20 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/01/12 17:28:44 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-void init_struct_temp(t_map_info *data)
+int	init_cub3d(t_cub3d *cube)
 {
-    t_cub3d cube;
-    
-    cube->NO = "./textures/colorstone.xpm";
-    cube->SO = "./textures/bluestone.xpm";
-    cube->WE = "./textures/greystone.xpm";
-    cube->EA = " ./textures/wood.xpm";
-    cube->S= "./textures/barrel.xpm";
+	(void)cube;
+	ft_memset(cube, 0, sizeof(t_cub3d));
+	cube->screen_width = 1920;
+	cube->screen_height = 1080;
+	
+    if (init_mlx(cube) || !cube->mlx || !cube->win)
+		return (printf("fail to init MLX\n"),cleanup(cube),1);
 
-    data->infos = cube;
-    
-    data->screen_width = 1920;
-    data->screen_height = 1080;
-//reprendre a partir d ici et essayer de
-// reussir a afficher en 3d
-    
-    if (img_init(data))
-        return (printf("echec init image\n"),1);    
+	if (!init_textures(cube))
+		return (printf("fail to init textures\n"),cleanup(cube), 1);
+
+	return (0);
 }
 
-int img_init(t_map_info *data)
+int	init_textures(t_cub3d *cube)
 {
-    if (!load_single_image(data->mlx.mlx, &map->))
+	if (!load_texture(cube->mlx, &cube->textures.north,
+			"./textures/colorstone.xpm")) // a modifie plus tard avec le parsing
+		return (0);
+	if (!load_texture(cube->mlx, &cube->textures.south,
+			"./textures/bluestone.xpm")) // a modifie plus tard avec le parsing
+	{
+		mlx_destroy_image(cube->mlx, cube->textures.north.img);
+		mlx_destroy_image(cube->mlx, cube->textures.south.img);
+		return (0);
+	}
+        if (!load_texture(cube->mlx, &cube->textures.east, " ./textures/wood.xpm"))
+    {
+        mlx_destroy_image(cube->mlx, cube->textures.north.img);
+        mlx_destroy_image(cube->mlx, cube->textures.south.img);
+        mlx_destroy_image(cube->mlx, cube->textures.west.img);
+        return (0);
+    }
+    return (1);
 }
 
-int load_single_image(void *mlx, void **img, char *path)
+int load_texture(void *mlx, t_img *img, char *path)
 {
-    int width;
-    int height;
-
-    *img = mlx_xpm_file_to_image(mlx, path, &width, &height);
-    return (*img != NULL);
+    img->img= mlx_xpm_file_to_image(mlx,path, &img->width,&img->height);
+        if (!img->img)
+            return (0);
+    
+    img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel, &img->line_length, &img->endian);
+    if (!img->addr)
+        return (mlx_destroy_image(mlx,img->img),0);
+    return (1);
 }

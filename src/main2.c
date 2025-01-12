@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 16:33:27 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/01/11 18:12:12 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/01/12 17:08:51 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 
 int	main(int ac, char **av) // temporaire raycasting
 {
-	t_map_info map;
-
+	t_cub3d cube;
+	
+	(void)cube;
 	(void)ac;
 	(void)av;
-	init_struct_temp(&map);
+	if(init_cub3d(&cube) == 1)
+		return (1);
 
-	if (init_mlx(&map) || !map.mlx.mlx || !map.mlx.win)
-		return (printf("fail to init\n"));
-	mlx_hook(map.mlx.win, 17, 0, close_window, &map);
-	mlx_hook(map.mlx.win, 2, 1L << 0, key_press, &map);
-	mlx_loop_hook(map.mlx.mlx, /* render frame qui dessine*/ NULL, &map);
-	mlx_loop(map.mlx.mlx);
-	cleanup(&map);
+	mlx_hook(cube.win, 17, 0, close_window, &cube);
+	mlx_hook(cube.win, 2, 1L << 0, key_press, &cube);
+	mlx_loop_hook(cube.mlx, /* render frame qui dessine*/ NULL, &cube);
+	mlx_loop(cube.mlx);
+	cleanup(&cube);
 	return (0);
 }
