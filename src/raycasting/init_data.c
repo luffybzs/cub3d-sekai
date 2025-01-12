@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 15:31:23 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/01/12 17:59:43 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/01/12 18:42:38 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@ int	init_cub3d(t_cub3d *cube)
 {
 	(void)cube;
 	ft_memset(cube, 0, sizeof(t_cub3d));
-	cube->screen_width = 1920;
+	init_player(cube);
+    cube->screen_width = 1920;
 	cube->screen_height = 1080;
+    
 	if (init_mlx(cube) || !cube->mlx || !cube->win)
 		return (printf("fail to init MLX\n"), cleanup(cube), 1);
 	if (!init_textures(cube))
@@ -60,4 +62,19 @@ int	load_texture(void *mlx, t_img *img, char *path)
 	if (!img->addr)
 		return (mlx_destroy_image(mlx, img->img), 0);
 	return (1);
+}
+
+void init_player(t_cub3d cube)
+{
+    // position intiale
+    cube->player.pos_x = 6.0; // ajout des differentes positions du joueur
+    cube->player.pos_y = 3.0;
+    
+    // vecteur de direction 
+    cube->player.dir_x = 0.0; // direction nord 
+    cube->player.dir_y = -1.0; // negatif car origine (0;0) en haut a gauche de la map
+    
+    //plan de la camera important dans le raycasting
+    cube->player.plane_x = 0.66;
+    cube->player.plane_y = 0.0;
 }
