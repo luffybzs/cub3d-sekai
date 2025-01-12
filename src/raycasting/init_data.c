@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 15:31:23 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/01/12 17:32:25 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/01/12 17:59:43 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	init_textures(t_cub3d *cube)
 		mlx_destroy_image(cube->mlx, cube->textures.south.img);
 		return (0);
 	}
-	if (!load_texture(cube->mlx, &cube->textures.east, " ./textures/wood.xpm"))
+	if (!load_texture(cube->mlx, &cube->textures.east, "./textures/wood.xpm"))
 	{
 		mlx_destroy_image(cube->mlx, cube->textures.north.img);
 		mlx_destroy_image(cube->mlx, cube->textures.south.img);

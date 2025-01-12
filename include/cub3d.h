@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 16:03:47 by ayarab            #+#    #+#             */
-/*   Updated: 2025/01/12 17:29:27 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/01/12 17:57:12 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,16 +117,19 @@ int			ft_fill_data(int ac, char **av, t_cub3d *cube3d);
 int			ft_search_cardinal_points(t_cub3d *cube3d);
 int			ft_search_info(char *av1, t_cub3d *cube3d);
 
-/* screen handler + draw */
+/* screen handler */
 int			init_mlx(t_cub3d *data);
 int			close_window(t_cub3d *data);
 void		cleanup(t_cub3d *data);
-int			init_textures(t_cub3d *cube);
+
+/* draw */
 int	init_textures(t_cub3d *cube);
 int load_texture(void *mlx, t_img *img, char *path);
 void put_pixel(t_img *img, int x, int y, int color);
 int get_pixel(t_img *img, int x, int y);
 int create_rgb(int r, int g, int b);
+int render(t_cub3d *cube);
+int			init_textures(t_cub3d *cube);
 
 /* event in game */
 
