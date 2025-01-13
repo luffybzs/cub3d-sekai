@@ -37,6 +37,12 @@ typedef struct s_cub3d
 	char	*NO;
 	char	*F;
 	char	*C;
+	int		F_R;
+	int		F_G;
+	int		F_B;
+	int		C_R;
+	int		C_G;
+	int		C_B;
 	int		ac;
 }			t_cub3d;
 

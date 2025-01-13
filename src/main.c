@@ -6,7 +6,7 @@
 /*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 16:03:03 by ayarab            #+#    #+#             */
-/*   Updated: 2025/01/11 04:45:07 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/01/13 21:28:19 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,31 @@ int ft_search_cardinal_points(t_cub3d *cube3d)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
+int ft_search_just_map(t_cub3d *cube3d)
+{
+	int j;
+	int len;
+	char **res;
+	j = 0;
+
+	while (cube3d->all_maps[j])
+	{
+		if (cube3d->all_maps[j][0] && cube3d->all_maps[j][0] == '1')
+		{
+			len = j;
+			while (cube3d->all_maps[j] && cube3d->all_maps[j][0] == '1')
+				{
+					j++;
+					len++;
+				}
+			res = malloc(sizeof(char *) * (len + 1));
+			if (!res)
+				return (EXIT_FAILURE);
+		}
+		if (cube3d->all_maps[j])
+			j++;
+	}
+}
 
 int ft_fill_data(int ac, char **av, t_cub3d *cube3d)
 {
@@ -90,7 +115,8 @@ int ft_fill_data(int ac, char **av, t_cub3d *cube3d)
 	if (ft_search_cardinal_points(cube3d) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	if (ft_search_just_map(cube3d) == EXIT_FAILURE)
-		return (EXIT_FAILURE); 
+		return (EXIT_FAILURE);
+	
 	return (EXIT_SUCCESS);
 }
 
@@ -103,7 +129,6 @@ int main(int ac, char **av)
         return(1);
     if (ft_fill_data(ac, av, &cube3d) == EXIT_FAILURE)
 		return (ft_fail_free(&cube3d),EXIT_FAILURE);
-	
 	while (cube3d.all_maps[i])
 	{
 		printf("%s\n", cube3d.all_maps[i]);
