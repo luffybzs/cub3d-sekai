@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 16:03:47 by ayarab            #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2025/01/11 04:45:56 by ayarab           ###   ########.fr       */
-=======
-/*   Updated: 2025/01/10 17:34:15 by wdaoudi-         ###   ########.fr       */
->>>>>>> raytracing
+/*   Updated: 2025/01/15 21:57:23 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +76,5 @@ void		ft_fail_free(t_cub3d *cube3d);
 int			ft_fill_data(int ac, char **av, t_cub3d *cube3d);
 int			ft_search_cardinal_points(t_cub3d *cube3d);
 int			ft_search_info(char *av1, t_cub3d *cube3d);
-
+int ft_fill_color(t_cub3d *cube3d);
 #endif
