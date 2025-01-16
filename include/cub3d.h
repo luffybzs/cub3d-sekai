@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 16:03:47 by ayarab            #+#    #+#             */
-/*   Updated: 2025/01/12 17:57:12 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/01/16 14:37:09 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,8 @@ int			init_textures(t_cub3d *cube);
 /* event in game */
 
 int			key_press(int keycode, t_cub3d *map);
+void init_player(t_cub3d *cube);
+
 
 /* init data */
 int		init_cub3d(t_cub3d *cube);

@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 15:31:23 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/01/12 18:42:38 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/01/16 14:36:47 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	load_texture(void *mlx, t_img *img, char *path)
 	return (1);
 }
 
-void init_player(t_cub3d cube)
+void init_player(t_cub3d *cube)
 {
     // position intiale
     cube->player.pos_x = 6.0; // ajout des differentes positions du joueur
