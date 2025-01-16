@@ -6,7 +6,7 @@
 /*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 16:03:47 by ayarab            #+#    #+#             */
-/*   Updated: 2025/01/15 21:57:23 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/01/16 20:57:14 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,12 @@ typedef struct s_ray
 	int side;            // Quel côté du mur est touché (NS ou EW)
 }			t_ray;
 
+int			ft_skip_space(char *str, int *i);
+int			ft_check_asset(t_cub3d *cube3d);
 int			ft_check_av1(t_cub3d *cube3d);
 void		ft_fail_free(t_cub3d *cube3d);
 int			ft_fill_data(int ac, char **av, t_cub3d *cube3d);
 int			ft_search_cardinal_points(t_cub3d *cube3d);
 int			ft_search_info(char *av1, t_cub3d *cube3d);
-int ft_fill_color(t_cub3d *cube3d);
+int			ft_fill_color(t_cub3d *cube3d);
 #endif

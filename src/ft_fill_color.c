@@ -6,7 +6,7 @@
 /*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 19:30:57 by ayarab            #+#    #+#             */
-/*   Updated: 2025/01/15 22:43:49 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/01/16 20:58:50 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,8 @@ int	ft_fill_floor_color(t_cub3d *cube3d)
 	int	start;
 
 	start = 0;
-	j = 1;
+	j = 0;
 	comma = 0;
-	if (cube3d->F[0] != 'F')
-		return (EXIT_FAILURE);
 	while (cube3d->F[j] && cube3d->F[j] <= 32)
 		j++;
 	cube3d->F_R = ft_add_color(&start, &j, &comma, cube3d->F);
@@ -92,10 +90,8 @@ int ft_fill_cloud_color(t_cub3d *cube3d)
 	int	start;
 
 	start = 0;
-	j = 1;
+	j = 0;
 	comma = 0;
-	if (cube3d->C[0] != 'C')
-		return (EXIT_FAILURE);
 	while (cube3d->C[j] && cube3d->C[j] <= 32)
 		j++;
 	cube3d->C_R = ft_add_color(&start, &j, &comma, cube3d->C);

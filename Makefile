@@ -6,13 +6,13 @@
 #    By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 16:20:22 by ayarab            #+#    #+#              #
-#    Updated: 2025/01/15 21:57:54 by ayarab           ###   ########.fr        #
+#    Updated: 2025/01/16 17:51:32 by ayarab           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 
-SRCS = $(addprefix src/, main.c ft_parsing.c ft_fill_color.c)
+SRCS = $(addprefix src/, main.c ft_parsing.c ft_fill_color.c ft_check_asset.c)
 
 INCLUDES = -I ./include -I ./libft
 
