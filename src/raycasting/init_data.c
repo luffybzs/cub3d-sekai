@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 15:31:23 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/01/16 14:36:47 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/01/17 14:54:52 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,40 +16,41 @@ int	init_cub3d(t_cub3d *cube)
 {
 	(void)cube;
 	ft_memset(cube, 0, sizeof(t_cub3d));
-	init_player(cube);
-    cube->screen_width = 1920;
-	cube->screen_height = 1080;
-    
+	init_player(cube);    
 	if (init_mlx(cube) || !cube->mlx || !cube->win)
 		return (printf("fail to init MLX\n"), cleanup(cube), 1);
-	if (!init_textures(cube))
+	if (!open_images(cube))
 		return (printf("fail to init textures\n"), cleanup(cube), 1);
 	return (0);
 }
 
+int open_images(t_cub3d *cube)
+{
+	init_buffer(cube); // creee un buffer une toile blanche qui va permetttre apres de mettre le rendu
+}
+
 int	init_textures(t_cub3d *cube)
 {
-	if (!load_texture(cube->mlx, &cube->textures.north,
-						"./textures/colorstone.xpm"))
-							// a modifie plus tard avec le parsing
-		return (0);
-	if (!load_texture(cube->mlx, &cube->textures.south,
-						"./textures/bluestone.xpm"))
-							// a modifie plus tard avec le parsing
-	{
-		mlx_destroy_image(cube->mlx, cube->textures.north.img);
-		mlx_destroy_image(cube->mlx, cube->textures.south.img);
-		return (0);
-	}
-	if (!load_texture(cube->mlx, &cube->textures.east, "./textures/wood.xpm"))
-	{
-		mlx_destroy_image(cube->mlx, cube->textures.north.img);
-		mlx_destroy_image(cube->mlx, cube->textures.south.img);
-		mlx_destroy_image(cube->mlx, cube->textures.west.img);
-		return (0);
-	}
-	printf(" init texture\n");
-	return (1);
+	// if (!load_texture(cube->mlx, &cube->textures.north,
+	// 					"./textures/colorstone.xpm"))
+	// 						// a modifie plus tard avec le parsing
+	// 	return (0);
+	// if (!load_texture(cube->mlx, &cube->textures.south,
+	// 					"./textures/bluestone.xpm"))
+	// 						// a modifie plus tard avec le parsing
+	// {
+	// 	mlx_destroy_image(cube->mlx, cube->textures.north.img);
+	// 	mlx_destroy_image(cube->mlx, cube->textures.south.img);
+	// 	return (0);
+	// }
+	// if (!load_texture(cube->mlx, &cube->textures.east, "./textures/wood.xpm"))
+	// {
+	// 	mlx_destroy_image(cube->mlx, cube->textures.north.img);
+	// 	mlx_destroy_image(cube->mlx, cube->textures.south.img);
+	// 	mlx_destroy_image(cube->mlx, cube->textures.west.img);
+	// 	return (0);
+	// }
+	// return (1);
 }
 
 int	load_texture(void *mlx, t_img *img, char *path)
@@ -71,6 +72,7 @@ void init_player(t_cub3d *cube)
     cube->player.pos_y = 3.0;
     
     // vecteur de direction 
+	// en fonction de l orientation choisir l angle
     cube->player.dir_x = 0.0; // direction nord 
     cube->player.dir_y = -1.0; // negatif car origine (0;0) en haut a gauche de la map
     
@@ -78,3 +80,34 @@ void init_player(t_cub3d *cube)
     cube->player.plane_x = 0.66;
     cube->player.plane_y = 0.0;
 }
+
+/* 
+if (cube->"position " = 'N')
+{
+	cube->player.dir_x =0;
+	cube->player.dir_y = -1;
+	cube->player.plane_x = 0.66;
+	cube->player.plane_y = 0;
+}
+if (cube->"position " = 'S')
+{
+	cube->player.dir_x =0;
+	cube->player.dir_y = 1;
+	cube->player.plane_x = -0.66;
+	cube->player.plane_y = 0;
+}
+if (cube->"position " = 'E')
+{
+	cube->player.dir_x =1;
+	cube->player.dir_y = 0;
+	cube->player.plane_x = 0;
+	cube->player.plane_y = 0.66;
+}
+if (cube->"position " = 'N')
+{
+	cube->player.dir_x =-1;
+	cube->player.dir_y = 0;
+	cube->player.plane_x = 0;
+	cube->player.plane_y = -0.66;
+}
+*/

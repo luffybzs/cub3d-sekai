@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 16:03:47 by ayarab            #+#    #+#             */
-/*   Updated: 2025/01/16 14:37:09 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/01/17 14:51:06 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,12 @@ typedef struct s_colors
 typedef struct s_img
 {
 	void	*img;
+	char	*path;
 	char	*addr;
+	int		size_line;
 	int		bits_per_pixel;
 	int		line_length;
-	int		endian;
+	int		endiant;
 	int		width;
 	int		height;
 }			t_img;
@@ -85,7 +87,7 @@ typedef struct s_textures
 	t_img south;  // Texture du mur sud
 	t_img west;   // Texture du mur ouest
 	t_img east;   // Texture du mur est
-	t_img sprite; // Texture des sprites
+	t_img sprite; // Texture des sprites ???
 }			t_textures;
 
 typedef struct s_player
@@ -98,7 +100,6 @@ typedef struct s_player
 	double plane_y; // Plan de la caméra Y
 }			t_player;
 
-
 typedef struct s_cub3d
 {
 	void *mlx;           // Pointeur MLX
@@ -108,6 +109,7 @@ typedef struct s_cub3d
 	t_textures textures; // Toutes les textures
 	t_colors colors;     // Couleurs du sol/plafond
 	// t_map map;           // Informations de la map
+	t_img *img;          // gestion des images
 	t_player player;     // Informations du joueur
 }			t_cub3d;
 
@@ -123,21 +125,20 @@ int			close_window(t_cub3d *data);
 void		cleanup(t_cub3d *data);
 
 /* draw */
-int	init_textures(t_cub3d *cube);
-int load_texture(void *mlx, t_img *img, char *path);
-void put_pixel(t_img *img, int x, int y, int color);
-int get_pixel(t_img *img, int x, int y);
-int create_rgb(int r, int g, int b);
-int render(t_cub3d *cube);
+int			init_textures(t_cub3d *cube);
+int			load_texture(void *mlx, t_img *img, char *path);
+void		put_pixel(t_img *img, int x, int y, int color);
+int			get_pixel(t_img *img, int x, int y);
+int			create_rgb(int r, int g, int b);
+int			render(t_cub3d *cube);
 int			init_textures(t_cub3d *cube);
 
 /* event in game */
 
 int			key_press(int keycode, t_cub3d *map);
-void init_player(t_cub3d *cube);
-
+void		init_player(t_cub3d *cube);
 
 /* init data */
-int		init_cub3d(t_cub3d *cube);
+int			init_cub3d(t_cub3d *cube);
 
 #endif
