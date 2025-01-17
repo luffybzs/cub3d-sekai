@@ -6,7 +6,7 @@
 /*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 19:28:56 by ayarab            #+#    #+#             */
-/*   Updated: 2025/01/16 23:50:56 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/01/17 18:41:34 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,85 +25,132 @@ int	ft_check_av1(t_cub3d *cube3d)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
+int ft_fill_info(t_cub3d *cube3d, char *str)
+{
+	int i;
+	int res;
 
+	i = 0;
+	while (str[i] && str[i] <= 32)
+		i++;
+	if (str)
+	{
+		res = ft_add_cardinal_points(str, cube3d , i);
+		if (res == -1)
+			return (-1);
+		return(res);
+	}
+	return (0);
+}
+
+char *ft_add_just_info(char *str, int i)
+{
+	int start;
+	char *tmp;
+	while (str[i] && str[i] <= 32)
+		i++;
+	start = i;
+	while (str[i])
+	{
+		if (!ft_strcmp(str + i, ".xpm"))
+		{
+			tmp = ft_substr(str, start, i);
+			if (!tmp)
+				return (NULL);
+			return (tmp);
+		}
+		i++;
+	}
+	return (NULL);	
+}
 int	ft_search_info(char *av1, t_cub3d *cube3d)
 {
 	int		fd;
 	char	*line;
-	char	*res;
+	int count;
 
 	fd = open(av1, O_RDONLY);
 	if (fd == -1)
 		return (EXIT_FAILURE);
-	res = ft_strdup("");
-	if (!res)
-		return (close(fd),EXIT_FAILURE);
+	count = 0;
 	line = get_next_line(fd);
 	while (line)
 	{
-		res = ft_strjoin_free(res, line);
-		if (!res)
-			return (free(line),close(fd), EXIT_FAILURE);
+		count += ft_fill_info(cube3d, line);
+		if (count == - 1 || count > 6)
+			return (free(line),close(fd),EXIT_FAILURE);
 		free(line);
 		line = get_next_line(fd);
 	}
-	cube3d->all_maps = ft_split(res, '\n');
-	if (!cube3d->all_maps)
-		return (free(res),close(fd), EXIT_FAILURE);
-	return (free(res),close(fd), EXIT_SUCCESS);
+	return (close(fd), EXIT_SUCCESS);
 }
 
-int ft_add_EA_and_WO(char **tmp, t_cub3d *cube3d)
+int ft_add_WE(char *str, t_cub3d *cube3d, int i)
 {
-	if (cube3d->EA || cube3d->WE || !tmp)
-		return (EXIT_FAILURE);
-	if (!cube3d->WE && !ft_strncmp(tmp[0], "WE", 2) && tmp[1])
+	if (!ft_strncmp(str + i, "WE",2) && !cube3d->WE)
 	{
-		cube3d->WE = ft_strdup(tmp[1]);
+		if (cube3d->WE)
+			return (-1);
+		cube3d->WE = ft_add_just_info(str, i + 2);
 		if (!cube3d->WE)
-			return (EXIT_FAILURE);	
-	}
-	if (!cube3d->EA && !ft_strncmp(tmp[0], "EA", 2) && tmp[1])
-	{
-		cube3d->EA = ft_strdup(tmp[1]);
-		if (!cube3d->EA)
-			return (EXIT_FAILURE);	
+			return (-1);		
 	}
 	return (EXIT_SUCCESS);
 }
 
-int ft_add_SO_and_NO(char **tmp, t_cub3d *cube3d)
+int ft_add_SO(char *str, t_cub3d *cube3d , int i)
 {
-
-	if (cube3d->SO || cube3d->NO || !tmp)
-		return (EXIT_FAILURE);
-	if (!cube3d->SO && !ft_strncmp(tmp[0], "SO", 2) && tmp[1])
+	if (!ft_strncmp(str + i, "SO",2))
 	{
-		cube3d->SO = ft_strdup(tmp[1]);
+		if (cube3d->SO)
+			return (-1);
+		cube3d->SO = ft_add_just_info(str, i + 2);
 		if (!cube3d->SO)
-			return (ft_free_2d(tmp), EXIT_FAILURE);	
+			return (-1);		
 	}
-	if (!cube3d->NO && !ft_strncmp(tmp[0], "NO", 2) && tmp[1])
+	return (EXIT_SUCCESS);
+	
+}
+
+int ft_add_NO(char *str, t_cub3d *cube3d , int i)
+{
+	if (!ft_strncmp(str + i, "NO", 2))
 	{
-		cube3d->NO = ft_strdup(tmp[1]);
+		if (cube3d->NO)
+			return (-1);
+		cube3d->NO = ft_add_just_info(str, i + 2);
 		if (!cube3d->NO)
-			return (ft_free_2d(tmp), EXIT_FAILURE);	
+			return (-1);		
+	}
+	return (EXIT_SUCCESS);
+	
+}
+int ft_add_EA(char *str, t_cub3d *cube3d, int i)
+{
+	if (!ft_strncmp(str + i, "EA",2) && !cube3d->EA)
+	{
+		if (cube3d->EA)
+			return (-1);
+		cube3d->EA = ft_add_just_info(str, i + 2);
+		if (!cube3d->EA)
+			return (-1);
+		return(1);		
 	}
 	return (EXIT_SUCCESS);
 }
 
-int ft_add_cardinal_points(t_cub3d *cube3d, int j)
+int ft_add_cardinal_points(char *str,t_cub3d *cube3d, int i)
 {
-	char **tmp;
 
-	tmp = ft_split(cube3d->all_maps[j], ' ');
-	if (!tmp)
-		return (EXIT_FAILURE);
-	if (ft_add_EA_and_WO(tmp, cube3d) == EXIT_FAILURE)
-		return (ft_free_2d(tmp), EXIT_FAILURE);
-	if (ft_add_SO_and_NO(tmp, cube3d) == EXIT_FAILURE)
-		return (ft_free_2d(tmp), EXIT_FAILURE);
-	return (ft_free_2d(tmp),EXIT_SUCCESS);
+	if (ft_add_WE(str,cube3d, i) == -1 || ft_add_SO(str,cube3d , i) == -1)
+		return (-1);
+	if (ft_add_NO(str,cube3d , i) == -1 || ft_add_EA(str,cube3d , i) == -1)
+		return (-1);
+	if (ft_add_WE(str,cube3d, i) == 1 || ft_add_SO(str,cube3d , i) == 1)
+		return (1);
+	if (ft_add_NO(str,cube3d , i) == 1 || ft_add_EA(str,cube3d , i) == 1)
+		return (1);
+	return (0);
 }
 
 int	ft_search_cardinal_points(t_cub3d *cube3d)
@@ -113,19 +160,21 @@ int	ft_search_cardinal_points(t_cub3d *cube3d)
 	j = 0;
 	while (cube3d->all_maps[j])
 	{
-		if (ft_add_cardinal_points(cube3d, j) == EXIT_FAILURE)
-			break;
 		if (ft_strnstr(cube3d->all_maps[j], "C", 1) != NULL)
+		{
 			cube3d->C = ft_strdup(cube3d->all_maps[j] + 1);
 			if (!cube3d->C)
 				return (EXIT_FAILURE);
+		}
 		if (ft_strnstr(cube3d->all_maps[j], "F", 1) != NULL)
+		{
 			cube3d->F = ft_strdup(cube3d->all_maps[j] + 1);
-			if ()
+			if (!cube3d->F)
+				return (EXIT_FAILURE);
+		}	
 		j++;
 	}
-	if (!cube3d->NO || !cube3d->SO || !cube3d->WE || !cube3d->EA || !cube3d->C
-		|| !cube3d->F)
+	if (!cube3d->C || !cube3d->F)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
@@ -138,12 +187,12 @@ int	ft_fill_data(int ac, char **av, t_cub3d *cube3d)
 		return (ft_putstr_fd("Error\n", 2), EXIT_FAILURE);
 	if (ft_search_info(cube3d->av1, cube3d) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
-	if (ft_search_cardinal_points(cube3d) == EXIT_FAILURE)
-	 	return (EXIT_FAILURE);
-	if (ft_fill_color(cube3d) == EXIT_FAILURE)
-		return (EXIT_FAILURE);
-	if (ft_check_asset(cube3d) == EXIT_FAILURE)
-		return (EXIT_FAILURE);
+	//if (ft_search_cardinal_points(cube3d) == EXIT_FAILURE)
+	// 	return (EXIT_FAILURE);
+	//if (ft_fill_color(cube3d) == EXIT_FAILURE)
+	//	return (EXIT_FAILURE);
+	//if (ft_check_asset(cube3d) == EXIT_FAILURE)
+	//	return (EXIT_FAILURE);
 	//if (ft_search_just_map(cube3d) == EXIT_FAILURE)
 	//	return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
