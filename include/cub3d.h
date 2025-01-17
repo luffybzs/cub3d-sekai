@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 16:03:47 by ayarab            #+#    #+#             */
-/*   Updated: 2025/01/17 14:51:06 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/01/17 16:02:21 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,8 +109,8 @@ typedef struct s_cub3d
 	t_textures textures; // Toutes les textures
 	t_colors colors;     // Couleurs du sol/plafond
 	// t_map map;           // Informations de la map
-	t_img *img;          // gestion des images
-	t_player player;     // Informations du joueur
+	t_img buffer;    // gestion des images
+	t_player player; // Informations du joueur
 }			t_cub3d;
 
 int			ft_check_av1(t_cub3d *cube3d);
@@ -132,6 +132,9 @@ int			get_pixel(t_img *img, int x, int y);
 int			create_rgb(int r, int g, int b);
 int			render(t_cub3d *cube);
 int			init_textures(t_cub3d *cube);
+int			open_images(t_cub3d *cube);
+int			init_buffer(t_cub3d *cube);
+int			ft_init_img(t_cub3d *cube, t_img *img);
 
 /* event in game */
 

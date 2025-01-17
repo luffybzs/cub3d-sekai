@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 16:33:27 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/01/12 17:52:48 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/01/17 15:27:59 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	main(int ac, char **av) // temporaire raycasting
 
 	mlx_hook(cube.win, 17, 0, close_window, &cube);
 	mlx_hook(cube.win, 2, 1L << 0, key_press, &cube);
-	mlx_loop_hook(cube.mlx,render, &cube);
+	mlx_loop_hook(cube.mlx,NULL, &cube); // gerer le null
 	mlx_loop(cube.mlx);
 	cleanup(&cube);
 	return (0);
