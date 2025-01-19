@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 16:03:47 by ayarab            #+#    #+#             */
-/*   Updated: 2025/01/19 23:45:04 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/01/20 00:53:01 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,12 +195,16 @@ void		perform_dda(t_cub3d *cube, t_raycast *ray);
 
 int			key_press(int keycode, t_cub3d *map);
 void		init_player(t_cub3d *cube);
+void	move_backward(t_cub3d *cube);
 
 /* init data */
 int			init_cub3d(t_cub3d *cube);
 void		calculate_step_and_side_dist(t_raycast *ray);
 void		init_ray(t_cub3d *cube, t_raycast *ray, double camera_x);
 void		raycasting(t_cub3d *cube);
+void	rotate_left(t_cub3d *cube);
+void	rotate_right(t_cub3d *cube);
+void	move_forward(t_cub3d *cube);
 
 /* temporaire */
 char		**create_test_map(void);
