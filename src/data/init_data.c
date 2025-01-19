@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 15:31:23 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/01/19 14:27:25 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/01/19 14:29:56 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,10 +79,10 @@ int	ft_init_img(t_cub3d *cube, t_img *img)
 }
 int	init_textures_path(t_cub3d *cube)
 {
-	cube->textures.north.path ="../../textures/north.xpm" ;
-	cube->textures.south.path = "../../textures/south.xpm";
-	cube->textures.east.path = "../../textures/east.xpm";
-	cube->textures.west.path = "../../textures/west.xpm";
+	cube->textures.north.path ="./textures/north.xpm" ;
+	cube->textures.south.path = "./textures/south.xpm";
+	cube->textures.east.path = "./textures/east.xpm";
+	cube->textures.west.path = "./textures/west.xpm";
 
 	if (!cube->textures.north.path || !cube->textures.south.path || !cube->textures.east.path || !cube->textures.west.path)
 		return (0);

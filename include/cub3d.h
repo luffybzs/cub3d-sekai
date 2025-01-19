@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 16:03:47 by ayarab            #+#    #+#             */
-/*   Updated: 2025/01/17 16:02:21 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/01/19 14:49:57 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,14 @@
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
+# include <X11/keysym.h>
+
+# define KEY_W      XK_w
+# define KEY_A      XK_a
+# define KEY_S      XK_s
+# define KEY_D      XK_d
+# define KEY_LEFT   XK_Left
+# define KEY_RIGHT  XK_Right
 
 // typedef struct s_cub3d
 // {
@@ -135,6 +143,8 @@ int			init_textures(t_cub3d *cube);
 int			open_images(t_cub3d *cube);
 int			init_buffer(t_cub3d *cube);
 int			ft_init_img(t_cub3d *cube, t_img *img);
+int	init_textures_path(t_cub3d *cube);
+
 
 /* event in game */
 
