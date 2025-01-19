@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 15:31:23 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/01/17 16:28:47 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/01/19 14:27:25 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@ int	init_cub3d(t_cub3d *cube)
 {
 	(void)cube;
 	ft_memset(cube, 0, sizeof(t_cub3d));
+	
+	if(!init_textures_path(cube))
+		return (printf("fail to init paths\n"),cleanup(cube),1);
+	
 	init_player(cube);
 	if (init_mlx(cube) || !cube->mlx || !cube->win)
 		return (printf("fail to init MLX\n"), cleanup(cube), 1);
@@ -55,19 +59,37 @@ int	init_buffer(t_cub3d *cube)
 
 int	ft_init_img(t_cub3d *cube, t_img *img)
 {
+	if (!img->path)
+	{
+		printf("error: texture path is NULL\n");
+		return (0);
+	}
+	    printf("Loading texture from path: %s\n", img->path);
 // ici ca plante a verifier pourquoi si les xpm sont bien converti ou pas 
 	img->img = mlx_xpm_file_to_image(cube->mlx, img->path, &img->width,&img->height);
-	if (!img->img)//ici l img bug verifier l initialisation
+	if (!img->img)//ici l img bug verifier l initialisation..
 		return (0);
-	printf("dans le open image\n");
 		
 	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,
 			&img->size_line, &img->endiant);
 	if (!img->addr)
-		return (0);
+		return (mlx_destroy_image(cube->mlx, img->img),0);
 		
 	return (1);
 }
+int	init_textures_path(t_cub3d *cube)
+{
+	cube->textures.north.path ="../../textures/north.xpm" ;
+	cube->textures.south.path = "../../textures/south.xpm";
+	cube->textures.east.path = "../../textures/east.xpm";
+	cube->textures.west.path = "../../textures/west.xpm";
+
+	if (!cube->textures.north.path || !cube->textures.south.path || !cube->textures.east.path || !cube->textures.west.path)
+		return (0);
+	
+	return (1);
+}
+
 
 int	init_textures(t_cub3d *cube)
 {
