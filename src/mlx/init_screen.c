@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 15:30:08 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/01/17 15:26:44 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/01/19 17:02:27 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	close_window(t_cub3d *data)
 {
 	cleanup(data);
 	exit(0);
+	return (0);
 }
 
 void	cleanup(t_cub3d *cube)

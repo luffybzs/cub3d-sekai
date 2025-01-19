@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 15:31:23 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/01/19 14:29:56 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/01/19 16:49:18 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,13 @@
 int	init_cub3d(t_cub3d *cube)
 {
 	(void)cube;
+	
 	ft_memset(cube, 0, sizeof(t_cub3d));
 	
+	cube->map = create_test_map();
+	if (!cube->map)
+		return (1);
+		
 	if(!init_textures_path(cube))
 		return (printf("fail to init paths\n"),cleanup(cube),1);
 	
@@ -175,3 +180,36 @@ if (cube->"position " = 'N')
 	cube->player.plane_y = -0.66;
 }
 */
+
+//temporaire ajout d une map pour le test
+char **create_test_map(void)
+{
+    char **map;
+    
+    map = malloc(sizeof(char *) * 8);  
+    if (!map)
+        return (NULL);
+
+    map[0] = ft_strdup("111111111111");
+    map[1] = ft_strdup("100000000001");
+    map[2] = ft_strdup("100000000001");
+    map[3] = ft_strdup("100000N00001");
+    map[4] = ft_strdup("100000000001");
+    map[5] = ft_strdup("100000000001");
+    map[6] = ft_strdup("111111111111");
+    map[7] = NULL;
+    int i = 0;
+    while (i < 7)
+    {
+        if (!map[i])
+        {
+            while (i > 0)
+                free(map[--i]);
+            free(map);
+            return (NULL);
+        }
+        i++;
+    }
+
+    return (map);
+}

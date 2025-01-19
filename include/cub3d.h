@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 16:03:47 by ayarab            #+#    #+#             */
-/*   Updated: 2025/01/19 14:49:57 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/01/19 16:59:39 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,19 @@
 # include "./../libft/get_next_line/get_next_line.h"
 # include "./../libft/libft.h"
 # include "gc.h"
+# include <X11/keysym.h>
 # include <math.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
-# include <X11/keysym.h>
 
-# define KEY_W      XK_w
-# define KEY_A      XK_a
-# define KEY_S      XK_s
-# define KEY_D      XK_d
-# define KEY_LEFT   XK_Left
-# define KEY_RIGHT  XK_Right
+# define KEY_W XK_w
+# define KEY_A XK_a
+# define KEY_S XK_s
+# define KEY_D XK_d
+# define KEY_LEFT XK_Left
+# define KEY_RIGHT XK_Right
 
 // typedef struct s_cub3d
 // {
@@ -57,13 +57,6 @@
 // 	// information sur la map
 // 	int screen_width;  // largeur
 // 	int screen_height; // hauteur
-// 	void		*no_img;
-// 	void		*so_img;
-// 	void		*we_img;
-// 	void		*ea_img;
-// 	void		*sprite_img;
-// 	void		*floor_img;
-// 	void		*ceiling_img;
 
 // 	t_cub3d		infos;
 // 	t_mlx_data	mlx;
@@ -108,6 +101,40 @@ typedef struct s_player
 	double plane_y; // Plan de la caméra Y
 }			t_player;
 
+typedef struct s_raycast
+{
+	//position de depart du rayon == position du player
+	double	pos_x;
+	double	pos_y;
+
+	//direction du rayon == plan camera et direction du joueur
+	double	ray_dir_x;
+	double	ray_dir_y;
+
+	// case de la grille origine du rayon
+	int		map_x;
+	int		map_y;
+
+	//distance aux prochaines intersections (jusqu a la prochaine case de map)
+	double	side_dist_x;
+	double	side_dist_y;
+
+	//distance entre deux lignes vertciale/horizontale
+	double delta_dist_x;
+	double delta_dist_y;
+
+	//direction de progression des rayons si il doit aller vers la gauche ou la droite
+	int step_x;
+	int step_y;
+
+	//distance finale == point d impact - joueur(distance perpendiculaire au mur eviter le flou)
+	double wall_dist;
+
+	//indicateur de face quel mur est touchee
+	int side;
+
+}			t_raycast;
+
 typedef struct s_cub3d
 {
 	void *mlx;           // Pointeur MLX
@@ -116,7 +143,7 @@ typedef struct s_cub3d
 	int screen_height;   // Hauteur de l'écran
 	t_textures textures; // Toutes les textures
 	t_colors colors;     // Couleurs du sol/plafond
-	// t_map map;           // Informations de la map
+	char **map;           //juste map pour le moment
 	t_img buffer;    // gestion des images
 	t_player player; // Informations du joueur
 }			t_cub3d;
@@ -143,8 +170,10 @@ int			init_textures(t_cub3d *cube);
 int			open_images(t_cub3d *cube);
 int			init_buffer(t_cub3d *cube);
 int			ft_init_img(t_cub3d *cube, t_img *img);
-int	init_textures_path(t_cub3d *cube);
+int			init_textures_path(t_cub3d *cube);
 
+/* raycasting */
+void perform_dda(t_cub3d *cube, t_raycast *ray);
 
 /* event in game */
 
@@ -153,5 +182,18 @@ void		init_player(t_cub3d *cube);
 
 /* init data */
 int			init_cub3d(t_cub3d *cube);
+void calculate_step_and_side_dist(t_raycast *ray);
+void init_ray(t_cub3d *cube, t_raycast *ray, double camera_x);
+void raycasting(t_cub3d *cube);
+
+/* temporaire */
+char **create_test_map(void);
+
+/*
+-gerer les mouvements les calculs et les gestions de collisions
+- gerer les leaks
+- finir de gerer les keyhook
+*/
+
 
 #endif

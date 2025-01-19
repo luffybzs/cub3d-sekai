@@ -6,14 +6,14 @@
 #    By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 16:20:22 by ayarab            #+#    #+#              #
-#    Updated: 2025/01/19 14:36:28 by wdaoudi-         ###   ########.fr        #
+#    Updated: 2025/01/19 16:55:01 by wdaoudi-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 
 SRCS = $(addprefix src/, main2.c data/init_data.c mlx/init_screen.c \
-mlx/handle_keys.c mlx/draw.c )
+mlx/handle_keys.c mlx/draw.c raycasting/raycasting.c)
 
 INCLUDES = -I ./include -I ./libft
 
