@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 16:03:47 by ayarab            #+#    #+#             */
-/*   Updated: 2025/01/19 16:59:39 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/01/19 23:45:04 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,11 @@
 // }				t_map_info;
 
 // tentatives
-typedef struct s_colors
-{
-	int floor[3];   // RGB pour le sol
-	int ceiling[3]; // RGB pour le plafond
-}			t_colors;
+// typedef struct s_colors
+// {
+// 	int floor[3];   // RGB pour le sol
+// 	int ceiling[3]; // RGB pour le plafond
+// }			t_colors;
 
 typedef struct s_img
 {
@@ -81,6 +81,13 @@ typedef struct s_img
 	int		width;
 	int		height;
 }			t_img;
+
+typedef struct s_draw
+{ // gestion des lignes de dessins point de depart fin et taille
+	int		start;
+	int		end;
+	int		line_height;
+}			t_draw;
 
 typedef struct s_textures
 {
@@ -120,18 +127,19 @@ typedef struct s_raycast
 	double	side_dist_y;
 
 	//distance entre deux lignes vertciale/horizontale
-	double delta_dist_x;
-	double delta_dist_y;
+	double	delta_dist_x;
+	double	delta_dist_y;
 
 	//direction de progression des rayons si il doit aller vers la gauche ou la droite
-	int step_x;
-	int step_y;
+	int		step_x;
+	int		step_y;
 
-	//distance finale == point d impact - joueur(distance perpendiculaire au mur eviter le flou)
-	double wall_dist;
+	//distance finale == point d impact
+	//- joueur(distance perpendiculaire au mur eviter le flou)
+	double	wall_dist;
 
 	//indicateur de face quel mur est touchee
-	int side;
+	int		side;
 
 }			t_raycast;
 
@@ -142,10 +150,14 @@ typedef struct s_cub3d
 	int screen_width;    // Largeur de l'écran
 	int screen_height;   // Hauteur de l'écran
 	t_textures textures; // Toutes les textures
-	t_colors colors;     // Couleurs du sol/plafond
-	char **map;           //juste map pour le moment
-	t_img buffer;    // gestion des images
-	t_player player; // Informations du joueur
+	char **map;          //juste map pour le moment
+	t_img buffer;        // gestion des images
+	t_player player;     // Informations du joueur
+	double *z_buffer;   //tableau qui stock la distance entre la camera et les points
+	int		map_width;
+	int		map_height;
+
+	// t_colors colors;     // Couleurs du sol/plafond
 }			t_cub3d;
 
 int			ft_check_av1(t_cub3d *cube3d);
@@ -162,18 +174,22 @@ void		cleanup(t_cub3d *data);
 /* draw */
 int			init_textures(t_cub3d *cube);
 int			load_texture(void *mlx, t_img *img, char *path);
-void		put_pixel(t_img *img, int x, int y, int color);
-int			get_pixel(t_img *img, int x, int y);
-int			create_rgb(int r, int g, int b);
+// void		put_pixel(t_img *img, int x, int y, int color);
+// int			get_pixel(t_img *img, int x, int y);
+// int			create_rgb(int r, int g, int b);
 int			render(t_cub3d *cube);
 int			init_textures(t_cub3d *cube);
 int			open_images(t_cub3d *cube);
 int			init_buffer(t_cub3d *cube);
 int			ft_init_img(t_cub3d *cube, t_img *img);
 int			init_textures_path(t_cub3d *cube);
+void		draw_vertical_line(t_cub3d *cube, t_raycast *ray, int x,
+				t_draw *draw);
+void		calculate_draw_points(t_cub3d *cube, t_raycast *ray, t_draw *draw);
+void		draw_background(t_cub3d *cube);
 
 /* raycasting */
-void perform_dda(t_cub3d *cube, t_raycast *ray);
+void		perform_dda(t_cub3d *cube, t_raycast *ray);
 
 /* event in game */
 
@@ -182,18 +198,17 @@ void		init_player(t_cub3d *cube);
 
 /* init data */
 int			init_cub3d(t_cub3d *cube);
-void calculate_step_and_side_dist(t_raycast *ray);
-void init_ray(t_cub3d *cube, t_raycast *ray, double camera_x);
-void raycasting(t_cub3d *cube);
+void		calculate_step_and_side_dist(t_raycast *ray);
+void		init_ray(t_cub3d *cube, t_raycast *ray, double camera_x);
+void		raycasting(t_cub3d *cube);
 
 /* temporaire */
-char **create_test_map(void);
+char		**create_test_map(void);
 
 /*
 -gerer les mouvements les calculs et les gestions de collisions
 - gerer les leaks
 - finir de gerer les keyhook
 */
-
 
 #endif

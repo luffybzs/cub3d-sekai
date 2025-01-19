@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 15:31:23 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/01/19 16:49:18 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/01/20 00:29:26 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,30 @@
 int	init_cub3d(t_cub3d *cube)
 {
 	(void)cube;
-	
 	ft_memset(cube, 0, sizeof(t_cub3d));
-	
 	cube->map = create_test_map();
 	if (!cube->map)
 		return (1);
-		
-	if(!init_textures_path(cube))
-		return (printf("fail to init paths\n"),cleanup(cube),1);
+	cube->map_height = 0;
+	while (cube->map[cube->map_height])
+		cube->map_height++;
+	if (cube->map_height > 0)
+		cube->map_width = ft_strlen(cube->map[0]);
+	else
+		return (cleanup(cube),1);
+
+	if (!init_textures_path(cube))
+		return (printf("fail to init paths\n"), cleanup(cube), 1);
 	
 	init_player(cube);
+	
 	if (init_mlx(cube) || !cube->mlx || !cube->win)
 		return (printf("fail to init MLX\n"), cleanup(cube), 1);
+	
+	cube->z_buffer = malloc(sizeof(double) * cube->screen_width);
+	if (!cube->z_buffer) // verifier le fonctionnement 
+		return (cleanup(cube), 1);
+	
 	if (!open_images(cube))
 		return (printf("fail to init textures\n"), cleanup(cube), 1);
 	return (0);
@@ -49,14 +60,20 @@ int	open_images(t_cub3d *cube)
 
 int	init_buffer(t_cub3d *cube)
 {
+	if (!cube->mlx)
+        return (0);
+   
+    printf("Creating buffer of size: %dx%d\n", cube->screen_width, cube->screen_height);
+
 	cube->buffer.img = mlx_new_image(cube->mlx, cube->screen_width,
 			cube->screen_height);
 	if (!cube->buffer.img)
 		return (0);
 		
 	cube->buffer.addr = mlx_get_data_addr(cube->buffer.img,
-			&cube->buffer.bits_per_pixel, &cube->buffer.size_line,
-			&cube->buffer.endiant);
+											&cube->buffer.bits_per_pixel,
+											&cube->buffer.size_line,
+											&cube->buffer.endiant);
 	if (!cube->buffer.addr)
 		return (0);
 	return (1);
@@ -69,32 +86,28 @@ int	ft_init_img(t_cub3d *cube, t_img *img)
 		printf("error: texture path is NULL\n");
 		return (0);
 	}
-	    printf("Loading texture from path: %s\n", img->path);
-// ici ca plante a verifier pourquoi si les xpm sont bien converti ou pas 
-	img->img = mlx_xpm_file_to_image(cube->mlx, img->path, &img->width,&img->height);
-	if (!img->img)//ici l img bug verifier l initialisation..
+	printf("Loading texture from path: %s\n", img->path);
+	img->img = mlx_xpm_file_to_image(cube->mlx, img->path, &img->width,
+			&img->height);
+	if (!img->img)
 		return (0);
-		
 	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,
 			&img->size_line, &img->endiant);
 	if (!img->addr)
-		return (mlx_destroy_image(cube->mlx, img->img),0);
-		
+		return (mlx_destroy_image(cube->mlx, img->img), 0);
 	return (1);
 }
 int	init_textures_path(t_cub3d *cube)
 {
-	cube->textures.north.path ="./textures/north.xpm" ;
+	cube->textures.north.path = "./textures/north.xpm";
 	cube->textures.south.path = "./textures/south.xpm";
 	cube->textures.east.path = "./textures/east.xpm";
 	cube->textures.west.path = "./textures/west.xpm";
-
-	if (!cube->textures.north.path || !cube->textures.south.path || !cube->textures.east.path || !cube->textures.west.path)
+	if (!cube->textures.north.path || !cube->textures.south.path
+		|| !cube->textures.east.path || !cube->textures.west.path)
 		return (0);
-	
 	return (1);
 }
-
 
 int	init_textures(t_cub3d *cube)
 {
@@ -112,7 +125,7 @@ int	init_textures(t_cub3d *cube)
 	// 	return (0);
 	// }
 	// if (!load_texture(cube->mlx, &cube->textures.east,
-				// "./textures/wood.xpm"))
+	// "./textures/wood.xpm"))
 	// {
 	// 	mlx_destroy_image(cube->mlx, cube->textures.north.img);
 	// 	mlx_destroy_image(cube->mlx, cube->textures.south.img);
@@ -142,9 +155,9 @@ void	init_player(t_cub3d *cube)
 	cube->player.pos_y = 3.0;
 	// vecteur de direction
 	// en fonction de l orientation choisir l angle
-	cube->player.dir_x = 0.0;  // direction nord
+	cube->player.dir_x = 0.0; // direction nord
 	cube->player.dir_y = -1.0;
-		// negatif car origine (0;0) en haut a gauche de la map
+	// negatif car origine (0;0) en haut a gauche de la map
 	//plan de la camera important dans le raycasting
 	cube->player.plane_x = 0.66;
 	cube->player.plane_y = 0.0;
@@ -182,34 +195,33 @@ if (cube->"position " = 'N')
 */
 
 //temporaire ajout d une map pour le test
-char **create_test_map(void)
+char	**create_test_map(void)
 {
-    char **map;
-    
-    map = malloc(sizeof(char *) * 8);  
-    if (!map)
-        return (NULL);
+	char	**map;
+	int		i;
 
-    map[0] = ft_strdup("111111111111");
-    map[1] = ft_strdup("100000000001");
-    map[2] = ft_strdup("100000000001");
-    map[3] = ft_strdup("100000N00001");
-    map[4] = ft_strdup("100000000001");
-    map[5] = ft_strdup("100000000001");
-    map[6] = ft_strdup("111111111111");
-    map[7] = NULL;
-    int i = 0;
-    while (i < 7)
-    {
-        if (!map[i])
-        {
-            while (i > 0)
-                free(map[--i]);
-            free(map);
-            return (NULL);
-        }
-        i++;
-    }
-
-    return (map);
+	map = malloc(sizeof(char *) * 8);
+	if (!map)
+		return (NULL);
+	map[0] = ft_strdup("111111111111");
+	map[1] = ft_strdup("100000000001");
+	map[2] = ft_strdup("100000000001");
+	map[3] = ft_strdup("100000N00001");
+	map[4] = ft_strdup("100000000001");
+	map[5] = ft_strdup("100000000001");
+	map[6] = ft_strdup("111111111111");
+	map[7] = NULL;
+	i = 0;
+	while (i < 7)
+	{
+		if (!map[i])
+		{
+			while (i > 0)
+				free(map[--i]);
+			free(map);
+			return (NULL);
+		}
+		i++;
+	}
+	return (map);
 }

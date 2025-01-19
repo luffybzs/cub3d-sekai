@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 15:30:08 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/01/19 17:02:27 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/01/20 00:38:44 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ int	init_mlx(t_cub3d *data)
 	data->mlx = mlx_init();
 	if (!data->mlx)
 		return (ft_putendl_fd("Error: Failed to initialize MLX", 2), 1);
-	mlx_get_screen_size(data->mlx, &data->screen_width, &data->screen_height);
-	if (data->screen_height > 1920)
-		data->screen_height = 1920;
-	if (data->screen_width > 1080)
-		data->screen_width = 1080;
-	data->win = mlx_new_window(data->mlx, data->screen_height,
-			data->screen_width, "Cub3D-Sekai");
+	mlx_get_screen_size(data->mlx, &data->screen_height, &data->screen_width);
+	if (data->screen_height > 1080 || data->screen_height == 0)
+		data->screen_height = 1080;
+	if (data->screen_width > 1920 || data->screen_width == 0)
+		data->screen_width = 1920;
+	data->win = mlx_new_window(data->mlx, data->screen_width,
+			data->screen_height, "Cub3D-Sekai");
 	if (!data->win)
 		return (ft_putendl_fd("Error: Failed to initialize MLX", 2),
 				mlx_destroy_display(data->mlx),
@@ -57,5 +57,10 @@ void	cleanup(t_cub3d *cube)
 	{
 		mlx_destroy_display(cube->mlx);
 		free(cube->mlx);
+	}
+	if (cube->z_buffer)
+	{
+		free(cube->z_buffer);
+		cube->z_buffer = NULL;
 	}
 }

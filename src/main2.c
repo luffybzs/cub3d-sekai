@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 16:33:27 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/01/19 17:10:08 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/01/20 00:30:17 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,17 @@ int	game_loop(t_cub3d *cube)
 {
 	if (!cube || !cube->mlx || !cube->win)
 		return (1);
-		
+	
+	if (cube->map_width == 0 || cube->map_height == 0)
+    {
+        printf("Error: Invalid map dimensions in game loop\n");
+        return (1);
+    }
+
 	ft_memset(cube->buffer.addr, 0, cube->screen_width * cube->screen_height
 			* sizeof(int));
-			
+	
+	draw_background(cube);
 	raycasting(cube);
 
 	if (cube->buffer.img)
@@ -42,7 +49,7 @@ int	main(int ac, char **av) // temporaire raycasting
 	{
 	mlx_hook(cube.win, 17, 0, close_window, &cube);
 	mlx_hook(cube.win, 2, 1L << 0, key_press, &cube);
-	mlx_loop_hook(cube.mlx, game_loop, &cube); // gerer le null
+	mlx_loop_hook(cube.mlx, game_loop, &cube);
 	mlx_loop(cube.mlx);
 	}
 	cleanup(&cube);

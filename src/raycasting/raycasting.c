@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 14:36:54 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/01/19 17:12:34 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/01/20 00:39:24 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,22 @@
 void raycasting(t_cub3d *cube)
 {
     t_raycast ray;
+    t_draw draw;
     double camera_x;
-    int line_height;
-    int draw_start;
-    int draw_end;
-    
+    // int line_height;
+    // int draw_start;
+    // int draw_end;
     int x;
     
+    printf("\n=== Starting new frame ===\n");
+    printf("Player position: (%f,%f)\n", cube->player.pos_x, cube->player.pos_y);
+    printf("Player direction: (%f,%f)\n", cube->player.dir_x, cube->player.dir_y);
+
+    if (!cube || !cube->buffer.addr || !cube->map)
+    {
+        printf("Error: Invalid cube structure\n");
+        return;
+    }
     x = 0;
     while (x < cube->screen_width)
     {
@@ -37,22 +46,14 @@ void raycasting(t_cub3d *cube)
         // Exécution du DDA
         perform_dda(cube, &ray);
         
-        // Calcul de la hauteur de la ligne à dessiner
-        line_height = (int)(cube->screen_height / ray.wall_dist);
+        cube->z_buffer[x] = ray.wall_dist;
         
-        // Calcul du début et de la fin de la ligne
-         draw_start = -line_height / 2 + cube->screen_height / 2;
-         draw_end = line_height / 2 + cube->screen_height / 2;
-        
-        if (draw_start < 0)
-            draw_start = 0;
-        if (draw_end >= cube->screen_height)
-            draw_end = cube->screen_height - 1;
-        
-        // Dessin de la ligne verticale
-        draw_vertical_line(cube, x, draw_start, draw_end, ray.side);
+        // Calcul des points de dessin et dessin
+        calculate_draw_points(cube, &ray, &draw);
+        draw_vertical_line(cube, &ray, x, &draw);
         
         x++;
+
     }
 }
 
@@ -104,34 +105,48 @@ void calculate_step_and_side_dist(t_raycast *ray)
 
 void perform_dda(t_cub3d *cube, t_raycast *ray)
 {
-    int hit = 0; // Est-ce qu'on a touché un mur?
-
+    int hit = 0;
+    
+    if (!cube->map)
+    {
+        printf("Error: Map is NULL\n");
+        return;
+    }
+    if (cube->map_width == 0 || cube->map_height == 0)
+    {
+        printf("Error: Invalid map dimensions\n");
+        return;
+    }
     while (!hit)
     {
-        // On avance à la prochaine intersection x ou y (la plus proche)
+        // On avance à la prochaine intersection
         if (ray->side_dist_x < ray->side_dist_y)
         {
             ray->side_dist_x += ray->delta_dist_x;
             ray->map_x += ray->step_x;
-            ray->side = 0; // On a touché un mur vertical
+            ray->side = 0;
         }
         else
         {
             ray->side_dist_y += ray->delta_dist_y;
             ray->map_y += ray->step_y;
-            ray->side = 1; // On a touché un mur horizontal
+            ray->side = 1;
         }
         
+        // Vérification des limites de la map
+        if (ray->map_y < 0 || ray->map_y >= cube->map_height ||
+            ray->map_x < 0 || ray->map_x >= cube->map_width)
+            break;
+
         // Vérification si on a touché un mur
-        if (cube->map[ray->map_x][ray->map_y] == '1')
+        if (cube->map[ray->map_y][ray->map_x] == '1')
             hit = 1;
     }
     
-    // Calcul de la distance perpendiculaire(évite l'effet fish-eye)
+    // Calcul de la distance perpendiculaire
     if (ray->side == 0)
-        ray->wall_dist = (ray->map_x - ray->pos_x + 
-            (1 - ray->step_x) / 2) / ray->ray_dir_x;
-    else
-        ray->wall_dist = (ray->map_y - ray->pos_y + 
-            (1 - ray->step_y) / 2) / ray->ray_dir_y;
+        ray->wall_dist = (ray->side_dist_x - ray->delta_dist_x);
+    else 
+        ray->wall_dist = (ray->side_dist_y - ray->delta_dist_y);
 }
+
