@@ -6,15 +6,8 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 17:06:32 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/01/20 00:55:49 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/01/20 14:29:22 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
-
-// int	key_press(int keycode, t_cub3d *map)
-// {
-//     if (keycode == 65307)
-//         close_window(map);
-//     return (0);
-// }
