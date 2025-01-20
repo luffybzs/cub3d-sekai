@@ -6,17 +6,11 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 18:01:34 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/01/20 00:36:49 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/01/20 14:21:16 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
-
-// Pour créer une couleur RGB
-// int	create_rgb(int r, int g, int b)
-// {
-// 	return (r << 16 | g << 8 | b);
-// }
 
 void	draw_vertical_line(t_cub3d *cube, t_raycast *ray, int x, t_draw *draw)
 {
@@ -97,26 +91,30 @@ void	calculate_draw_points(t_cub3d *cube, t_raycast *ray, t_draw *draw)
 		draw->end = cube->screen_height - 1;
 }
 
-void	draw_background(t_cub3d *cube)
+int	draw_background(t_cub3d *cube)
 {
 	int	*buffer;
-	int	half_screen_bytes;
-        
-    static int frame_count = 0;
-    printf("Drawing background frame %d\n", frame_count++);
-    printf("Screen dimensions: %dx%d\n", cube->screen_width, cube->screen_height);
+	int ceiling_color;
+	int floor_color;
+	int half_screen;
+	int i;
 
+	ceiling_color = (135 << 16) | (206 << 8) | 250;
+	floor_color = (255 << 16) | (248 << 8) | 220;
 	buffer = (int *)cube->buffer.addr;
-	half_screen_bytes = (cube->screen_width * cube->screen_height / 2)
-		* sizeof(int);
-    if (!buffer)
-    {
-        printf("error buffer is null \n");
-        return;
-    }
-	// couleur unitaire du plafond
-	ft_memset(buffer, 0x87, half_screen_bytes);
-	// couleur unitaire du sol
-	ft_memset(buffer + (half_screen_bytes / sizeof(int)), 0x80,
-			half_screen_bytes);
+	if (!buffer)
+		return(printf("Error: empty buffer\n"),1);
+	half_screen = (cube->screen_width * cube->screen_height) / 2;
+	i = 0;
+	while (i < half_screen)
+	{
+		buffer[i] = ceiling_color;
+		i ++;
+	}
+	while (i < cube->screen_width * cube->screen_height)
+	{
+		buffer[i] = floor_color;
+		i ++;
+	}
+	return (0);
 }

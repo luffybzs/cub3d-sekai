@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 16:03:47 by ayarab            #+#    #+#             */
-/*   Updated: 2025/01/20 00:53:01 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/01/20 14:23:14 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,6 @@ typedef struct s_textures
 	t_img south;  // Texture du mur sud
 	t_img west;   // Texture du mur ouest
 	t_img east;   // Texture du mur est
-	t_img sprite; // Texture des sprites ???
 }			t_textures;
 
 typedef struct s_player
@@ -156,7 +155,6 @@ typedef struct s_cub3d
 	double *z_buffer;   //tableau qui stock la distance entre la camera et les points
 	int		map_width;
 	int		map_height;
-
 	// t_colors colors;     // Couleurs du sol/plafond
 }			t_cub3d;
 
@@ -174,9 +172,6 @@ void		cleanup(t_cub3d *data);
 /* draw */
 int			init_textures(t_cub3d *cube);
 int			load_texture(void *mlx, t_img *img, char *path);
-// void		put_pixel(t_img *img, int x, int y, int color);
-// int			get_pixel(t_img *img, int x, int y);
-// int			create_rgb(int r, int g, int b);
 int			render(t_cub3d *cube);
 int			init_textures(t_cub3d *cube);
 int			open_images(t_cub3d *cube);
@@ -186,7 +181,7 @@ int			init_textures_path(t_cub3d *cube);
 void		draw_vertical_line(t_cub3d *cube, t_raycast *ray, int x,
 				t_draw *draw);
 void		calculate_draw_points(t_cub3d *cube, t_raycast *ray, t_draw *draw);
-void		draw_background(t_cub3d *cube);
+int			draw_background(t_cub3d *cube);
 
 /* raycasting */
 void		perform_dda(t_cub3d *cube, t_raycast *ray);
@@ -195,16 +190,16 @@ void		perform_dda(t_cub3d *cube, t_raycast *ray);
 
 int			key_press(int keycode, t_cub3d *map);
 void		init_player(t_cub3d *cube);
-void	move_backward(t_cub3d *cube);
+void		move_backward(t_cub3d *cube);
 
 /* init data */
 int			init_cub3d(t_cub3d *cube);
 void		calculate_step_and_side_dist(t_raycast *ray);
 void		init_ray(t_cub3d *cube, t_raycast *ray, double camera_x);
 void		raycasting(t_cub3d *cube);
-void	rotate_left(t_cub3d *cube);
-void	rotate_right(t_cub3d *cube);
-void	move_forward(t_cub3d *cube);
+void		rotate_left(t_cub3d *cube);
+void		rotate_right(t_cub3d *cube);
+void		move_forward(t_cub3d *cube);
 
 /* temporaire */
 char		**create_test_map(void);
