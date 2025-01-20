@@ -6,7 +6,7 @@
 /*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 16:03:03 by ayarab            #+#    #+#             */
-/*   Updated: 2025/01/20 02:34:20 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/01/20 17:10:56 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,24 +35,7 @@ int main(int ac, char **av)
     return (ft_fail_free(&cube3d),EXIT_SUCCESS);
 }
 
-void ft_fail_free(t_cub3d *cube3d)
-{
-	if (cube3d->EA)
-		free(cube3d->EA);
-	if (cube3d->NO)
-		free(cube3d->NO);
-	if (cube3d->WE)
-		free(cube3d->WE);
-	if (cube3d->SO)
-		free(cube3d->SO);
-	if (cube3d->F)
-		free(cube3d->F);
-	if (cube3d->C)
-		free(cube3d->C);	
-	if (cube3d->all_maps)
-		ft_free_2d(cube3d->all_maps);
-	return ;
-}
+
 		/*printf("%s\n", cube3d.NO);
 		printf("%s\n", cube3d.WE);
 		printf("%s\n", cube3d.SO);
