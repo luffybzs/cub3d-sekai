@@ -6,7 +6,7 @@
 #    By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 16:20:22 by ayarab            #+#    #+#              #
-#    Updated: 2025/01/20 17:12:47 by ayarab           ###   ########.fr        #
+#    Updated: 2025/01/27 16:29:11 by ayarab           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ OBJS = $(SRCS:.c=.o)
 
 CFLAGS = -Wall -Wextra -Werror -g3
 
-NAME = cube3d
+NAME = cub3D
 
 all: $(MINI_LIBX) $(LIBFT) $(NAME)
 

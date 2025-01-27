@@ -6,7 +6,7 @@
 /*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 16:58:05 by ayarab            #+#    #+#             */
-/*   Updated: 2025/01/20 17:06:45 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/01/27 18:40:58 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,14 +72,14 @@ int	ft_search_maps(char *av1, t_cub3d *cube3d)
 	char	*line;
 	char	*res;
 
-	res = ft_strdup("");
+	res = NULL;
 	fd = open(av1, O_RDONLY);
 	if (fd == -1)
 		return (EXIT_FAILURE);
 	line = get_next_line(fd);
 	while (line)
 	{
-		if (!ft_all_one(line))
+		if (!ft_all_one(line) || res)
 		{
 			res = ft_strjoin_free(res, line);
 			if (!res)
