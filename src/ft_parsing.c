@@ -6,7 +6,7 @@
 /*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 19:28:56 by ayarab            #+#    #+#             */
-/*   Updated: 2025/01/27 18:42:02 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/01/28 17:44:22 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ int	ft_search_info(char *av1, t_cub3d *cube3d)
 		free(line);
 		line = get_next_line(fd);
 	}
+	if (!cube3d->WE || !cube3d->SO || !cube3d->EA || !cube3d->NO || !cube3d->F || !cube3d->C)
+		return (close(fd) , EXIT_FAILURE);
 	return (close(fd), EXIT_SUCCESS);
 }
 
@@ -142,9 +144,9 @@ int ft_skip(char **tab, int j)
 
 	while (tab[j][i] && tab[j][i] <= 32)
 		i++;
-	if (tab[j][i] != '1')
-		return (-1);
-	return (i);
+	if (tab[j][i] == '1')
+		return (0);
+	return (-1);
 }
 
 int ft_maps_is_good(t_cub3d *cube3d)
@@ -174,14 +176,74 @@ int ft_maps_is_good(t_cub3d *cube3d)
 	}
 	return (EXIT_SUCCESS);
 }
+int ft_check_char(char c)
+{
+	if (c == 'N')
+		return (EXIT_SUCCESS);
+	if (c == 'S')
+		return (EXIT_SUCCESS);
+	if (c == 'E')
+		return (EXIT_SUCCESS);
+	if (c == 'W')
+		return (EXIT_SUCCESS);
+	if (c == '1')
+		return (EXIT_SUCCESS);
+	if (c == '0')
+		return (EXIT_SUCCESS);
+	if (c <= 32)
+		return (EXIT_SUCCESS);
+	return (EXIT_FAILURE);
+}
 
 
+int ft_is_all_good_char(t_cub3d *cube3d)
+{
+	int i;
+	int j = 0;
 
+	while (cube3d->all_maps[j])
+	{
+		i = 0;
+		while (cube3d->all_maps[j][i])
+		{
+			if (ft_check_char(cube3d->all_maps[j][i]) == EXIT_FAILURE)
+				return (EXIT_FAILURE);
+			i++;
+		}
+		j++;
+	}
+	return (EXIT_SUCCESS);
+}
+int ft_player(char c)
+{
+	if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
+		return (EXIT_SUCCESS);
+	return (EXIT_FAILURE);
+}
 
+int ft_check_player(t_cub3d *cube3d)
+{
+	int i = 0;
+	int j = 0;
+	bool player = false;
 
-
-
-
+	while (cube3d->all_maps[j])
+	{
+		i = 0;
+		while (cube3d->all_maps[j][i])
+		{
+			if (ft_player(cube3d->all_maps[j][i]) == EXIT_SUCCESS)
+			{
+				if (player == true)
+					return (EXIT_FAILURE);
+				player = true;
+			}
+			i++;
+		}
+		j++;
+	}
+	return (EXIT_SUCCESS);
+} 
 
 
 int	ft_fill_data(int ac, char **av, t_cub3d *cube3d)
@@ -197,6 +259,10 @@ int	ft_fill_data(int ac, char **av, t_cub3d *cube3d)
 	if (ft_fill_color(cube3d) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	if (ft_maps_is_good(cube3d) == EXIT_FAILURE)
+		return (EXIT_FAILURE);
+	if (ft_is_all_good_char(cube3d) == EXIT_FAILURE)
+		return (EXIT_FAILURE);
+	if (ft_check_player(cube3d) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }

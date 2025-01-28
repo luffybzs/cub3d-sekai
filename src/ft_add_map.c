@@ -6,7 +6,7 @@
 /*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 16:58:05 by ayarab            #+#    #+#             */
-/*   Updated: 2025/01/27 18:40:58 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/01/28 17:12:02 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_add_F(char *str, t_cub3d *cube3d)
 {
-	if (ft_strnstr(str, "F", 1) != NULL)
+	if (!ft_strncmp(str, "F", 1))
 	{
 		if (cube3d->F)
 			return (-1);
@@ -27,7 +27,7 @@ int	ft_add_F(char *str, t_cub3d *cube3d)
 }
 int	ft_add_C(char *str, t_cub3d *cube3d)
 {
-	if (ft_strnstr(str, "C", 1) != NULL)
+	if (!ft_strncmp(str, "C", 1))
 	{
 		if (cube3d->C)
 			return (-1);
@@ -61,8 +61,8 @@ int	ft_all_one(char *str)
 	i = 0;
 	while (str[i] && str[i] <= 32)
 		i++;
-	if (str[i] != '1')
-		return (-1);
+	if (str[i] == '1')
+		return (1);
 	return (0);
 }
 
@@ -79,7 +79,7 @@ int	ft_search_maps(char *av1, t_cub3d *cube3d)
 	line = get_next_line(fd);
 	while (line)
 	{
-		if (!ft_all_one(line) || res)
+		if (ft_all_one(line) || res)
 		{
 			res = ft_strjoin_free(res, line);
 			if (!res)
