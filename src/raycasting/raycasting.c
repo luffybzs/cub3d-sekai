@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 14:36:54 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/01/28 21:19:11 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/01/28 21:22:52 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,14 @@ void	raycasting(t_cub3d *cube)
 	x = 0;
 	while (x < cube->screen_width)
 	{
-		// Calcul de la position sur le plan caméra
+		// Calcul de la position du rayon sur le plan caméra
 		camera_x = 2 * x / (double)cube->screen_width - 1;
 		// Initialisation du rayon
 		init_ray(cube, &ray, camera_x);
 		// Calcul des pas et distances initiales
 		calculate_step_and_side_dist(&ray);
-		// Exécution du DDA
-		perform_dda(cube, &ray);
+		// calcule pour trouver l intersection avec le mur
+		perform_dda(cube, &ray);//digital differential analysis
 		cube->z_buffer[x] = ray.wall_dist;
 		// Calcul des points de dessin et dessin
 		calculate_draw_points(cube, &ray, &draw);
