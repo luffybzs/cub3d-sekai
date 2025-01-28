@@ -6,7 +6,7 @@
 /*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 19:28:56 by ayarab            #+#    #+#             */
-/*   Updated: 2025/01/28 17:44:22 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/01/28 19:22:13 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -242,6 +242,8 @@ int ft_check_player(t_cub3d *cube3d)
 		}
 		j++;
 	}
+	if (player == false)
+		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 } 
 
@@ -253,16 +255,16 @@ int	ft_fill_data(int ac, char **av, t_cub3d *cube3d)
 	if (ft_check_av1(cube3d) == EXIT_FAILURE)
 		return (ft_putstr_fd("Error\n", 2), EXIT_FAILURE);
 	if (ft_search_info(cube3d->av1, cube3d) == EXIT_FAILURE)
-		return (EXIT_FAILURE);
+		return (ft_putendl_fd(ERROR_FOR_INFO, 2),EXIT_FAILURE);
 	if (ft_search_maps(cube3d->av1, cube3d) == EXIT_FAILURE)
-		return (EXIT_FAILURE);
+		return (ft_putendl_fd("Error\nMap Not Found" ,2) ,EXIT_FAILURE);
 	if (ft_fill_color(cube3d) == EXIT_FAILURE)
-		return (EXIT_FAILURE);
+		return (ft_putendl_fd("Error\nRGB Is Not Good",2) ,EXIT_FAILURE);
 	if (ft_maps_is_good(cube3d) == EXIT_FAILURE)
-		return (EXIT_FAILURE);
+		return (ft_putendl_fd("Error\nMap Is Not Close",2) , EXIT_FAILURE);
 	if (ft_is_all_good_char(cube3d) == EXIT_FAILURE)
-		return (EXIT_FAILURE);
+		return (ft_putendl_fd("Error\nMap Invalid Char", 2) ,EXIT_FAILURE);
 	if (ft_check_player(cube3d) == EXIT_FAILURE)
-		return (EXIT_FAILURE);
+		return (ft_putendl_fd("Error\nNot Or Too Many Player", 2), EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }

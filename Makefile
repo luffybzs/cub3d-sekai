@@ -6,21 +6,23 @@
 #    By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 16:20:22 by ayarab            #+#    #+#              #
-#    Updated: 2025/01/27 16:29:11 by ayarab           ###   ########.fr        #
+#    Updated: 2025/01/28 18:27:05 by ayarab           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 
-SRCS = $(addprefix src/, main.c ft_parsing.c ft_fill_color.c ft_check_asset.c ft_add_info.c ft_add_map.c)
+SRC = ./src/
+SRCS = $(addprefix $(SRC), main.c ft_parsing.c ft_fill_color.c ft_check_asset.c ft_add_info.c ft_add_map.c)
 
 INCLUDES = -I ./include -I ./libft
 
 LIBFT = libft.a
 LIB_DIR = ./libft
 MINI_LIBX_DIR = ./minilibx-linux
-MINI_LIBX = libmlx.a
-OBJS = $(SRCS:.c=.o)
+MINI_LIBX = libmlx.a.
+OBJ = ./objs/
+OBJS = $(patsubst $(SRC)%, $(OBJ)%, $(SRCS:.c=.o))
 
 CFLAGS = -Wall -Wextra -Werror -g3
 
@@ -28,7 +30,8 @@ NAME = cub3D
 
 all: $(MINI_LIBX) $(LIBFT) $(NAME)
 
-%.o: %.c
+$(OBJ)%.o: $(SRC)%.c
+	mkdir -p $(OBJ)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 $(LIBFT):

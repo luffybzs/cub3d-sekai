@@ -6,7 +6,7 @@
 /*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 16:03:47 by ayarab            #+#    #+#             */
-/*   Updated: 2025/01/28 17:21:40 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/01/28 18:11:45 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include <string.h>
 # include <unistd.h>
 
-# define ERROR_FOR_INFO "Error\n"
+# define ERROR_FOR_INFO "Error\nThere is missing information or there are duplicates"
 typedef struct s_cub3d
 {
 	char	**all_maps;
