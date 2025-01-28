@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 15:31:23 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/01/20 00:52:09 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/01/28 21:00:18 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	init_cub3d(t_cub3d *cube)
 {
-	(void)cube;
 	ft_memset(cube, 0, sizeof(t_cub3d));
 	cube->map = create_test_map();
 	if (!cube->map)
@@ -34,11 +33,9 @@ int	init_cub3d(t_cub3d *cube)
 	
 	if (init_mlx(cube) || !cube->mlx || !cube->win)
 		return (printf("fail to init MLX\n"), cleanup(cube), 1);
-	
 	cube->z_buffer = malloc(sizeof(double) * cube->screen_width);
 	if (!cube->z_buffer) // verifier le fonctionnement 
 		return (cleanup(cube), 1);
-	
 	if (!open_images(cube))
 		return (printf("fail to init textures\n"), cleanup(cube), 1);
 	return (0);
@@ -62,14 +59,10 @@ int	init_buffer(t_cub3d *cube)
 {
 	if (!cube->mlx)
         return (0);
-   
-    printf("Creating buffer of size: %dx%d\n", cube->screen_width, cube->screen_height);
-
 	cube->buffer.img = mlx_new_image(cube->mlx, cube->screen_width,
 			cube->screen_height);
 	if (!cube->buffer.img)
 		return (0);
-		
 	cube->buffer.addr = mlx_get_data_addr(cube->buffer.img,
 											&cube->buffer.bits_per_pixel,
 											&cube->buffer.size_line,
@@ -86,7 +79,6 @@ int	ft_init_img(t_cub3d *cube, t_img *img)
 		printf("error: texture path is NULL\n");
 		return (0);
 	}
-	printf("Loading texture from path: %s\n", img->path);
 	img->img = mlx_xpm_file_to_image(cube->mlx, img->path, &img->width,
 			&img->height);
 	if (!img->img)
@@ -108,33 +100,6 @@ int	init_textures_path(t_cub3d *cube)
 		return (0);
 	return (1);
 }
-
-// int	init_textures(t_cub3d *cube)
-// {
-// 	(void)cube;
-// 	// if (!load_texture(cube->mlx, &cube->textures.north,
-// 	// 					"./textures/colorstone.xpm"))
-// 	// 						// a modifie plus tard avec le parsing
-// 	// 	return (0);
-// 	// if (!load_texture(cube->mlx, &cube->textures.south,
-// 	// 					"./textures/bluestone.xpm"))
-// 	// 						// a modifie plus tard avec le parsing
-// 	// {
-// 	// 	mlx_destroy_image(cube->mlx, cube->textures.north.img);
-// 	// 	mlx_destroy_image(cube->mlx, cube->textures.south.img);
-// 	// 	return (0);
-// 	// }
-// 	// if (!load_texture(cube->mlx, &cube->textures.east,
-// 	// "./textures/wood.xpm"))
-// 	// {
-// 	// 	mlx_destroy_image(cube->mlx, cube->textures.north.img);
-// 	// 	mlx_destroy_image(cube->mlx, cube->textures.south.img);
-// 	// 	mlx_destroy_image(cube->mlx, cube->textures.west.img);
-// 	// 	return (0);
-// 	// }
-// 	// return (1);
-// 	return (1);
-// }
 
 int	load_texture(void *mlx, t_img *img, char *path)
 {
@@ -164,28 +129,28 @@ void	init_player(t_cub3d *cube)
 }
 
 /* 
-if (cube->"position " = 'N')
+if (cube->player->direction = 'N')
 {
 	cube->player.dir_x =0;
 	cube->player.dir_y = -1;
 	cube->player.plane_x = 0.66;
 	cube->player.plane_y = 0;
 }
-if (cube->"position " = 'S')
+if (cube->player->direction = 'S')
 {
 	cube->player.dir_x =0;
 	cube->player.dir_y = 1;
 	cube->player.plane_x = -0.66;
 	cube->player.plane_y = 0;
 }
-if (cube->"position " = 'E')
+if (cube->player->direction = 'E')
 {
 	cube->player.dir_x =1;
 	cube->player.dir_y = 0;
 	cube->player.plane_x = 0;
 	cube->player.plane_y = 0.66;
 }
-if (cube->"position " = 'N')
+if (cube->player->direction = 'N')
 {
 	cube->player.dir_x =-1;
 	cube->player.dir_y = 0;

@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 14:36:54 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/01/20 00:39:24 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/01/28 21:16:36 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,8 @@ void raycasting(t_cub3d *cube)
     t_raycast ray;
     t_draw draw;
     double camera_x;
-    // int line_height;
-    // int draw_start;
-    // int draw_end;
     int x;
     
-    printf("\n=== Starting new frame ===\n");
-    printf("Player position: (%f,%f)\n", cube->player.pos_x, cube->player.pos_y);
-    printf("Player direction: (%f,%f)\n", cube->player.dir_x, cube->player.dir_y);
-
     if (!cube || !cube->buffer.addr || !cube->map)
     {
         printf("Error: Invalid cube structure\n");
@@ -36,24 +29,17 @@ void raycasting(t_cub3d *cube)
     {
         // Calcul de la position sur le plan caméra
         camera_x = 2 * x / (double)cube->screen_width - 1;
-        
         // Initialisation du rayon
         init_ray(cube, &ray, camera_x);
-        
         // Calcul des pas et distances initiales
-        calculate_step_and_side_dist(&ray);
-        
+        calculate_step_and_side_dist(&ray);    
         // Exécution du DDA
         perform_dda(cube, &ray);
-        
         cube->z_buffer[x] = ray.wall_dist;
-        
         // Calcul des points de dessin et dessin
         calculate_draw_points(cube, &ray, &draw);
         draw_vertical_line(cube, &ray, x, &draw);
-        
         x++;
-
     }
 }
 
@@ -74,7 +60,7 @@ void init_ray(t_cub3d *cube, t_raycast *ray, double camera_x)
     // Calcul des delta_dist
     // Ces valeurs représentent la distance entre deux intersections x ou y
     ray->delta_dist_x = fabs(1 / ray->ray_dir_x);
-    ray->delta_dist_y = fabs(1 / ray->ray_dir_y);
+    ray->delta_dist_y = fabs(1 / ray->ray_dir_y);// prends toujours la valeurs absolue
 }
 void calculate_step_and_side_dist(t_raycast *ray)
 {

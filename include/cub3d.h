@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 16:03:47 by ayarab            #+#    #+#             */
-/*   Updated: 2025/01/20 14:23:14 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/01/28 21:06:59 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,44 +31,6 @@
 # define KEY_LEFT XK_Left
 # define KEY_RIGHT XK_Right
 
-// typedef struct s_cub3d
-// {
-// 	char		**all_maps;
-// 	char		**map;
-// 	char		*av1;
-// 	char		*EA;
-// 	char		*WE;
-// 	char		*SO;
-// 	char		*NO;
-// 	char		*S;
-// 	char		*F;
-// 	char		*C;
-// 	int			ac;
-// }				t_cub3d;
-
-// typedef struct s_mlx_data
-// {
-// 	void		*mlx;
-// 	void		*win;
-// }				t_mlx_data;
-
-// typedef struct s_map_info
-// {
-// 	// information sur la map
-// 	int screen_width;  // largeur
-// 	int screen_height; // hauteur
-
-// 	t_cub3d		infos;
-// 	t_mlx_data	mlx;
-// }				t_map_info;
-
-// tentatives
-// typedef struct s_colors
-// {
-// 	int floor[3];   // RGB pour le sol
-// 	int ceiling[3]; // RGB pour le plafond
-// }			t_colors;
-
 typedef struct s_img
 {
 	void	*img;
@@ -91,10 +53,10 @@ typedef struct s_draw
 
 typedef struct s_textures
 {
-	t_img north;  // Texture du mur nord
-	t_img south;  // Texture du mur sud
-	t_img west;   // Texture du mur ouest
-	t_img east;   // Texture du mur est
+	t_img north; // Texture du mur nord
+	t_img south; // Texture du mur sud
+	t_img west;  // Texture du mur ouest
+	t_img east;  // Texture du mur est
 }			t_textures;
 
 typedef struct s_player
@@ -148,14 +110,14 @@ typedef struct s_cub3d
 	void *win;           // Pointeur fenêtre
 	int screen_width;    // Largeur de l'écran
 	int screen_height;   // Hauteur de l'écran
-	t_textures textures; // Toutes les textures
 	char **map;          //juste map pour le moment
-	t_img buffer;        // gestion des images
+	t_img buffer;        // gestion de la toile
+	t_textures textures; // Toutes les textures autre que le buffer
 	t_player player;     // Informations du joueur
-	double *z_buffer;   //tableau qui stock la distance entre la camera et les points
+	double *z_buffer;   
+		//tableau qui stock la distance entre la camera et les points
 	int		map_width;
 	int		map_height;
-	// t_colors colors;     // Couleurs du sol/plafond
 }			t_cub3d;
 
 int			ft_check_av1(t_cub3d *cube3d);

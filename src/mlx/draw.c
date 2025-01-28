@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 18:01:34 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/01/20 14:39:21 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/01/28 21:10:58 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,6 @@ int	draw_background(t_cub3d *cube)
 	int floor_color;
 	int half_screen;
 	int i;
-
 	// definition de la couleur == (red << 16)|(green << 8)|(blue)
 	// les 8 bits les plus significatif correspondent au alpha == transparence
 	ceiling_color = (135 << 16) | (206 << 8) | 250;

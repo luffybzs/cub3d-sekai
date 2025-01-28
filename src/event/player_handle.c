@@ -6,13 +6,13 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 18:23:12 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/01/20 00:58:37 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/01/28 21:09:35 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-//gerer les mouvements horizontaux de la souris
+//gerer les mouvements horizontaux de la souris (encore a faire)
 int	key_press(int keycode, t_cub3d *cube)
 {
 	if (keycode == KEY_W || keycode == KEY_S ||
@@ -37,45 +37,58 @@ int	key_press(int keycode, t_cub3d *cube)
 			rotate_right(cube);
 	}
 	else if (keycode == XK_Escape)
-	{
 		close_window(cube);
-	}
 	return (0);
 }
 void	move_forward(t_cub3d *cube)
 {
 	double	newX;
 	double	newY;
-double moveSpeed;
+	double	moveSpeed;
 
 	moveSpeed = 0.1;
-	
-    // Calcul de la nouvelle position
+	// Calcul de la nouvelle position
 	newX = cube->player.pos_x + cube->player.dir_x * moveSpeed;
 	newY = cube->player.pos_y + cube->player.dir_y * moveSpeed;
-	
-    // Vérification des collisions avec les murs
+	// Vérification des collisions avec les murs
 	if (cube->map[(int)cube->player.pos_y][(int)newX] != '1')
 		cube->player.pos_x = newX;
 	if (cube->map[(int)newY][(int)cube->player.pos_x] != '1')
 		cube->player.pos_y = newY;
 }
 
+
+void	move_backward(t_cub3d *cube)
+{
+	double newX;
+	double newY;
+	double moveSpeed;
+
+	moveSpeed = 0.1;
+
+	// Calcul de la nouvelle position (en sens inverse du mouvement avant)
+	newX = cube->player.pos_x - cube->player.dir_x * moveSpeed;
+	newY = cube->player.pos_y - cube->player.dir_y * moveSpeed;
+
+	// Vérification des collisions avec les murs
+	if (cube->map[(int)cube->player.pos_y][(int)newX] != '1')
+		cube->player.pos_x = newX;
+	if (cube->map[(int)newY][(int)cube->player.pos_x] != '1')
+		cube->player.pos_y = newY;
+}
 void	rotate_right(t_cub3d *cube)
 {
 	double	oldDirX;
 	double	oldPlaneX;
-double rotSpeed;
+	double	rotSpeed;
 
 	rotSpeed = 0.1;
 	oldDirX = cube->player.dir_x;
-    
 	// Rotation de la direction
 	cube->player.dir_x = cube->player.dir_x * cos(-rotSpeed)
 		- cube->player.dir_y * sin(-rotSpeed);
 	cube->player.dir_y = oldDirX * sin(-rotSpeed) + cube->player.dir_y
 		* cos(-rotSpeed);
-        
 	// Rotation du plan de la caméra
 	oldPlaneX = cube->player.plane_x;
 	cube->player.plane_x = cube->player.plane_x * cos(-rotSpeed)
@@ -83,7 +96,6 @@ double rotSpeed;
 	cube->player.plane_y = oldPlaneX * sin(-rotSpeed) + cube->player.plane_y
 		* cos(-rotSpeed);
 }
-
 void	rotate_left(t_cub3d *cube)
 {
 	double	oldDirX;
@@ -92,36 +104,15 @@ void	rotate_left(t_cub3d *cube)
 
 	rotSpeed = 0.1;
 	oldDirX = cube->player.dir_x;
-    
 	// Rotation de la direction (dans le sens inverse des aiguilles d'une montre)
-	cube->player.dir_x = cube->player.dir_x * cos(rotSpeed)
-		- cube->player.dir_y * sin(rotSpeed);
+	cube->player.dir_x = cube->player.dir_x * cos(rotSpeed) - cube->player.dir_y
+		* sin(rotSpeed);
 	cube->player.dir_y = oldDirX * sin(rotSpeed) + cube->player.dir_y
 		* cos(rotSpeed);
-        
 	// Rotation du plan de la caméra
 	oldPlaneX = cube->player.plane_x;
 	cube->player.plane_x = cube->player.plane_x * cos(rotSpeed)
 		- cube->player.plane_y * sin(rotSpeed);
 	cube->player.plane_y = oldPlaneX * sin(rotSpeed) + cube->player.plane_y
 		* cos(rotSpeed);
-}
-
-void	move_backward(t_cub3d *cube)
-{
-	double	newX;
-	double	newY;
-	double	moveSpeed;
-
-	moveSpeed = 0.1;
-	
-    // Calcul de la nouvelle position (en sens inverse du mouvement avant)
-	newX = cube->player.pos_x - cube->player.dir_x * moveSpeed;
-	newY = cube->player.pos_y - cube->player.dir_y * moveSpeed;
-	
-    // Vérification des collisions avec les murs
-	if (cube->map[(int)cube->player.pos_y][(int)newX] != '1')
-		cube->player.pos_x = newX;
-	if (cube->map[(int)newY][(int)cube->player.pos_x] != '1')
-		cube->player.pos_y = newY;
 }
