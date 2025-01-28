@@ -1,0 +1,3 @@
+init data :
+void	init_player(t_cub3d *cube)
+int	init_textures_path(t_cub3d *cube)
