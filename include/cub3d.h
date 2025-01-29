@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 16:03:47 by ayarab            #+#    #+#             */
-/*   Updated: 2025/01/29 15:36:50 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/01/29 17:11:15 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@
 # define KEY_D XK_d
 # define KEY_LEFT XK_Left
 # define KEY_RIGHT XK_Right
+
+# define ERROR_FOR_INFO "Error\nThere is missing information or there are duplicates"
 
 typedef struct s_img
 {
@@ -110,7 +112,7 @@ typedef struct s_cub3d
 	void *win;           // Pointeur fenêtre
 	int screen_width;    // Largeur de l'écran
 	int screen_height;   // Hauteur de l'écran
-	char **map;          //juste map pour le moment
+	//char **map;          //juste map pour le moment
 	t_img buffer;        // gestion de la toile
 	t_textures textures; // Toutes les textures autre que le buffer
 	t_player player;     // Informations du joueur
@@ -118,12 +120,40 @@ typedef struct s_cub3d
 		//tableau qui stock la distance entre la camera et les points
 	int		map_width;
 	int		map_height;
+	//
+	char	**all_maps;
+	char	**map;
+	char	*av1;
+	char	*EA;
+	char	*WE;
+	char	*SO;
+	char	*NO;
+	char	*F;
+	char	*C;
+	int		F_R;
+	int		F_G;
+	int		F_B;
+	int		C_R;
+	int		C_G;
+	int		C_B;
+	int		ac;
 }			t_cub3d;
 
+int			ft_atoi_rgb(char *str, int start, int end);
+int			ft_search_maps(char *av1, t_cub3d *cube3d);
+int			ft_all_one(char *str);
+int			ft_cmp_xpm(char *str, int i, char *cmp);
+int			ft_add_C(char *str, t_cub3d *cube3d);
+int			ft_add_F(char *str, t_cub3d *cube3d);
+char		*ft_add_just_info(char *str, int i);
+int			ft_add_NO(char *str, t_cub3d *cube3d, int i);
+int			ft_add_EA(char *str, t_cub3d *cube3d, int i);
+int			ft_add_SO(char *str, t_cub3d *cube3d, int i);
+int			ft_add_WE(char *str, t_cub3d *cube3d, int i);
+int			ft_add_cardinal_points(char *str, t_cub3d *cube3d, int i);
 int			ft_check_av1(t_cub3d *cube3d);
 void		ft_fail_free(t_cub3d *cube3d);
 int			ft_fill_data(int ac, char **av, t_cub3d *cube3d);
-int			ft_search_cardinal_points(t_cub3d *cube3d);
 int			ft_search_info(char *av1, t_cub3d *cube3d);
 
 /* screen handler */
@@ -162,6 +192,26 @@ void		raycasting(t_cub3d *cube);
 void		rotate_left(t_cub3d *cube);
 void		rotate_right(t_cub3d *cube);
 void		move_forward(t_cub3d *cube);
+
+// parsing
+
+int			ft_atoi_rgb(char *str, int start, int end);
+int			ft_search_maps(char *av1, t_cub3d *cube3d);
+int			ft_all_one(char *str);
+int			ft_cmp_xpm(char *str, int i, char *cmp);
+int			ft_add_C(char *str, t_cub3d *cube3d);
+int			ft_add_F(char *str, t_cub3d *cube3d);
+char		*ft_add_just_info(char *str, int i);
+int			ft_add_NO(char *str, t_cub3d *cube3d, int i);
+int			ft_add_EA(char *str, t_cub3d *cube3d, int i);
+int			ft_add_SO(char *str, t_cub3d *cube3d, int i);
+int			ft_add_WE(char *str, t_cub3d *cube3d, int i);
+int			ft_add_cardinal_points(char *str, t_cub3d *cube3d, int i);
+int			ft_check_av1(t_cub3d *cube3d);
+void		ft_fail_free(t_cub3d *cube3d);
+int			ft_fill_data(int ac, char **av, t_cub3d *cube3d);
+int			ft_search_info(char *av1, t_cub3d *cube3d);
+int			ft_fill_color(t_cub3d *cube3d);
 
 /* temporaire */
 char		**create_test_map(void);

@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 15:31:23 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/01/29 00:22:52 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/01/29 17:19:55 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	init_cub3d(t_cub3d *cube)
 {
-	ft_memset(cube, 0, sizeof(t_cub3d));
 	cube->map = create_test_map();//temporaire
 	if (!cube->map)
 		return (1);
