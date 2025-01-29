@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 16:03:47 by ayarab            #+#    #+#             */
-/*   Updated: 2025/01/28 21:06:59 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/01/29 15:36:50 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,9 +167,9 @@ void		move_forward(t_cub3d *cube);
 char		**create_test_map(void);
 
 /*
--gerer les mouvements les calculs et les gestions de collisions
 - gerer les leaks
-- finir de gerer les keyhook
+- finir de gerer les keyhook (principalement les mouvements de souris dans le cadre des bonus)
+- 
 */
 
 #endif
