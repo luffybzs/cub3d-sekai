@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parsing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 19:28:56 by ayarab            #+#    #+#             */
-/*   Updated: 2025/01/30 16:47:43 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/01/30 22:02:05 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,15 +65,14 @@ int	ft_search_info(char *av1, t_cub3d *cube3d)
 	}
 	if (!cube3d->WE || !cube3d->SO || !cube3d->EA || !cube3d->NO || !cube3d->F || !cube3d->C)
 		return (close(fd) , EXIT_FAILURE);
-	printf("passer ici\n");//error au dessus
 	return (close(fd), EXIT_SUCCESS);
 }
 
 int	ft_add_cardinal_points(char *str, t_cub3d *cube3d, int i)
 {
-	if (ft_add_WE(str, cube3d, i) == -1 || ft_add_SO(str, cube3d, i) == -1)
-		return (-1);
 	if (ft_add_NO(str, cube3d, i) == -1 || ft_add_EA(str, cube3d, i) == -1)
+		return (-1);
+	if (ft_add_WE(str, cube3d, i) == -1 || ft_add_SO(str, cube3d, i) == -1)
 		return (-1);
 	if (ft_add_F(str, cube3d) == -1 || ft_add_C(str, cube3d) == -1)
 		return (-1);
@@ -83,6 +82,7 @@ int	ft_add_cardinal_points(char *str, t_cub3d *cube3d, int i)
 		return (1);
 	if (ft_add_F(str, cube3d) == -1 || ft_add_C(str, cube3d) == -1)
 		return (1);
+	// printf("WE = %s, SO = %s, EA = %s, NO = %s, F = %s, C = %s\n",cube3d->WE,cube3d->SO,cube3d->EA,cube3d->NO,cube3d->F,cube3d->C);
 	return (0);
 }
 
@@ -261,7 +261,6 @@ int	ft_fill_data(int ac, char **av, t_cub3d *cube3d)
 		return (ft_putstr_fd("Error\n", 2), EXIT_FAILURE);
 	if (ft_search_info(cube3d->av1, cube3d) == EXIT_FAILURE)
 		return (ft_putendl_fd(ERROR_FOR_INFO, 2),EXIT_FAILURE);
-	printf("passer ici\n");//error au dessus
 	if (ft_search_maps(cube3d->av1, cube3d) == EXIT_FAILURE)
 		return (ft_putendl_fd("Error\nMap Not Found" ,2) ,EXIT_FAILURE);
 	if (ft_fill_color(cube3d) == EXIT_FAILURE)
@@ -272,8 +271,7 @@ int	ft_fill_data(int ac, char **av, t_cub3d *cube3d)
 		return (ft_putendl_fd("Error\nMap Invalid Char", 2) ,EXIT_FAILURE);
 	if (ft_check_player(cube3d) == EXIT_FAILURE)
 		return (ft_putendl_fd("Error\nNot Or Too Many Player", 2), EXIT_FAILURE);
-	
-	test_print(cube3d->all_maps);
+	// test_print(cube3d->all_maps);
 
 	return (EXIT_SUCCESS);
 }

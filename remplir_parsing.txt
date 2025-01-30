@@ -1,4 +1,8 @@
-init data :
-void	init_player(t_cub3d *cube)
-int	init_textures_path(t_cub3d *cube)
-gerer les couleurs rgb
+
+maps_test.cub :
+WE = ./textures/bluestone.xpm, SO = ./textures/colorstone.xpm, EA = ./textures/greystone.xpm, NO = (null), F =  255,248,220
+, C =  135,206,250
+
+maps.cub :
+WE = ./textures/bluestone.xpm, SO = ./textures/colorstone.xpm, EA = ./textures/greystone.xpm, NO = (null), F =  255,100,055
+, C =  200,110,155

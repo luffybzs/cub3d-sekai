@@ -1,7 +1,7 @@
-NO ./textures/colorstone.xpm
-SO ./textures/bluestone.xpm
-WE ./textures/greystone.xpm
-EA ./textures/wood.xpm
+WE ./textures/west.xpm
+NO ./textures/north.xpm
+EA ./textures/east.xpm
+SO ./textures/south.xpm
 
 
 F 255,248,220

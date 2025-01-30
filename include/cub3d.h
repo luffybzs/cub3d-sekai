@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 16:03:47 by ayarab            #+#    #+#             */
-/*   Updated: 2025/01/30 16:47:13 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/01/30 21:30:46 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,10 +126,12 @@ typedef struct s_cub3d
 	char	**map;
 	char	*av1;
 	int		ac;
+	//point cardinaux
 	char	*EA;
 	char	*WE;
 	char	*SO;
 	char	*NO;
+	//parsing de couleurs 
 	char	*F;
 	char	*C;
 	//couleur floor

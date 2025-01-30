@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 18:23:12 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/01/28 21:09:35 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/01/30 22:41:26 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,9 @@ void	move_forward(t_cub3d *cube)
 	newX = cube->player.pos_x + cube->player.dir_x * moveSpeed;
 	newY = cube->player.pos_y + cube->player.dir_y * moveSpeed;
 	// Vérification des collisions avec les murs
-	if (cube->map[(int)cube->player.pos_y][(int)newX] != '1')
+	if (cube->all_maps[(int)cube->player.pos_y][(int)newX] != '1')
 		cube->player.pos_x = newX;
-	if (cube->map[(int)newY][(int)cube->player.pos_x] != '1')
+	if (cube->all_maps[(int)newY][(int)cube->player.pos_x] != '1')
 		cube->player.pos_y = newY;
 }
 
@@ -71,9 +71,9 @@ void	move_backward(t_cub3d *cube)
 	newY = cube->player.pos_y - cube->player.dir_y * moveSpeed;
 
 	// Vérification des collisions avec les murs
-	if (cube->map[(int)cube->player.pos_y][(int)newX] != '1')
+	if (cube->all_maps[(int)cube->player.pos_y][(int)newX] != '1')
 		cube->player.pos_x = newX;
-	if (cube->map[(int)newY][(int)cube->player.pos_x] != '1')
+	if (cube->all_maps[(int)newY][(int)cube->player.pos_x] != '1')
 		cube->player.pos_y = newY;
 }
 void	rotate_right(t_cub3d *cube)
@@ -85,16 +85,16 @@ void	rotate_right(t_cub3d *cube)
 	rotSpeed = 0.1;
 	oldDirX = cube->player.dir_x;
 	// Rotation de la direction
-	cube->player.dir_x = cube->player.dir_x * cos(-rotSpeed)
-		- cube->player.dir_y * sin(-rotSpeed);
-	cube->player.dir_y = oldDirX * sin(-rotSpeed) + cube->player.dir_y
-		* cos(-rotSpeed);
+	cube->player.dir_x = cube->player.dir_x * cos(rotSpeed)
+		- cube->player.dir_y * sin(rotSpeed);
+	cube->player.dir_y = oldDirX * sin(rotSpeed) + cube->player.dir_y
+		* cos(rotSpeed);
 	// Rotation du plan de la caméra
 	oldPlaneX = cube->player.plane_x;
-	cube->player.plane_x = cube->player.plane_x * cos(-rotSpeed)
-		- cube->player.plane_y * sin(-rotSpeed);
-	cube->player.plane_y = oldPlaneX * sin(-rotSpeed) + cube->player.plane_y
-		* cos(-rotSpeed);
+	cube->player.plane_x = cube->player.plane_x * cos(rotSpeed)
+		- cube->player.plane_y * sin(rotSpeed);
+	cube->player.plane_y = oldPlaneX * sin(rotSpeed) + cube->player.plane_y
+		* cos(rotSpeed);
 }
 void	rotate_left(t_cub3d *cube)
 {
@@ -105,14 +105,14 @@ void	rotate_left(t_cub3d *cube)
 	rotSpeed = 0.1;
 	oldDirX = cube->player.dir_x;
 	// Rotation de la direction (dans le sens inverse des aiguilles d'une montre)
-	cube->player.dir_x = cube->player.dir_x * cos(rotSpeed) - cube->player.dir_y
-		* sin(rotSpeed);
-	cube->player.dir_y = oldDirX * sin(rotSpeed) + cube->player.dir_y
-		* cos(rotSpeed);
+	cube->player.dir_x = cube->player.dir_x * cos(-rotSpeed) - cube->player.dir_y
+		* sin(-rotSpeed);
+	cube->player.dir_y = oldDirX * sin(-rotSpeed) + cube->player.dir_y
+		* cos(-rotSpeed);
 	// Rotation du plan de la caméra
 	oldPlaneX = cube->player.plane_x;
-	cube->player.plane_x = cube->player.plane_x * cos(rotSpeed)
-		- cube->player.plane_y * sin(rotSpeed);
-	cube->player.plane_y = oldPlaneX * sin(rotSpeed) + cube->player.plane_y
-		* cos(rotSpeed);
+	cube->player.plane_x = cube->player.plane_x * cos(-rotSpeed)
+		- cube->player.plane_y * sin(-rotSpeed);
+	cube->player.plane_y = oldPlaneX * sin(-rotSpeed) + cube->player.plane_y
+		* cos(-rotSpeed);
 }

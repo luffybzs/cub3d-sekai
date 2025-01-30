@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 14:36:54 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/01/28 21:22:52 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/01/30 22:25:57 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	raycasting(t_cub3d *cube)
 	double		camera_x;
 	int			x;
 
-	if (!cube || !cube->buffer.addr || !cube->map)
+	if (!cube || !cube->buffer.addr || !cube->all_maps)
 	{
 		printf("Error: Invalid cube structure\n");
 		return ;
@@ -91,7 +91,7 @@ void	perform_dda(t_cub3d *cube, t_raycast *ray)
 	int	hit;
 
 	hit = 0;
-	if (!cube->map)
+	if (!cube->all_maps)
 	{
 		printf("Error: Map is NULL\n");
 		return ;
@@ -121,7 +121,7 @@ void	perform_dda(t_cub3d *cube, t_raycast *ray)
 			ray->map_x < 0 || ray->map_x >= cube->map_width)
 			break ;
 		// Vérification si on a touché un mur
-		if (cube->map[ray->map_y][ray->map_x] == '1')
+		if (cube->all_maps[ray->map_y][ray->map_x] == '1')
 			hit = 1;
 	}
 	// Calcul de la distance perpendiculaire

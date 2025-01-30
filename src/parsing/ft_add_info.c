@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_add_info.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 16:52:32 by ayarab            #+#    #+#             */
-/*   Updated: 2025/01/20 17:04:38 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/01/30 21:57:38 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	ft_add_WE(char *str, t_cub3d *cube3d, int i)
 
 int	ft_add_SO(char *str, t_cub3d *cube3d, int i)
 {
-	if (!ft_strncmp(str + i, "SO", 2))
+	if (!ft_strncmp(str + i, "SO", 2) && !cube3d->SO)
 	{
 		if (cube3d->SO)
 			return (-1);
@@ -40,7 +40,7 @@ int	ft_add_SO(char *str, t_cub3d *cube3d, int i)
 
 int	ft_add_NO(char *str, t_cub3d *cube3d, int i)
 {
-	if (!ft_strncmp(str + i, "NO", 2))
+	if (!ft_strncmp(str + i, "NO", 2) && !cube3d->NO)
 	{
 		if (cube3d->NO)
 			return (-1);

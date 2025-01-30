@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 15:31:23 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/01/30 17:09:57 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/01/30 22:44:39 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	init_cub3d(t_cub3d *cube)
 	if (!init_textures_path(cube))
 		return (printf("fail to init paths\n"), cleanup(cube), 1);
 	//ici joindre le parsing (trouver position ainsi qu orientation)
-	 test_print(cube->all_maps);
+	//  test_print(cube->all_maps);
 
 	init_player(cube);
 	// printf("arriver dans init cub\n");
@@ -53,7 +53,6 @@ int	open_images(t_cub3d *cube)
 		!ft_init_img(cube, &cube->textures.west) ||
 		!ft_init_img(cube, &cube->textures.east))
 		return (0);
-	printf("je suis la\n");
 	return (1);
 }
 int	init_buffer(t_cub3d *cube)
@@ -74,21 +73,8 @@ int	init_buffer(t_cub3d *cube)
 	return (1);
 }
 
-int	init_textures_path(t_cub3d *cube)
-{
-	cube->textures.north.path = cube->NO;
-	cube->textures.south.path = cube->SO;
-	cube->textures.east.path = cube->EA;
-	cube->textures.west.path = cube->WE;
-	if (!cube->textures.north.path || !cube->textures.south.path
-		|| !cube->textures.east.path || !cube->textures.west.path)
-		return (0);
-	return (1);
-}
-
 int	ft_init_img(t_cub3d *cube, t_img *img)
 {
-	printf("{%s}\n", img->path);
 	if (!img->path)
 	{
 		printf("error: texture path is NULL\n");
@@ -104,6 +90,18 @@ int	ft_init_img(t_cub3d *cube, t_img *img)
 		return (mlx_destroy_image(cube->mlx, img->img), 0);
 	return (1);
 }
+int	init_textures_path(t_cub3d *cube)
+{
+	cube->textures.north.path = cube->NO;
+	cube->textures.south.path = cube->SO;
+	cube->textures.east.path = cube->EA;
+	cube->textures.west.path = cube->WE;
+	if (!cube->textures.north.path || !cube->textures.south.path
+		|| !cube->textures.east.path || !cube->textures.west.path)
+		return (0);
+	return (1);
+}
+
 
 int	load_texture(void *mlx, t_img *img, char *path)
 {
@@ -121,42 +119,35 @@ void	init_player(t_cub3d *cube)
 {
  // recuperation du parsing en cours
 	// position intiale
-	cube->player.pos_x = 6.0; // ajout des differentes positions du joueur(A PARSER)
-	cube->player.pos_y = 3.0;
-	// vecteur de direction
-	// en fonction de l orientation choisir l angle
-	cube->player.dir_x = -1.0; // direction nord
-	cube->player.dir_y = 0;
-	// negatif car origine (0;0) en haut a gauche de la map
-	//plan de la camera important dans le raycasting
-	cube->player.plane_x = 0.0;
-	cube->player.plane_y = 0.66;
-	// if (cube->player->direction = 'N')
-	// {
-	// 	cube->player.dir_x =0;
-	// 	cube->player.dir_y = -1;
-	// 	cube->player.plane_x = 0.66;
-	// 	cube->player.plane_y = 0;
-	// }
-	// if (cube->player->direction = 'S')
-	// {
-	// 	cube->player.dir_x =0;
-	// 	cube->player.dir_y = 1;
-	// 	cube->player.plane_x = -0.66;
-	// 	cube->player.plane_y = 0;
-	// }
-	// if (cube->player->direction = 'E')
-	// {
-	// 	cube->player.dir_x =1;
-	// 	cube->player.dir_y = 0;
-	// 	cube->player.plane_x = 0;
-	// 	cube->player.plane_y = 0.66;
-	// }
-	// if (cube->player->direction = 'W')
-	// {
-	// 	cube->player.dir_x =-1;
-	// 	cube->player.dir_y = 0;
-	// 	cube->player.plane_x = 0;
-	// 	cube->player.plane_y = -0.66;
-	// }
+	cube->player.pos_x = cube->x_spwan_p;
+	cube->player.pos_y = cube->y_spwan_p;
+
+	if (cube->direction == 'N')
+	{
+		cube->player.dir_x =0;
+		cube->player.dir_y = -1;
+		cube->player.plane_x = 0.66;
+		cube->player.plane_y = 0;
+	}
+	if (cube->direction == 'S')
+	{
+		cube->player.dir_x =0;
+		cube->player.dir_y = 1;
+		cube->player.plane_x = -0.66;
+		cube->player.plane_y = 0;
+	}
+	if (cube->direction == 'E')
+	{
+		cube->player.dir_x =1;
+		cube->player.dir_y = 0;
+		cube->player.plane_x = 0;
+		cube->player.plane_y = 0.66;
+	}
+	if (cube->direction == 'W')
+	{
+		cube->player.dir_x =-1;
+		cube->player.dir_y = 0;
+		cube->player.plane_x = 0;
+		cube->player.plane_y = -0.66;
+	}
 }
