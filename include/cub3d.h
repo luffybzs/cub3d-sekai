@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 16:03:47 by ayarab            #+#    #+#             */
-/*   Updated: 2025/01/29 17:11:15 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/01/30 13:59:05 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,14 +116,14 @@ typedef struct s_cub3d
 	t_img buffer;        // gestion de la toile
 	t_textures textures; // Toutes les textures autre que le buffer
 	t_player player;     // Informations du joueur
-	double *z_buffer;   
-		//tableau qui stock la distance entre la camera et les points
+	double *z_buffer;   //tableau qui stock la distance entre la camera et les points
 	int		map_width;
 	int		map_height;
 	//
 	char	**all_maps;
 	char	**map;
 	char	*av1;
+	int		ac;
 	char	*EA;
 	char	*WE;
 	char	*SO;
@@ -136,7 +136,6 @@ typedef struct s_cub3d
 	int		C_R;
 	int		C_G;
 	int		C_B;
-	int		ac;
 }			t_cub3d;
 
 int			ft_atoi_rgb(char *str, int start, int end);
@@ -215,6 +214,8 @@ int			ft_fill_color(t_cub3d *cube3d);
 
 /* temporaire */
 char		**create_test_map(void);
+void test_print(char **map);
+
 
 /*
 - gerer les leaks

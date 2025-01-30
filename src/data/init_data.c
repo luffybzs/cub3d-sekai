@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 15:31:23 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/01/29 17:19:55 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/01/30 14:15:59 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,23 @@
 
 int	init_cub3d(t_cub3d *cube)
 {
-	cube->map = create_test_map();//temporaire
-	if (!cube->map)
+	// test_print(cube->all_maps);
+	if (!cube->all_maps)//passe pas ce passage
 		return (1);
-	cube->map_height = 0;
 	//calcule de la taille de la map
-	while (cube->map[cube->map_height])
+	cube->map_height = 0;
+	while (cube->all_maps[cube->map_height])
 		cube->map_height++;
 	if (cube->map_height > 0)
-		cube->map_width = ft_strlen(cube->map[0]);
+		cube->map_width = ft_strlen(cube->all_maps[0]);
 	else
 		return (cleanup(cube),1);
+
 
 	if (!init_textures_path(cube))// a remplacer 
 		return (printf("fail to init paths\n"), cleanup(cube), 1);
 	
+	// printf("arriver dans init cub\n");
 	init_player(cube);
 	
 	if (init_mlx(cube) || !cube->mlx || !cube->win)
