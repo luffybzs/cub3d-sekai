@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 16:03:47 by ayarab            #+#    #+#             */
-/*   Updated: 2025/01/30 13:59:05 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/01/30 14:36:07 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ typedef struct s_textures
 
 typedef struct s_player
 {
+	char direction; // N,S,E,W
 	double pos_x;   // Position X du joueur
 	double pos_y;   // Position Y du joueur
 	double dir_x;   // Direction X du joueur
@@ -119,7 +120,8 @@ typedef struct s_cub3d
 	double *z_buffer;   //tableau qui stock la distance entre la camera et les points
 	int		map_width;
 	int		map_height;
-	//
+	
+	//partie parsing
 	char	**all_maps;
 	char	**map;
 	char	*av1;
@@ -130,9 +132,11 @@ typedef struct s_cub3d
 	char	*NO;
 	char	*F;
 	char	*C;
+	//couleur floor
 	int		F_R;
 	int		F_G;
 	int		F_B;
+	//couleur ceiling
 	int		C_R;
 	int		C_G;
 	int		C_B;

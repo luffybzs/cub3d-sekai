@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 15:31:23 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/01/30 14:15:59 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/01/30 14:41:34 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int	init_cub3d(t_cub3d *cube)
 {
-	// test_print(cube->all_maps);
-	if (!cube->all_maps)//passe pas ce passage
+	if (!cube->all_maps)
 		return (1);
+	// printf("passer ici\n");
 	//calcule de la taille de la map
 	cube->map_height = 0;
 	while (cube->all_maps[cube->map_height])
@@ -24,19 +24,18 @@ int	init_cub3d(t_cub3d *cube)
 	if (cube->map_height > 0)
 		cube->map_width = ft_strlen(cube->all_maps[0]);
 	else
-		return (cleanup(cube),1);
-
-
-	if (!init_textures_path(cube))// a remplacer 
+		return (cleanup(cube), 1);
+	if (!init_textures_path(cube))
 		return (printf("fail to init paths\n"), cleanup(cube), 1);
-	
-	// printf("arriver dans init cub\n");
+	//ici joindre le parsing (trouver position ainsi qu orientation)
+	 test_print(cube->all_maps);
+
 	init_player(cube);
-	
+	// printf("arriver dans init cub\n");
 	if (init_mlx(cube) || !cube->mlx || !cube->win)
 		return (printf("fail to init MLX\n"), cleanup(cube), 1);
 	cube->z_buffer = malloc(sizeof(double) * cube->screen_width);
-	if (!cube->z_buffer) 
+	if (!cube->z_buffer)
 		return (cleanup(cube), 1);
 	if (!open_images(cube))
 		return (printf("fail to init textures\n"), cleanup(cube), 1);
@@ -59,9 +58,10 @@ int	open_images(t_cub3d *cube)
 int	init_buffer(t_cub3d *cube)
 {
 	if (!cube->mlx)
-        return (0);
+		return (0);
 	cube->buffer.img = mlx_new_image(cube->mlx, cube->screen_width,
-			cube->screen_height);//creer une image vide principe de la toile vierge
+										cube->screen_height);
+										//creer une image vide principe de la toile vierge
 	if (!cube->buffer.img)
 		return (0);
 	cube->buffer.addr = mlx_get_data_addr(cube->buffer.img,
@@ -74,11 +74,11 @@ int	init_buffer(t_cub3d *cube)
 }
 
 int	init_textures_path(t_cub3d *cube)
-{// a modifier et recuperer les donnees du parsing
-	cube->textures.north.path = "./textures/north.xpm";
-	cube->textures.south.path = "./textures/south.xpm";
-	cube->textures.east.path = "./textures/east.xpm";
-	cube->textures.west.path = "./textures/west.xpm";
+{
+	cube->textures.north.path = cube->NO;
+	cube->textures.south.path = cube->SO;
+	cube->textures.east.path = cube->EA;
+	cube->textures.west.path = cube->WE;
 	if (!cube->textures.north.path || !cube->textures.south.path
 		|| !cube->textures.east.path || !cube->textures.west.path)
 		return (0);
@@ -116,9 +116,10 @@ int	load_texture(void *mlx, t_img *img, char *path)
 }
 
 void	init_player(t_cub3d *cube)
-{// a modifier et recuperer les donnees du parsing
+{
+ // recuperation du parsing en cours
 	// position intiale
-	cube->player.pos_x = 6.0; // ajout des differentes positions du joueur
+	cube->player.pos_x = 6.0; // ajout des differentes positions du joueur(A PARSER)
 	cube->player.pos_y = 3.0;
 	// vecteur de direction
 	// en fonction de l orientation choisir l angle
@@ -128,67 +129,32 @@ void	init_player(t_cub3d *cube)
 	//plan de la camera important dans le raycasting
 	cube->player.plane_x = 0.0;
 	cube->player.plane_y = 0.66;
-}
-
-/* 
-if (cube->player->direction = 'N')
-{
-	cube->player.dir_x =0;
-	cube->player.dir_y = -1;
-	cube->player.plane_x = 0.66;
-	cube->player.plane_y = 0;
-}
-if (cube->player->direction = 'S')
-{
-	cube->player.dir_x =0;
-	cube->player.dir_y = 1;
-	cube->player.plane_x = -0.66;
-	cube->player.plane_y = 0;
-}
-if (cube->player->direction = 'E')
-{
-	cube->player.dir_x =1;
-	cube->player.dir_y = 0;
-	cube->player.plane_x = 0;
-	cube->player.plane_y = 0.66;
-}
-if (cube->player->direction = 'N')
-{
-	cube->player.dir_x =-1;
-	cube->player.dir_y = 0;
-	cube->player.plane_x = 0;
-	cube->player.plane_y = -0.66;
-}
-*/
-
-//temporaire ajout d une map pour le test
-char	**create_test_map(void)
-{
-	char	**map;
-	int		i;
-
-	map = malloc(sizeof(char *) * 8);
-	if (!map)
-		return (NULL);
-	map[0] = ft_strdup("111111111111");
-	map[1] = ft_strdup("100000000001");
-	map[2] = ft_strdup("111111011111");
-	map[3] = ft_strdup("100000N00001");
-	map[4] = ft_strdup("100000000001");
-	map[5] = ft_strdup("100000000001");
-	map[6] = ft_strdup("111111111111");
-	map[7] = NULL;
-	i = 0;
-	while (i < 7)
-	{
-		if (!map[i])
-		{
-			while (i > 0)
-				free(map[--i]);
-			free(map);
-			return (NULL);
-		}
-		i++;
-	}
-	return (map);
+	// if (cube->player->direction = 'N')
+	// {
+	// 	cube->player.dir_x =0;
+	// 	cube->player.dir_y = -1;
+	// 	cube->player.plane_x = 0.66;
+	// 	cube->player.plane_y = 0;
+	// }
+	// if (cube->player->direction = 'S')
+	// {
+	// 	cube->player.dir_x =0;
+	// 	cube->player.dir_y = 1;
+	// 	cube->player.plane_x = -0.66;
+	// 	cube->player.plane_y = 0;
+	// }
+	// if (cube->player->direction = 'E')
+	// {
+	// 	cube->player.dir_x =1;
+	// 	cube->player.dir_y = 0;
+	// 	cube->player.plane_x = 0;
+	// 	cube->player.plane_y = 0.66;
+	// }
+	// if (cube->player->direction = 'W')
+	// {
+	// 	cube->player.dir_x =-1;
+	// 	cube->player.dir_y = 0;
+	// 	cube->player.plane_x = 0;
+	// 	cube->player.plane_y = -0.66;
+	// }
 }
