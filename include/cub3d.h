@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 16:03:47 by ayarab            #+#    #+#             */
-/*   Updated: 2025/01/30 14:36:07 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/01/30 16:47:13 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,10 @@ typedef struct s_cub3d
 	int		C_R;
 	int		C_G;
 	int		C_B;
+	// player info 
+	char direction;
+	int y_spwan_p;
+	int x_spwan_p;
 }			t_cub3d;
 
 int			ft_atoi_rgb(char *str, int start, int end);

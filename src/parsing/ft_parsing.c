@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parsing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 19:28:56 by ayarab            #+#    #+#             */
-/*   Updated: 2025/01/30 14:48:02 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/01/30 16:47:43 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -237,6 +237,9 @@ int ft_check_player(t_cub3d *cube3d)
 			{
 				if (player == true)
 					return (EXIT_FAILURE);
+				cube3d->direction = cube3d->all_maps[j][i];
+				cube3d->x_spwan_p = i;
+				cube3d->y_spwan_p = j;
 				player = true;
 			}
 			i++;

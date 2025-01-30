@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 16:33:27 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/01/30 13:31:56 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/01/30 17:18:28 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ int	main(int ac, char **av)
     //     return(1);
     if (ft_fill_data(ac, av, &cube) == EXIT_FAILURE)
 		return (ft_fail_free(&cube),EXIT_FAILURE);
+	printf("{%c}\n", cube.direction);
+	printf("pos y du spwan du player {%d}\npos x du player {%d}\n", cube.y_spwan_p,  cube.x_spwan_p);
 	if (init_cub3d(&cube) == 1)
 		return (cleanup(&cube), 1);
 	if (cube.mlx && cube.win)

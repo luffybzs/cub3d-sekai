@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 15:31:23 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/01/30 14:41:34 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/01/30 17:09:57 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ int	open_images(t_cub3d *cube)
 		!ft_init_img(cube, &cube->textures.west) ||
 		!ft_init_img(cube, &cube->textures.east))
 		return (0);
+	printf("je suis la\n");
 	return (1);
 }
 int	init_buffer(t_cub3d *cube)
@@ -87,6 +88,7 @@ int	init_textures_path(t_cub3d *cube)
 
 int	ft_init_img(t_cub3d *cube, t_img *img)
 {
+	printf("{%s}\n", img->path);
 	if (!img->path)
 	{
 		printf("error: texture path is NULL\n");
