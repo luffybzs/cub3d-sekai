@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 21:25:10 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/01/28 21:50:57 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/01/31 15:08:33 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	draw_vertical_line(t_cub3d *cube, t_raycast *ray, int x, t_draw *draw)
 	int				y;
 	unsigned int	color;
 
-	if (!cube->buffer.addr)
+	if (!cube->buffer.addr || !cube || !ray || !draw)
 		return ;
 	calculate_wall_x(cube, ray, &wall_x);
 	select_wall_texture(cube, ray, &texture);
