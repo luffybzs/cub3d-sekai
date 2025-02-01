@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 15:31:23 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/01/30 22:44:39 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/01 20:05:08 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,8 +119,8 @@ void	init_player(t_cub3d *cube)
 {
  // recuperation du parsing en cours
 	// position intiale
-	cube->player.pos_x = cube->x_spwan_p;
-	cube->player.pos_y = cube->y_spwan_p;
+	cube->player.pos_x = cube->x_spwan_p + 0.5;
+	cube->player.pos_y = cube->y_spwan_p + 0.5;
 
 	if (cube->direction == 'N')
 	{
