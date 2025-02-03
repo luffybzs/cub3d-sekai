@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 16:03:47 by ayarab            #+#    #+#             */
-/*   Updated: 2025/01/30 21:30:46 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/03 15:57:03 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,11 +74,11 @@ typedef struct s_player
 
 typedef struct s_raycast
 {
-	//position de depart du rayon == position du player
+	// position de depart du rayon == position du player
 	double	pos_x;
 	double	pos_y;
 
-	//direction du rayon == plan camera et direction du joueur
+	// direction du rayon == plan camera et direction du joueur
 	double	ray_dir_x;
 	double	ray_dir_y;
 
@@ -86,66 +86,67 @@ typedef struct s_raycast
 	int		map_x;
 	int		map_y;
 
-	//distance aux prochaines intersections (jusqu a la prochaine case de map)
+	// distance aux prochaines intersections (jusqu a la prochaine case de map)
 	double	side_dist_x;
 	double	side_dist_y;
 
-	//distance entre deux lignes vertciale/horizontale
+	// distance entre deux lignes vertciale/horizontale
 	double	delta_dist_x;
 	double	delta_dist_y;
 
-	//direction de progression des rayons si il doit aller vers la gauche ou la droite
+	// direction de progression des rayons si il doit aller vers la gauche ou la droite
 	int		step_x;
 	int		step_y;
 
-	//distance finale == point d impact
+	// distance finale == point d impact
 	//- joueur(distance perpendiculaire au mur eviter le flou)
 	double	wall_dist;
 
-	//indicateur de face quel mur est touchee
+	// indicateur de face quel mur est touchee
 	int		side;
 
 }			t_raycast;
 
 typedef struct s_cub3d
 {
-	void *mlx;           // Pointeur MLX
-	void *win;           // Pointeur fenêtre
-	int screen_width;    // Largeur de l'écran
-	int screen_height;   // Hauteur de l'écran
-	//char **map;          //juste map pour le moment
+	void *mlx;         // Pointeur MLX
+	void *win;         // Pointeur fenêtre
+	int screen_width;  // Largeur de l'écran
+	int screen_height; // Hauteur de l'écran
+	// char **map;          //juste map pour le moment
 	t_img buffer;        // gestion de la toile
 	t_textures textures; // Toutes les textures autre que le buffer
 	t_player player;     // Informations du joueur
-	double *z_buffer;   //tableau qui stock la distance entre la camera et les points
+	double *z_buffer;   
+		// tableau qui stock la distance entre la camera et les points
 	int		map_width;
 	int		map_height;
-	
-	//partie parsing
+
+	// partie parsing
 	char	**all_maps;
 	char	**map;
 	char	*av1;
 	int		ac;
-	//point cardinaux
+	// point cardinaux
 	char	*EA;
 	char	*WE;
 	char	*SO;
 	char	*NO;
-	//parsing de couleurs 
+	// parsing de couleurs
 	char	*F;
 	char	*C;
-	//couleur floor
+	// couleur floor
 	int		F_R;
 	int		F_G;
 	int		F_B;
-	//couleur ceiling
+	// couleur ceiling
 	int		C_R;
 	int		C_G;
 	int		C_B;
-	// player info 
-	char direction;
-	int y_spwan_p;
-	int x_spwan_p;
+	// player info
+	char	direction;
+	int		y_spwan_p;
+	int		x_spwan_p;
 }			t_cub3d;
 
 int			ft_atoi_rgb(char *str, int start, int end);
@@ -192,15 +193,17 @@ void		perform_dda(t_cub3d *cube, t_raycast *ray);
 int			key_press(int keycode, t_cub3d *map);
 void		init_player(t_cub3d *cube);
 void		move_backward(t_cub3d *cube);
+void		rotate_left(t_cub3d *cube);
+void		rotate_right(t_cub3d *cube);
+void		move_forward(t_cub3d *cube);
+void		move_right(t_cub3d *cube);
+void		move_left(t_cub3d *cube);
 
 /* init data */
 int			init_cub3d(t_cub3d *cube);
 void		calculate_step_and_side_dist(t_raycast *ray);
 void		init_ray(t_cub3d *cube, t_raycast *ray, double camera_x);
 void		raycasting(t_cub3d *cube);
-void		rotate_left(t_cub3d *cube);
-void		rotate_right(t_cub3d *cube);
-void		move_forward(t_cub3d *cube);
 
 // parsing
 
@@ -224,13 +227,12 @@ int			ft_fill_color(t_cub3d *cube3d);
 
 /* temporaire */
 char		**create_test_map(void);
-void test_print(char **map);
-
+void		test_print(char **map);
 
 /*
 - gerer les leaks
 - finir de gerer les keyhook (principalement les mouvements de souris dans le cadre des bonus)
-- 
+-
 */
 
 #endif
