@@ -4,8 +4,9 @@ EA ./textures/east.xpm
 SO ./textures/south.xpm
 
 
-F 255,100,055
+
 C 200,110,155
+F 255,100,055
 
 
         1111111111111111111111111
