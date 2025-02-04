@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_check_asset.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 17:44:11 by ayarab            #+#    #+#             */
-/*   Updated: 2025/01/20 17:11:17 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/02/04 15:01:26 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../include/cub3d.h"
+#include "./../include/cub3d_bonus.h"
 
 int	ft_atoi_rgb(char *str, int start, int end)
 {

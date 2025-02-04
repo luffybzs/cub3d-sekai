@@ -6,11 +6,11 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 16:33:27 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/02/01 19:28:50 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/04 15:00:38 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../include/cub3d.h"
+#include "./../include/cub3d_bonus.h"
 
 int	game_loop(t_cub3d *cube)
 {

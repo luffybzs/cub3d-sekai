@@ -6,11 +6,11 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 18:01:34 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/01/31 14:42:24 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/04 15:01:02 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3d.h"
+#include "../../include/cub3d_bonus.h"
 
 void	calculate_draw_points(t_cub3d *cube, t_raycast *ray, t_draw *draw)
 {

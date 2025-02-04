@@ -6,11 +6,11 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 23:35:33 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/01/30 14:12:37 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/04 15:01:50 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3d.h"
+#include "../../include/cub3d_bonus.h"
 
 void ft_error(t_cub3d *cube, char *msg, int error_code)
 {

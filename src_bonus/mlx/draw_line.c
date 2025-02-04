@@ -6,11 +6,11 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 21:25:10 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/01/31 15:08:33 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/04 15:00:57 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3d.h"
+#include "../../include/cub3d_bonus.h"
 
 static void	calculate_wall_x(t_cub3d *cube, t_raycast *ray, double *wall_x)
 {

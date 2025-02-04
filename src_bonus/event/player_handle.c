@@ -6,11 +6,11 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 18:23:12 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/02/03 15:59:12 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/04 15:00:50 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3d.h"
+#include "../../include/cub3d_bonus.h"
 
 //gerer les mouvements horizontaux de la souris (encore a faire)
 int	key_press(int keycode, t_cub3d *cube)

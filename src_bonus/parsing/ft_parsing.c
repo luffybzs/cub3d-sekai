@@ -6,11 +6,11 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 19:28:56 by ayarab            #+#    #+#             */
-/*   Updated: 2025/02/03 15:14:17 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/04 15:01:36 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../include/cub3d.h"
+#include "./../include/cub3d_bonus.h"
 
 int	ft_check_av1(t_cub3d *cube3d)
 {

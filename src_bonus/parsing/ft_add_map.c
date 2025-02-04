@@ -6,11 +6,11 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 16:58:05 by ayarab            #+#    #+#             */
-/*   Updated: 2025/02/03 15:10:31 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/04 15:01:20 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../include/cub3d.h"
+#include "./../include/cub3d_bonus.h"
 
 int	ft_add_F(char *str, t_cub3d *cube3d)
 {

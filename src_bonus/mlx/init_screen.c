@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   init_screen.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 15:30:08 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/01/30 17:14:21 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/02/04 15:01:08 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3d.h"
+#include "../../include/cub3d_bonus.h"
 
 int	init_mlx(t_cub3d *data)
 {
