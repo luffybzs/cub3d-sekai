@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 19:28:56 by ayarab            #+#    #+#             */
-/*   Updated: 2025/02/04 15:30:13 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/04 16:35:51 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,7 +150,7 @@ int ft_skip(char **tab, int j)
 	return (-1);
 }
 
-int ft_player(char c);
+int ft_player(char c);//ayoub tentative d ajout d acceptation des portes;
 int ft_maps_is_good(t_cub3d *cube3d)
 {
 	int i;
