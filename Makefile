@@ -6,14 +6,14 @@
 #    By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 16:20:22 by ayarab            #+#    #+#              #
-#    Updated: 2025/02/04 14:58:34 by wdaoudi-         ###   ########.fr        #
+#    Updated: 2025/02/04 15:07:56 by wdaoudi-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC = src/
 SRC_BONUS = src_bonus/
-OBJ = objs/
-OBJ_BONUS = objs_bonus/
+OBJ_DIR = objs/
+OBJ_BONUS_DIR = objs_bonus/
 CFLAGS = -Wall -Wextra -Werror -g3
 
 SRCS = $(addprefix $(SRC), main.c parsing/ft_parsing.c parsing/ft_check_asset.c parsing/ft_add_info.c parsing/ft_add_map.c parsing/ft_fill_color.c \
@@ -24,8 +24,8 @@ SRCS_BONUS =  $(addprefix $(SRC_BONUS), main.c parsing/ft_parsing.c parsing/ft_c
        data/init_data.c mlx/init_screen.c mlx/draw.c raycasting/raycasting.c event/player_handle.c mlx/draw_line.c \
 	   utils/utils1.c )
 
-OBJS = $(SRCS:$(SRC)%.c=$(OBJ)%.o)
-OBJS_BONUS = $(SRCS_BONUS:$(SRC_BONUS)%.c=$(OBJ_BONUS)%.o)
+OBJS = $(SRCS:$(SRC)%.c=$(OBJ_DIR)%.o)
+OBJS_BONUS = $(SRCS_BONUS:$(SRC_BONUS)%.c=$(OBJ_BONUS_DIR)%.o)
 
 INCLUDES = -I ./include -I ./libft
 LIBFT = libft.a
@@ -51,21 +51,26 @@ $(LIBFT):
 $(MINI_LIBX):
 	make -C $(MINI_LIBX_DIR)
 
-$(OBJ)%.o: $(SRC)%.c
+$(OBJ_DIR)%.o: $(SRC)%.c
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+	@echo "Compiling: $<"
 
-$(OBJ_BONUS)%.o: $(SRC_BONUS)%.c
+$(OBJ_BONUS_DIR)%.o: $(SRC_BONUS)%.c
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+	@echo "Compiling bonus: $<"
 
 
 clean:
-	rm -rf $(OBJ) $(OBJ_BONUS)
+	@echo "Cleaning object files..."
+	@rm -rf $(OBJ_DIR) 
+	@rm -rf $(OBJ_BONUS_DIR)
 	make clean -C $(LIB_DIR)
 	make clean -C $(MINI_LIBX_DIR)
 
 fclean: clean
+	@echo "Cleaning executables..."
 	rm -f $(NAME) $(BONUS)
 	make fclean -C $(LIB_DIR)
 

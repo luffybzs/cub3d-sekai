@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 19:28:56 by ayarab            #+#    #+#             */
-/*   Updated: 2025/02/03 15:14:17 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/04 15:28:16 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,6 +149,7 @@ int ft_skip(char **tab, int j)
 		return (0);
 	return (-1);
 }
+int ft_player(char c);
 
 int ft_maps_is_good(t_cub3d *cube3d)
 {
@@ -165,7 +166,7 @@ int ft_maps_is_good(t_cub3d *cube3d)
 			return (EXIT_FAILURE);
 		while (cube3d->all_maps[j][i])
 		{
-			if (cube3d->all_maps[j][i] == '0')
+			if (cube3d->all_maps[j][i] == '0' || ft_player(cube3d->all_maps[j][i]) == 0)
 			{
 				if (ft_is_good(cube3d,j, i) == EXIT_FAILURE)
 					return (EXIT_FAILURE);
