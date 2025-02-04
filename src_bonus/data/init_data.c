@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 15:31:23 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/02/04 15:00:44 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/04 17:13:53 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	init_cub3d(t_cub3d *cube)
 {
 	if (!cube->all_maps)
 		return (1);
-	// printf("passer ici\n");
 	//calcule de la taille de la map
 	cube->map_height = 0;
 	while (cube->all_maps[cube->map_height])
@@ -52,6 +51,8 @@ int	open_images(t_cub3d *cube)
 		!ft_init_img(cube, &cube->textures.south) ||
 		!ft_init_img(cube, &cube->textures.west) ||
 		!ft_init_img(cube, &cube->textures.east))
+		return (0);
+	if(!init_mini_map(cube))
 		return (0);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 15:30:08 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/02/04 15:01:08 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/04 17:19:03 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,10 @@ void	cleanup(t_cub3d *cube)
 		mlx_destroy_image(cube->mlx, cube->textures.west.img);
 	if (cube->textures.east.img)
 		mlx_destroy_image(cube->mlx, cube->textures.east.img);
+	// if (cube->minimap)
+	// {
+	// 	mlx_destroy_image(cube->mlx, cube->minimap->img);
+	// }
 	if (cube->win)
 		mlx_destroy_window(cube->mlx, cube->win);
 	if (cube->mlx)
@@ -59,5 +63,6 @@ void	cleanup(t_cub3d *cube)
 	{
 		free(cube->z_buffer);
 		cube->z_buffer = NULL;
+		// mlx_destroy_image(cube->z_buffer);//??
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 16:33:27 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/02/04 15:00:38 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/04 17:18:18 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int	game_loop(t_cub3d *cube)
 	if (draw_background(cube))
 		return (1);
 	raycasting(cube);
+	draw_minimap(cube);
 	if (cube->buffer.img)
 		mlx_put_image_to_window(cube->mlx, cube->win, cube->buffer.img, 0, 0);
 	return (0);

@@ -6,7 +6,7 @@
 #    By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 16:20:22 by ayarab            #+#    #+#              #
-#    Updated: 2025/02/04 15:07:56 by wdaoudi-         ###   ########.fr        #
+#    Updated: 2025/02/04 17:19:28 by wdaoudi-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ SRCS = $(addprefix $(SRC), main.c parsing/ft_parsing.c parsing/ft_check_asset.c 
 	   
 SRCS_BONUS =  $(addprefix $(SRC_BONUS), main.c parsing/ft_parsing.c parsing/ft_check_asset.c parsing/ft_add_info.c parsing/ft_add_map.c parsing/ft_fill_color.c \
        data/init_data.c mlx/init_screen.c mlx/draw.c raycasting/raycasting.c event/player_handle.c mlx/draw_line.c \
-	   utils/utils1.c )
+	   utils/utils1.c mlx/minimap.c )
 
 OBJS = $(SRCS:$(SRC)%.c=$(OBJ_DIR)%.o)
 OBJS_BONUS = $(SRCS_BONUS:$(SRC_BONUS)%.c=$(OBJ_BONUS_DIR)%.o)

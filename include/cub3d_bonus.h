@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 16:03:47 by ayarab            #+#    #+#             */
-/*   Updated: 2025/02/04 15:00:22 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/04 17:36:44 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,10 @@
 # define KEY_D XK_d
 # define KEY_LEFT XK_Left
 # define KEY_RIGHT XK_Right
+
+# define MINIMAP_SCALE 10
+#define MINIMAP_HEIGHT 1000
+#define MINIMAP_WIDTH 1000
 
 # define ERROR_FOR_INFO "Error\nThere is missing information or there are duplicates"
 
@@ -117,8 +121,8 @@ typedef struct s_cub3d
 	t_img buffer;        // gestion de la toile
 	t_textures textures; // Toutes les textures autre que le buffer
 	t_player player;     // Informations du joueur
-	double *z_buffer;   
-		// tableau qui stock la distance entre la camera et les points
+	double	*z_buffer;
+	// tableau qui stock la distance entre la camera et les points
 	int		map_width;
 	int		map_height;
 
@@ -147,6 +151,10 @@ typedef struct s_cub3d
 	char	direction;
 	int		y_spwan_p;
 	int		x_spwan_p;
+	// implementation de la minimap
+	t_img	minimap;
+	int 	height;
+	int 	width;
 }			t_cub3d;
 
 int			ft_atoi_rgb(char *str, int start, int end);
@@ -224,6 +232,10 @@ void		ft_fail_free(t_cub3d *cube3d);
 int			ft_fill_data(int ac, char **av, t_cub3d *cube3d);
 int			ft_search_info(char *av1, t_cub3d *cube3d);
 int			ft_fill_color(t_cub3d *cube3d);
+
+/* bonus */
+int			init_mini_map(t_cub3d *cube);
+void		draw_minimap(t_cub3d *cube);
 
 /* temporaire */
 char		**create_test_map(void);
