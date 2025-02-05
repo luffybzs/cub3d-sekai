@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 16:33:27 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/02/04 17:18:18 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/05 19:43:04 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	game_loop(t_cub3d *cube)
 		return (1);
 	}
 	ft_memset(cube->buffer.addr, 0, cube->screen_width * cube->screen_height
-			* sizeof(int));
+		* sizeof(int));
 	if (draw_background(cube))
 		return (1);
 	raycasting(cube);
@@ -36,11 +36,11 @@ int	main(int ac, char **av)
 {
 	t_cub3d cube = {0};
 
-	//temporaire pour les tests
-    if (ac != 2)
-        return(ft_putendl_fd("Error\nNot Enough argument",2),1);
-    if (ft_fill_data(ac, av, &cube) == EXIT_FAILURE)
-		return (ft_fail_free(&cube),EXIT_FAILURE);
+	// temporaire pour les tests
+	if (ac != 2)
+		return (ft_putendl_fd("Error\nNot Enough argument", 2), 1);
+	if (ft_fill_data(ac, av, &cube) == EXIT_FAILURE)
+		return (ft_fail_free(&cube), EXIT_FAILURE);
 	if (init_cub3d(&cube) == 1)
 		return (cleanup(&cube), 1);
 	if (cube.mlx && cube.win)
@@ -51,5 +51,5 @@ int	main(int ac, char **av)
 		mlx_loop(cube.mlx);
 	}
 	cleanup(&cube);
-    return (ft_fail_free(&cube),EXIT_SUCCESS);
+	return (ft_fail_free(&cube), EXIT_SUCCESS);
 }

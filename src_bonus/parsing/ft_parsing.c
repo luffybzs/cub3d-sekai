@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parsing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 19:28:56 by ayarab            #+#    #+#             */
-/*   Updated: 2025/02/04 16:35:51 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/05 19:38:07 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,22 @@ int	ft_search_info(char *av1, t_cub3d *cube3d)
 	return (close(fd), EXIT_SUCCESS);
 }
 
+int ft_add_door(char *str, t_cub3d *cube3d, int i)
+{
+	if (!ft_strncmp(str, "D", 1))
+	{
+		if (cube3d->door)
+			return (-1);
+		cube3d->door = ft_add_just_info(str ,i + 1);
+		if (!cube3d->door)
+			return (-1);
+		return (1);
+	}
+	return (EXIT_SUCCESS);
+}
+
+
+
 int	ft_add_cardinal_points(char *str, t_cub3d *cube3d, int i)
 {
 	if (ft_add_NO(str, cube3d, i) == -1 || ft_add_EA(str, cube3d, i) == -1)
@@ -82,7 +98,12 @@ int	ft_add_cardinal_points(char *str, t_cub3d *cube3d, int i)
 		return (1);
 	if (ft_add_F(str, cube3d) == 1 || ft_add_C(str, cube3d) == 1)
 		return (1);
+	if (ft_add_door(str, cube3d, i) == 1)
+		return (1);
+	if (ft_add_door(str, cube3d, i) == -1)
+		return (-1);
 	// printf("WE = %s, SO = %s, EA = %s, NO = %s, F = %s, C = %s\n",cube3d->WE,cube3d->SO,cube3d->EA,cube3d->NO,cube3d->F,cube3d->C);
+
 	return (0);
 }
 
@@ -273,6 +294,5 @@ int	ft_fill_data(int ac, char **av, t_cub3d *cube3d)
 	if (ft_check_player(cube3d) == EXIT_FAILURE)
 		return (ft_putendl_fd("Error\nNot Or Too Many Player", 2), EXIT_FAILURE);
 	// test_print(cube3d->all_maps);
-
 	return (EXIT_SUCCESS);
 }

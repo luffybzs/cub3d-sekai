@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_fill_color.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 19:30:57 by ayarab            #+#    #+#             */
-/*   Updated: 2025/02/04 15:01:30 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/05 19:43:13 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../include/cub3d_bonus.h"
-
 
 int	ft_add_last_color(int *start, int *j, char *str)
 {

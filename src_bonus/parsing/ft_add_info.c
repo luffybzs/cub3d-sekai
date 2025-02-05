@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_add_info.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 16:52:32 by ayarab            #+#    #+#             */
-/*   Updated: 2025/02/04 15:01:16 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/05 18:13:03 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ char	*ft_add_just_info(char *str, int i)
 	{
 		if (ft_cmp_xpm(str, i, ".xpm\n") == 0)
 		{
-			tmp = ft_substr(str, start, i + 1);
+			tmp = ft_strtrim(str +start, "\n");
 			if (!tmp)
 				return (NULL);
 			return (tmp);

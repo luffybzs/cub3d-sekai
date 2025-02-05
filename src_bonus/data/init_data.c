@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 15:31:23 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/02/04 17:13:53 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/05 19:47:53 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int	ft_init_img(t_cub3d *cube, t_img *img)
 		return (0);
 	}
 	img->img = mlx_xpm_file_to_image(cube->mlx, img->path, &img->width,
-			&img->height);
+			&img->height);	
 	if (!img->img)
 		return (0);
 	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,

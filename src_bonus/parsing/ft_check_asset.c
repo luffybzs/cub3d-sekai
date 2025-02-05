@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_check_asset.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 17:44:11 by ayarab            #+#    #+#             */
-/*   Updated: 2025/02/04 15:01:26 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/05 19:43:17 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	ft_atoi_rgb(char *str, int start, int end)
 	return (res);
 }
 
-void ft_fail_free(t_cub3d *cube3d)
+void	ft_fail_free(t_cub3d *cube3d)
 {
 	if (cube3d->EA)
 		free(cube3d->EA);
@@ -41,7 +41,7 @@ void ft_fail_free(t_cub3d *cube3d)
 	if (cube3d->F)
 		free(cube3d->F);
 	if (cube3d->C)
-		free(cube3d->C);	
+		free(cube3d->C);
 	if (cube3d->all_maps)
 		ft_free_2d(cube3d->all_maps);
 	return ;
