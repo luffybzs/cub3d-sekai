@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 16:33:27 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/02/06 17:25:37 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/06 17:34:25 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,7 @@ int	game_loop(t_cub3d *cube)
 	}
 	ft_memset(cube->buffer.addr, 0, cube->screen_width * cube->screen_height
 		* sizeof(int));
-	if (dra
-	w_background(cube))
+	if (draw_background(cube))
 		return (1);
 	raycasting(cube);
 	draw_minimap(cube);
