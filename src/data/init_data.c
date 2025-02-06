@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 15:31:23 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/02/01 20:05:08 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/06 17:06:22 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,21 +24,21 @@ int	init_cub3d(t_cub3d *cube)
 	if (cube->map_height > 0)
 		cube->map_width = ft_strlen(cube->all_maps[0]);
 	else
-		return (cleanup(cube), 1);
+		return ( 1);
 	if (!init_textures_path(cube))
-		return (printf("fail to init paths\n"), cleanup(cube), 1);
+		return (printf("fail to init paths\n"),1);
 	//ici joindre le parsing (trouver position ainsi qu orientation)
 	//  test_print(cube->all_maps);
 
 	init_player(cube);
 	// printf("arriver dans init cub\n");
 	if (init_mlx(cube) || !cube->mlx || !cube->win)
-		return (printf("fail to init MLX\n"), cleanup(cube), 1);
+		return (printf("fail to init MLX\n"), 1);
 	cube->z_buffer = malloc(sizeof(double) * cube->screen_width);
 	if (!cube->z_buffer)
-		return (cleanup(cube), 1);
+		return ( 1);
 	if (!open_images(cube))
-		return (printf("fail to init textures\n"), cleanup(cube), 1);
+		return (printf("fail to init textures\n"), 1);
 	return (0);
 }
 

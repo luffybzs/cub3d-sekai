@@ -6,7 +6,7 @@
 /*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 15:30:08 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/01/30 17:14:21 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/02/06 17:04:37 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,9 @@ int	close_window(t_cub3d *data)
 
 void	cleanup(t_cub3d *cube)
 {
+	if(!cube->mlx)
+		return ;
+	printf("dans cleanup\n");
 	if (cube->textures.north.img)
 		mlx_destroy_image(cube->mlx, cube->textures.north.img);
 	if (cube->textures.south.img)
@@ -48,7 +51,7 @@ void	cleanup(t_cub3d *cube)
 		mlx_destroy_image(cube->mlx, cube->textures.west.img);
 	if (cube->textures.east.img)
 		mlx_destroy_image(cube->mlx, cube->textures.east.img);
-	if (cube->win)
+	if (cube->win && cube->mlx)
 		mlx_destroy_window(cube->mlx, cube->win);
 	if (cube->mlx)
 	{

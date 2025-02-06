@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_fill_color.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 19:30:57 by ayarab            #+#    #+#             */
-/*   Updated: 2025/01/30 22:01:48 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/06 16:53:44 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,11 +93,11 @@ int	ft_fill_color(t_cub3d *cube3d)
 {
 	if (ft_fill_floor_color(cube3d) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
-	printf("la valeur de R_F = {%d}\nla valeur de G_F = {%d}\nla valeur de B_F = {%d}\n",
-		cube3d->F_R, cube3d->F_G, cube3d->F_B);
+	//printf("la valeur de R_F = {%d}\nla valeur de G_F = {%d}\nla valeur de B_F = {%d}\n",
+		//cube3d->F_R, cube3d->F_G, cube3d->F_B);
 	if (ft_fill_cloud_color(cube3d) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
-	printf("la valeur de R_C = {%d}\nla valeur de G_C = {%d}\nla valeur de B_C = {%d}\n",
-		cube3d->C_R, cube3d->C_G, cube3d->C_B);
+	//printf("la valeur de R_C = {%d}\nla valeur de G_C = {%d}\nla valeur de B_C = {%d}\n",
+		//cube3d->C_R, cube3d->C_G, cube3d->C_B);
 	return (EXIT_SUCCESS);
 }

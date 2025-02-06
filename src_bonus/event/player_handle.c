@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_handle.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 18:23:12 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/02/06 15:15:19 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/06 16:31:02 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ int	key_press(int keycode, t_cub3d *cube)
 	}
 	else if (keycode == XK_Escape)
 		close_window(cube);
-	else if (keycode == XK_space)
-			handle_door(cube);
+	//else if (keycode == XK_space)
+	//		handle_door(cube);
 	return (0);
 }
 
