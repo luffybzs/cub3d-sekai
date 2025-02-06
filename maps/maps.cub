@@ -2,7 +2,7 @@ WE ./textures/west.xpm
 NO ./textures/north.xpm
 EA ./textures/east.xpm
 SO ./textures/souts.xpm
-D ./assets/door.xpm
+D ./textures/door.xpm
 
 
 C 200,110,155
