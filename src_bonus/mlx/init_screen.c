@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 15:30:08 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/02/04 17:19:03 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/06 18:38:18 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,7 @@ int	init_mlx(t_cub3d *data)
 			data->screen_height, "Cub3D-Sekai");
 	if (!data->win)
 		return (ft_putendl_fd("Error: Failed to initialize MLX", 2),
-				mlx_destroy_display(data->mlx),
-				1);
+			mlx_destroy_display(data->mlx), 1);
 	return (0);
 }
 
@@ -40,6 +39,11 @@ int	close_window(t_cub3d *data)
 
 void	cleanup(t_cub3d *cube)
 {
+	if (!cube->mlx)
+		return ;
+	printf("dans cleanup\n");
+	if (cube->buffer.img)
+		mlx_destroy_image(cube->mlx, cube->buffer.img);
 	if (cube->textures.north.img)
 		mlx_destroy_image(cube->mlx, cube->textures.north.img);
 	if (cube->textures.south.img)
@@ -48,11 +52,8 @@ void	cleanup(t_cub3d *cube)
 		mlx_destroy_image(cube->mlx, cube->textures.west.img);
 	if (cube->textures.east.img)
 		mlx_destroy_image(cube->mlx, cube->textures.east.img);
-	// if (cube->minimap)
-	// {
-	// 	mlx_destroy_image(cube->mlx, cube->minimap->img);
-	// }
-	if (cube->win)
+
+	if (cube->win && cube->mlx)
 		mlx_destroy_window(cube->mlx, cube->win);
 	if (cube->mlx)
 	{
@@ -63,6 +64,6 @@ void	cleanup(t_cub3d *cube)
 	{
 		free(cube->z_buffer);
 		cube->z_buffer = NULL;
-		// mlx_destroy_image(cube->z_buffer);//??
 	}
+
 }
