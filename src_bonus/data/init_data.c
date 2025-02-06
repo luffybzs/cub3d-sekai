@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 15:31:23 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/02/05 19:47:53 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/02/06 14:48:09 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,9 @@ int	open_images(t_cub3d *cube)
 		!ft_init_img(cube, &cube->textures.west) ||
 		!ft_init_img(cube, &cube->textures.east))
 		return (0);
+	if (cube->door.path)
+			if(!ft_init_img(cube,&cube->door))
+				return (0);
 	if(!init_mini_map(cube))
 		return (0);
 	return (1);
@@ -104,17 +107,17 @@ int	init_textures_path(t_cub3d *cube)
 }
 
 
-int	load_texture(void *mlx, t_img *img, char *path)
-{
-	img->img = mlx_xpm_file_to_image(mlx, path, &img->width, &img->height);
-	if (!img->img)
-		return (0);
-	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,
-			&img->line_length, &img->endiant);
-	if (!img->addr)
-		return (mlx_destroy_image(mlx, img->img), 0);
-	return (1);
-}
+// int	load_texture(void *mlx, t_img *img, char *path)
+// {
+// 	img->img = mlx_xpm_file_to_image(mlx, path, &img->width, &img->height);
+// 	if (!img->img)
+// 		return (0);
+// 	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,
+// 			&img->line_length, &img->endiant);
+// 	if (!img->addr)
+// 		return (mlx_destroy_image(mlx, img->img), 0);
+// 	return (1);
+// }
 
 void	init_player(t_cub3d *cube)
 {

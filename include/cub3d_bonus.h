@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 16:03:47 by ayarab            #+#    #+#             */
-/*   Updated: 2025/02/06 14:18:32 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/06 14:48:43 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,10 +156,7 @@ typedef struct s_cub3d
 	int 	height;
 	int 	width;
 	// door
-	
-	char *door;
-	int x_door;
-	int y_door;
+	t_img door;
 }			t_cub3d;
 
 int			ft_atoi_rgb(char *str, int start, int end);
@@ -242,9 +239,13 @@ int			ft_fill_color(t_cub3d *cube3d);
 int			init_mini_map(t_cub3d *cube);
 void		draw_minimap(t_cub3d *cube);
 
+
 /* temporaire */
 char		**create_test_map(void);
 void		test_print(char **map);
+
+/* utils*/
+void *ft_realloc(void *ptr, size_t old_size, size_t new_size);
 
 /*
 - gerer les leaks

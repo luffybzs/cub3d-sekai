@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 19:28:56 by ayarab            #+#    #+#             */
-/*   Updated: 2025/02/06 14:24:41 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/06 14:49:29 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,10 @@ int ft_add_door(char *str, t_cub3d *cube3d, int i)
 {
 	if (!ft_strncmp(str, "D", 1))
 	{
-		if (cube3d->door)
+		if (cube3d->door.path)
 			return (-1);
-		cube3d->door = ft_add_just_info(str ,i + 1);
-		if (!cube3d->door)
+		cube3d->door.path = ft_add_just_info(str ,i + 1);
+		if (!cube3d->door.path)
 			return (-1);
 		return (1);
 	}
@@ -294,33 +294,33 @@ int	ft_fill_data(int ac, char **av, t_cub3d *cube3d)
 	if (ft_check_player(cube3d) == EXIT_FAILURE)
 		return (ft_putendl_fd("Error\nNot Or Too Many Player", 2), EXIT_FAILURE);
 	// test_print(cube3d->all_maps);
-		ft_check_door(cub3d);//gerer la creation d un tableau avec les infos sur les differentes portes
+	// ft_check_door(cub3d);//gerer la creation d un tableau avec les infos sur les differentes portes
 
 	return (EXIT_SUCCESS);
 }
 
-int ft_check_door(t_cub3d *cube3d)
-{
-	int i = 0;
-	int j = 0;
-	bool door = false;
+// int ft_check_door(t_cub3d *cube3d)
+// {
+// 	int i = 0;
+// 	int j = 0;
+// 	bool door = false;
 
-	while (cube3d->all_maps[j])
-	{
-		i = 0;
-		while (cube3d->all_maps[j][i])
-		{
-			if ((cube3d->all_maps[j][i]) == 'D')
-			{
+// 	while (cube3d->all_maps[j])
+// 	{
+// 		i = 0;
+// 		while (cube3d->all_maps[j][i])
+// 		{
+// 			if ((cube3d->all_maps[j][i]) == 'D')
+// 			{
 				
-				cube3d->x_door = i;
-				cube3d->y_door = j;
-			}
-			i++;
-		}
-		j++;
-	}
-	if (player == false)
-		return (EXIT_FAILURE);
-	return (EXIT_SUCCESS);
-} 
+// 				cube3d->x_door = i;
+// 				cube3d->y_door = j;
+// 			}
+// 			i++;
+// 		}
+// 		j++;
+// 	}
+// 	if (player == false)
+// 		return (EXIT_FAILURE);
+// 	return (EXIT_SUCCESS);
+// } 

@@ -2,7 +2,7 @@ WE ./textures/west.xpm
 NO ./textures/north.xpm
 EA ./textures/east.xpm
 SO ./textures/south.xpm
-D ./textures/door.xpm
+D ./textures/door.xpm // l ajout de la porte fais crasher le projet
 
 
 
