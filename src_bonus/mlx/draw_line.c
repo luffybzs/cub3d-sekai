@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 21:25:10 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/02/04 15:00:57 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/06 15:13:43 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,17 @@ static void	calculate_wall_x(t_cub3d *cube, t_raycast *ray, double *wall_x)
 		*wall_x = cube->player.pos_y + ray->wall_dist * ray->ray_dir_y;
 	else // sinon mur horizontal
 		*wall_x = cube->player.pos_x + ray->wall_dist * ray->ray_dir_x;
-	*wall_x -= floor(*wall_x); // plus grand entier inferieur ou egale
+	*wall_x -= floor(*wall_x); // plus grand entier inferieur ou egale (floor)
 }
 static void	select_wall_texture(t_cub3d *cube, t_raycast *ray, t_img **texture)
 {
 	// selection du mur a dessiner en fonction du side et de l orientation
 	// et la direction du rayon
+	if (ray->ray_hit_door)
+	{
+		*texture = cube->door;
+		return;
+	}
 	if (ray->side == 0 && ray->ray_dir_x > 0)
 		*texture = &cube->textures.east;
 	else if (ray->side == 0)

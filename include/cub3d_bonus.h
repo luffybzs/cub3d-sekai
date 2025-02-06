@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 16:03:47 by ayarab            #+#    #+#             */
-/*   Updated: 2025/02/06 14:48:43 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/06 15:12:46 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ typedef struct s_raycast
 
 	// indicateur de face quel mur est touchee
 	int		side;
+	int ray_hit_door;
 
 }			t_raycast;
 

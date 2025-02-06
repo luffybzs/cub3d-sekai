@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 14:36:54 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/02/06 14:01:48 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/06 15:10:42 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,8 +121,12 @@ void	perform_dda(t_cub3d *cube, t_raycast *ray)
 			ray->map_x < 0 || ray->map_x >= cube->map_width)
 			break ;
 		// Vérification si on a touché un mur
-		if (cube->all_maps[ray->map_y][ray->map_x] == '1')
+		if (cube->all_maps[ray->map_y][ray->map_x] == '1' || cube->all_maps[ray->map_y][ray->map_x] == 'D' )
+		{
 			hit = 1;
+			if (cube->all_maps[ray->map_y][ray->map_x] == 'D' )
+				ray->ray_hit_door = 1;
+		}	
 	}
 	// Calcul de la distance perpendiculaire
 	if (ray->side == 0)
