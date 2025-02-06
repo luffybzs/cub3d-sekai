@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parsing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 19:28:56 by ayarab            #+#    #+#             */
-/*   Updated: 2025/02/05 19:37:09 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/02/06 14:24:48 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -272,6 +272,8 @@ int	ft_fill_data(int ac, char **av, t_cub3d *cube3d)
 		return (ft_putendl_fd("Error\nMap Is Not Close",2) , EXIT_FAILURE);
 	if (ft_check_player(cube3d) == EXIT_FAILURE)
 		return (ft_putendl_fd("Error\nNot Or Too Many Player", 2), EXIT_FAILURE);
+	// ft_check_door(cub3d);//gerer la creation d un tableau avec les infos sur les differentes portes
+		
 	// test_print(cube3d->all_maps);
 
 	return (EXIT_SUCCESS);

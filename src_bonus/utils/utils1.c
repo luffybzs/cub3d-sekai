@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 23:35:33 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/02/04 15:01:50 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/06 14:35:26 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,37 @@ void test_print(char **map)
         printf("\n");
         i++;
     }
+}
+
+void *ft_realloc(void *ptr, size_t old_size, size_t new_size)
+{
+    void *new_ptr;
+    char *src;
+    char *dst;
+    size_t i;
+
+    if (!ptr && new_size)
+        return (malloc(new_size));
+    if (ptr && !new_size)
+        return (free(ptr),NULL);
+    if (!ptr && !new_size)
+        return (NULL);
+    
+    new_ptr = malloc(new_size);
+    if (!new_ptr)
+        return (NULL);
+
+    if (old_size > 0 && old_size <= new_size)
+    {
+        src = (char*)ptr;
+        dst = (char*)new_ptr;
+        i = 0;
+        while (i < old_size)
+        {
+            dst[i] = src[i];
+            i++;
+        }
+    }
+    free(ptr);
+    return (new_ptr);
 }

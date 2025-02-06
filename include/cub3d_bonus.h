@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 16:03:47 by ayarab            #+#    #+#             */
-/*   Updated: 2025/02/06 14:04:23 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/06 14:18:32 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,6 +156,7 @@ typedef struct s_cub3d
 	int 	height;
 	int 	width;
 	// door
+	
 	char *door;
 	int x_door;
 	int y_door;
