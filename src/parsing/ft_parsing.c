@@ -6,7 +6,7 @@
 /*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 19:28:56 by ayarab            #+#    #+#             */
-/*   Updated: 2025/02/06 16:53:19 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/02/06 18:15:57 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,7 +196,6 @@ int ft_check_char(char c)
 		return (EXIT_SUCCESS);
 	return (EXIT_FAILURE);
 }
-
 
 int ft_is_all_good_char(t_cub3d *cube3d)
 {

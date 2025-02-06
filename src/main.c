@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 16:33:27 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/02/01 19:28:50 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/06 18:21:21 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	main(int ac, char **av)
     if (ft_fill_data(ac, av, &cube) == EXIT_FAILURE)
 		return (ft_fail_free(&cube),EXIT_FAILURE);
 	if (init_cub3d(&cube) == 1)
-		return (cleanup(&cube), 1);
+		return (cleanup(&cube),ft_fail_free(&cube), 1);
 	if (cube.mlx && cube.win)
 	{
 		mlx_hook(cube.win, 17, 0, close_window, &cube);

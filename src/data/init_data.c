@@ -6,7 +6,7 @@
 /*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 15:31:23 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/02/06 17:06:22 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/02/06 18:32:07 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,8 @@ int	init_buffer(t_cub3d *cube)
 	if (!cube->mlx)
 		return (0);
 	cube->buffer.img = mlx_new_image(cube->mlx, cube->screen_width,
-										cube->screen_height);
-										//creer une image vide principe de la toile vierge
+									cube->screen_height);
+									//	creer une image vide principe de la toile vierge
 	if (!cube->buffer.img)
 		return (0);
 	cube->buffer.addr = mlx_get_data_addr(cube->buffer.img,

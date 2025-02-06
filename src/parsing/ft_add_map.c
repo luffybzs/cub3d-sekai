@@ -6,7 +6,7 @@
 /*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 16:58:05 by ayarab            #+#    #+#             */
-/*   Updated: 2025/02/06 17:08:35 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/02/06 18:20:01 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,5 +91,5 @@ int	ft_search_maps(char *av1, t_cub3d *cube3d)
 	cube3d->all_maps = ft_split(res, '\n');
 	if (!cube3d->all_maps)
 		return (close(fd), free(res), EXIT_FAILURE);
-	return (close(fd), free(res), EXIT_SUCCESS);
+	return (close(fd), free(res),free(line), EXIT_SUCCESS);
 }
