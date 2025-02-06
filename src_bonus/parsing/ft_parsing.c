@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parsing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 19:28:56 by ayarab            #+#    #+#             */
-/*   Updated: 2025/02/06 14:49:29 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/06 16:44:56 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,8 +102,8 @@ int	ft_add_cardinal_points(char *str, t_cub3d *cube3d, int i)
 		return (1);
 	if (ft_add_door(str, cube3d, i) == -1)
 		return (-1);
-	// printf("WE = %s, SO = %s, EA = %s, NO = %s, F = %s, C = %s\n",cube3d->WE,cube3d->SO,cube3d->EA,cube3d->NO,cube3d->F,cube3d->C);
-
+	printf("WE = {%s}\nSO = {%s}\nEA = {%s}\nNO = {%s}\nF = {%s}\nC = {%s}\nDoor = {%s}\n",cube3d->WE,cube3d->SO,cube3d->EA,cube3d->NO,cube3d->F,cube3d->C, cube3d->door.path);
+	
 	return (0);
 }
 
@@ -187,7 +187,7 @@ int ft_maps_is_good(t_cub3d *cube3d)
 			return (EXIT_FAILURE);
 		while (cube3d->all_maps[j][i])
 		{
-			if (cube3d->all_maps[j][i] == '0' || ft_player(cube3d->all_maps[j][i]) == 0)
+			if (cube3d->all_maps[j][i] == '0' || ft_player(cube3d->all_maps[j][i]) == 0 || cube3d->all_maps[j][i] == 'D')
 			{
 				if (ft_is_good(cube3d,j, i) == EXIT_FAILURE)
 					return (EXIT_FAILURE);
@@ -212,6 +212,8 @@ int ft_check_char(char c)
 	if (c == '1')
 		return (EXIT_SUCCESS);
 	if (c == '0')
+		return (EXIT_SUCCESS);
+	if (c == 'D')
 		return (EXIT_SUCCESS);
 	if (c <= 32)
 		return (EXIT_SUCCESS);

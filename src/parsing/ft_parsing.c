@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parsing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 19:28:56 by ayarab            #+#    #+#             */
-/*   Updated: 2025/02/06 14:24:48 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/06 16:53:19 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int	ft_add_cardinal_points(char *str, t_cub3d *cube3d, int i)
 		return (1);
 	if (ft_add_F(str, cube3d) == 1 || ft_add_C(str, cube3d) == 1)
 		return (1);
-	 //printf("WE = {%s}\n, SO = {%s}\n, EA = {%s}\n, NO = {%s}\n, F = {%s}\n, C = {%s}\n",cube3d->WE,cube3d->SO,cube3d->EA,cube3d->NO,cube3d->F,cube3d->C);
+	// printf("WE = {%s}\n, SO = {%s}\n, EA = {%s}\n, NO = {%s}\n, F = {%s}\n, C = {%s}\n",cube3d->WE,cube3d->SO,cube3d->EA,cube3d->NO,cube3d->F,cube3d->C);
 	return (0);
 }
 

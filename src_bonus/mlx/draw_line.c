@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 21:25:10 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/02/06 15:27:54 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/06 17:20:30 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	select_wall_texture(t_cub3d *cube, t_raycast *ray, t_img **texture)
 	// et la direction du rayon
 	if (ray->ray_hit_door)
 	{
-		*texture = &cube->door;
+		*texture = cube->door;
 		return;
 	}
 	if (ray->side == 0 && ray->ray_dir_x > 0)
