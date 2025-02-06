@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parsing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 19:28:56 by ayarab            #+#    #+#             */
-/*   Updated: 2025/02/06 16:44:56 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/02/06 19:17:54 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,6 +147,8 @@ int ft_ft(t_cub3d *cube3d, int i, int j)
 		return (1);
 	if (cube3d->all_maps[j][i] == '1')
 		return (1);
+	if (cube3d->all_maps[j][i] == 'D')
+		return (1);
 	return (0);
 }
 
@@ -187,7 +189,7 @@ int ft_maps_is_good(t_cub3d *cube3d)
 			return (EXIT_FAILURE);
 		while (cube3d->all_maps[j][i])
 		{
-			if (cube3d->all_maps[j][i] == '0' || ft_player(cube3d->all_maps[j][i]) == 0 || cube3d->all_maps[j][i] == 'D')
+			if (cube3d->all_maps[j][i] == '0' || ft_player(cube3d->all_maps[j][i]) == 0 ||  cube3d->all_maps[j][i] == 'D')
 			{
 				if (ft_is_good(cube3d,j, i) == EXIT_FAILURE)
 					return (EXIT_FAILURE);

@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 16:33:27 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/02/06 17:34:25 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/06 19:20:13 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ int	main(int ac, char **av)
 	if (ft_fill_data(ac, av, &cube) == EXIT_FAILURE)
 		return (ft_fail_free(&cube), EXIT_FAILURE);
 	if (init_cub3d(&cube) == 1)
-		return (cleanup(&cube), 1);
+		return (cleanup(&cube),ft_fail_free(&cube), 1);
+	// printf("apres init cube\n");
 	if (cube.mlx && cube.win)
 	{
 		mlx_hook(cube.win, 17, 0, close_window, &cube);
@@ -51,5 +52,6 @@ int	main(int ac, char **av)
 		mlx_loop(cube.mlx);
 	}
 	cleanup(&cube);
+	
 	return (ft_fail_free(&cube), EXIT_SUCCESS);
 }

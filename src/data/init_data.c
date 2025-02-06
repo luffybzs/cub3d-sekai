@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 15:31:23 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/02/06 18:32:07 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/02/06 18:42:31 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ int	open_images(t_cub3d *cube)
 		!ft_init_img(cube, &cube->textures.west) ||
 		!ft_init_img(cube, &cube->textures.east))
 		return (0);
+	// printf("ici\n");
 	return (1);
 }
 int	init_buffer(t_cub3d *cube)
@@ -82,6 +83,8 @@ int	ft_init_img(t_cub3d *cube, t_img *img)
 	}
 	img->img = mlx_xpm_file_to_image(cube->mlx, img->path, &img->width,
 			&img->height);
+	printf("ici pour s occuper de %s\n", img->path);
+		
 	if (!img->img)
 		return (0);
 	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,

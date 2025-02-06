@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 14:23:39 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/02/06 17:35:33 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/06 19:49:21 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@
 // 	return (EXIT_SUCCESS);
 // } 
 
-void handle_door(t_cub3d *cube)
+void handle_door(t_cub3d *cube)//gerer handle door
 {
 	int player_x;
 	int player_y;
@@ -51,8 +51,14 @@ void handle_door(t_cub3d *cube)
 	cube->all_maps[player_y + 1][player_x] == 'D' ||
 	cube->all_maps[player_y - 1][player_x] == 'D')
 	{
-		//transformer le D en O 
-		printf("porte deviens O\n");
+		if (cube->all_maps[player_y][player_x + 1] == 'D')
+			cube->all_maps[player_y][player_x + 1] = 'O';
+		if (cube->all_maps[player_y][player_x - 1] == 'D')
+			cube->all_maps[player_y][player_x - 1] = 'O';
+		if (cube->all_maps[player_y + 1][player_x] == 'D')
+			cube->all_maps[player_y + 1][player_x] = 'O';
+		if (cube->all_maps[player_y-1][player_x] == 'D')
+			cube->all_maps[player_y-1][player_x] = 'O';
 		return;
 	}
 	else if (cube->all_maps[player_y][player_x + 1] == 'O' ||
