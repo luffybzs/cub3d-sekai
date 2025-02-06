@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 14:36:54 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/02/04 15:01:43 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/06 14:01:48 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	raycasting(t_cub3d *cube)
 
 	if (!cube || !cube->buffer.addr || !cube->all_maps)
 	{
-		printf("Error: Invalid cube structure\n");
+		printf("Error:\nInvalid cube structure\n");
 		return ;
 	}
 	x = 0;

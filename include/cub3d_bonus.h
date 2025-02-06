@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 16:03:47 by ayarab            #+#    #+#             */
-/*   Updated: 2025/02/05 17:33:06 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/02/06 14:04:23 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,8 +147,6 @@ typedef struct s_cub3d
 	int		C_R;
 	int		C_G;
 	int		C_B;
-	// door
-	char *door;
 	// player info
 	char	direction;
 	int		y_spwan_p;
@@ -157,6 +155,10 @@ typedef struct s_cub3d
 	t_img	minimap;
 	int 	height;
 	int 	width;
+	// door
+	char *door;
+	int x_door;
+	int y_door;
 }			t_cub3d;
 
 int			ft_atoi_rgb(char *str, int start, int end);
