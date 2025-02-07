@@ -7,3 +7,8 @@ donc on obtiens
 new_x = x * cos(angle) - y *sin(angle)
 new_y = x *sin(angle) +y*cos(angle)
 
+faire le calcule pour le vecteur de direction et le plan de la camera pas oublier de sauvegarder les old dir et old plane
+pour calculer les nouveaux angle sinon calcule par rapport au nouveau resultat entraine un decalage 
+
+enfin calcul par rapport au cercle trigo cos pi/2 = 0 et sin pi/2 = 0;
+(revoir cercle trigo)
