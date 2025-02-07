@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 16:03:47 by ayarab            #+#    #+#             */
-/*   Updated: 2025/02/07 14:02:28 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/07 16:38:54 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -239,6 +239,7 @@ int			ft_fill_color(t_cub3d *cube3d);
 int			init_mini_map(t_cub3d *cube);
 void		draw_minimap(t_cub3d *cube);
 void handle_door(t_cub3d *cube);
+int	mouse_move(int x, int y, t_cub3d *cube);
 
 
 /* temporaire */
