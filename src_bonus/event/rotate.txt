@@ -1,0 +1,9 @@
+matrice de rotation: (usage de vecteur trigonometrique et de matrice !!! geometrie)
+pour la faire tourner on multiplie par le vecteur (x,y)
+|cos(angle) -sin(angle)|  |x|
+|sin(angle) cos(angle) |  |y|
+
+donc on obtiens 
+new_x = x * cos(angle) - y *sin(angle)
+new_y = x *sin(angle) +y*cos(angle)
+
