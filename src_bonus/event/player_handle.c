@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 18:23:12 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/02/06 19:21:32 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/07 13:26:08 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,9 @@ void	move_backward(t_cub3d *cube)
 	newY = cube->player.pos_y - cube->player.dir_y * moveSpeed;
 
 	// Vérification des collisions avec les murs
-	if (cube->all_maps[(int)cube->player.pos_y][(int)newX] != '1')
+	if (cube->all_maps[(int)cube->player.pos_y][(int)newX] != '1' && cube->all_maps[(int)cube->player.pos_y][(int)newX] != 'D')
 		cube->player.pos_x = newX;
-	if (cube->all_maps[(int)newY][(int)cube->player.pos_x] != '1')
+	if (cube->all_maps[(int)newY][(int)cube->player.pos_x] != '1' && cube->all_maps[(int)newY][(int)cube->player.pos_x] != 'D')
 		cube->player.pos_y = newY;
 }
 void	move_forward(t_cub3d *cube)
@@ -73,9 +73,9 @@ void	move_forward(t_cub3d *cube)
 	newX = cube->player.pos_x + cube->player.dir_x * moveSpeed;
 	newY = cube->player.pos_y +cube->player.dir_y * moveSpeed;
 	// Vérification des collisions avec les murs
-	if (cube->all_maps[(int)cube->player.pos_y][(int)newX] != '1')
+	if (cube->all_maps[(int)cube->player.pos_y][(int)newX] != '1' && cube->all_maps[(int)cube->player.pos_y][(int)newX] != 'D')
 		cube->player.pos_x = newX;
-	if (cube->all_maps[(int)newY][(int)cube->player.pos_x] != '1')
+	if (cube->all_maps[(int)newY][(int)cube->player.pos_x] != '1' && cube->all_maps[(int)newY][(int)cube->player.pos_x] != 'D')
 		cube->player.pos_y = newY;
 }
 
@@ -92,9 +92,9 @@ void	move_right(t_cub3d *cube)
 	newY =  cube->player.pos_y  + cube->player.plane_y* moveSpeed;
 
 	// Vérification des collisions avec les murs
-	if (cube->all_maps[(int)cube->player.pos_y][(int)newX] != '1')
+	if (cube->all_maps[(int)cube->player.pos_y][(int)newX] != '1' && cube->all_maps[(int)cube->player.pos_y][(int)newX] != 'D')
 		cube->player.pos_x = newX;
-	if (cube->all_maps[(int)newY][(int)cube->player.pos_x] != '1')
+	if (cube->all_maps[(int)newY][(int)cube->player.pos_x] != '1' && cube->all_maps[(int)newY][(int)cube->player.pos_x] != 'D')
 		cube->player.pos_y = newY;
 }
 
@@ -111,9 +111,9 @@ void	move_left(t_cub3d *cube)
 	newY =  cube->player.pos_y  - cube->player.plane_y* moveSpeed;
 
 	// Vérification des collisions avec les murs
-	if (cube->all_maps[(int)cube->player.pos_y][(int)newX] != '1')
+	if (cube->all_maps[(int)cube->player.pos_y][(int)newX] != '1' && cube->all_maps[(int)cube->player.pos_y][(int)newX] != 'D')
 		cube->player.pos_x = newX;
-	if (cube->all_maps[(int)newY][(int)cube->player.pos_x] != '1')
+	if (cube->all_maps[(int)newY][(int)cube->player.pos_x] != '1' && cube->all_maps[(int)newY][(int)cube->player.pos_x] != 'D')
 		cube->player.pos_y = newY;
 }
 

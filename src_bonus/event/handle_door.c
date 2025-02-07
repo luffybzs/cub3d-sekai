@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 14:23:39 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/02/06 19:49:21 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/07 13:11:58 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,37 +38,33 @@
 // 	return (EXIT_SUCCESS);
 // } 
 
-void handle_door(t_cub3d *cube)//gerer handle door
+void handle_door(t_cub3d *cube)//ouverture des portes gerer (gerer physique)
 {
-	int player_x;
-	int player_y;
-	
-	player_x = cube->player.pos_x;
-	player_y = cube->player.pos_y;
-	
-	if (cube->all_maps[player_y][player_x + 1] == 'D' ||
-	cube->all_maps[player_y][player_x - 1] == 'D' ||
-	cube->all_maps[player_y + 1][player_x] == 'D' ||
-	cube->all_maps[player_y - 1][player_x] == 'D')
-	{
-		if (cube->all_maps[player_y][player_x + 1] == 'D')
-			cube->all_maps[player_y][player_x + 1] = 'O';
-		if (cube->all_maps[player_y][player_x - 1] == 'D')
-			cube->all_maps[player_y][player_x - 1] = 'O';
-		if (cube->all_maps[player_y + 1][player_x] == 'D')
-			cube->all_maps[player_y + 1][player_x] = 'O';
-		if (cube->all_maps[player_y-1][player_x] == 'D')
-			cube->all_maps[player_y-1][player_x] = 'O';
-		return;
-	}
-	else if (cube->all_maps[player_y][player_x + 1] == 'O' ||
-	cube->all_maps[player_y][player_x - 1] == 'O' ||
-	cube->all_maps[player_y + 1][player_x] == 'O' ||
-	cube->all_maps[player_y - 1][player_x] == 'O')
-	{
-		//transformer le O en D
-		printf("porte deviens D\n");
-		return;
-	}
-	return;
+    int player_x = cube->player.pos_x;
+    int player_y = cube->player.pos_y;
+    
+    // Distance maximale d'interaction (verifier les bugs avec la distance minimal)
+    const double MAX_INTERACT_DISTANCE = 2.0;
+    
+    // Calcule la case ciblée (round arrondit entier plus proche)
+    int target_x = player_x + round(cube->player.dir_x);
+    int target_y = player_y + round(cube->player.dir_y);
+    
+    // Calcule la distance pythagore
+    double distance = sqrt(pow(target_x - player_x, 2) + pow(target_y - player_y, 2));
+    
+    if (distance <= MAX_INTERACT_DISTANCE)
+    {
+        // Interaction avec la porte
+        if (cube->all_maps[target_y][target_x] == 'D')
+        {
+            cube->all_maps[target_y][target_x] = 'O';
+            printf("Porte ouverte\n");
+        }
+        else if (cube->all_maps[target_y][target_x] == 'O')
+        {
+            cube->all_maps[target_y][target_x] = 'D';
+            printf("Porte fermée\n");
+        }
+    }
 }

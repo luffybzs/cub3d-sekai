@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 16:03:47 by ayarab            #+#    #+#             */
-/*   Updated: 2025/02/06 15:27:45 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/07 14:02:28 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,8 @@
 # define KEY_LEFT XK_Left
 # define KEY_RIGHT XK_Right
 
-# define MINIMAP_SCALE 10
-#define MINIMAP_HEIGHT 1000
-#define MINIMAP_WIDTH 1000
+#define MINIMAP_SCALE 0.2  // echelle de la minimap (en %) 
+#define BLOCK_SIZE 7 // taille du player
 
 # define ERROR_FOR_INFO "Error\nThere is missing information or there are duplicates"
 
