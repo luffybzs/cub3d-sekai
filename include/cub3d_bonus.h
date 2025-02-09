@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 16:03:47 by ayarab            #+#    #+#             */
-/*   Updated: 2025/02/07 16:38:54 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/09 17:59:49 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # include "./../libft/get_next_line/get_next_line.h"
 # include "./../libft/libft.h"
 # include "gc.h"
-# include <X11/keysym.h>
-# include <math.h>
+# include <X11/keysym.h> //keycode
+# include <math.h> // math fonction
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
@@ -30,6 +30,8 @@
 # define KEY_D XK_d
 # define KEY_LEFT XK_Left
 # define KEY_RIGHT XK_Right
+# define KEY_RETURN XK_Return
+
 
 #define MINIMAP_SCALE 0.2  // echelle de la minimap (en %) 
 #define BLOCK_SIZE 7 // taille du player
@@ -157,6 +159,8 @@ typedef struct s_cub3d
 	int 	width;
 	// door
 	t_img door;
+	// control on mouse mouvement
+	int enable_mouse;
 }			t_cub3d;
 
 int			ft_atoi_rgb(char *str, int start, int end);
@@ -240,7 +244,9 @@ int			init_mini_map(t_cub3d *cube);
 void		draw_minimap(t_cub3d *cube);
 void handle_door(t_cub3d *cube);
 int	mouse_move(int x, int y, t_cub3d *cube);
-
+void	rotate_angle(t_cub3d *cube, double angle);
+void rotate_left_mouse(t_cub3d *cube);
+void rotate_right_mouse(t_cub3d *cube);
 
 /* temporaire */
 char		**create_test_map(void);
