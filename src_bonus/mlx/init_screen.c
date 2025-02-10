@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 15:30:08 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/02/06 19:02:51 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/10 15:06:43 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int	init_mlx(t_cub3d *data)
 int	close_window(t_cub3d *data)
 {
 	cleanup(data);
+	ft_fail_free(data);
 	exit(0);
 	return (0);
 }

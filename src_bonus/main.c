@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 16:33:27 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/02/09 18:23:47 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/10 14:53:38 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	main(int ac, char **av)
 	if (ac != 2)
 		return (ft_putendl_fd("Error\nNot Enough argument", 2), 1);
 	if (ft_fill_data(ac, av, &cube) == EXIT_FAILURE)
-		return (ft_fail_free(&cube), EXIT_FAILURE);
+		return (cleanup(&cube),ft_fail_free(&cube), EXIT_FAILURE);
 	if (init_cub3d(&cube) == 1)
 		return (cleanup(&cube),ft_fail_free(&cube), 1);
 	// printf("apres init cube\n");
@@ -58,3 +58,4 @@ int	main(int ac, char **av)
 	
 	return (ft_fail_free(&cube), EXIT_SUCCESS);
 }
+

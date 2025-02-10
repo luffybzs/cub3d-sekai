@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 16:33:27 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/02/06 18:21:21 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/02/10 15:05:16 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int	main(int ac, char **av)
 		mlx_loop_hook(cube.mlx, game_loop, &cube);
 		mlx_loop(cube.mlx);
 	}
+	// printf("malgree esc ici\n");
 	cleanup(&cube);
     return (ft_fail_free(&cube),EXIT_SUCCESS);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_screen.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 15:30:08 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/02/06 18:34:20 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/02/10 15:05:33 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int	init_mlx(t_cub3d *data)
 int	close_window(t_cub3d *data)
 {
 	cleanup(data);
+	ft_fail_free(data);
 	exit(0);
 	return (0);
 }

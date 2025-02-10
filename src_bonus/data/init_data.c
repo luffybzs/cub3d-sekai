@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 15:31:23 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/02/06 19:13:40 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/10 15:08:19 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	open_images(t_cub3d *cube)
 				return (0);
 	// if(!init_mini_map(cube))
 	// 	return (0);
-	printf("south = %s\nnorth = %s\neast=%s\nwest=%s\ndoor=%s\n",cube->textures.south.path, cube->textures.north.path,cube->textures.east.path,cube->textures.west.path,cube->door.path);
+	// printf("south = %s\nnorth = %s\neast=%s\nwest=%s\ndoor=%s\n",cube->textures.south.path, cube->textures.north.path,cube->textures.east.path,cube->textures.west.path,cube->door.path);
 	return (1);
 }
 int	init_buffer(t_cub3d *cube)
