@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 15:30:08 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/02/10 15:06:43 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/10 16:25:56 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,10 @@ void	cleanup(t_cub3d *cube)
 		mlx_destroy_image(cube->mlx, cube->textures.west.img);
 	if (cube->textures.east.img)
 		mlx_destroy_image(cube->mlx, cube->textures.east.img);
-
-	if (cube->mlx)
-		mlx_destroy_window(cube->mlx, cube->win);
+	if (cube->door.img)
+		mlx_destroy_image(cube->mlx,cube->door.img);
+	if (cube->win)
+		mlx_destroy_window(cube->mlx, cube->win);	
 	if (cube->mlx)
 	{
 		mlx_destroy_display(cube->mlx);
