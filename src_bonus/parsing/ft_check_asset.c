@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_check_asset.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 17:44:11 by ayarab            #+#    #+#             */
-/*   Updated: 2025/02/05 19:43:17 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/02/10 16:45:09 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ void	ft_fail_free(t_cub3d *cube3d)
 		free(cube3d->F);
 	if (cube3d->C)
 		free(cube3d->C);
+	if (cube3d->door.path)
+		free(cube3d->door.path);
 	if (cube3d->all_maps)
 		ft_free_2d(cube3d->all_maps);
 	return ;
