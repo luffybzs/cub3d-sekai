@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 16:42:05 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/02/07 14:04:44 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/10 15:38:12 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,10 @@ void	draw_minimap(t_cub3d *cube)
 	int	y;
 
 	y = 0;
-	while (y < cube->map_height)
+	while (y < cube->map_height && cube->all_maps[y])
 	{
 		x = 0;
-		while (x < cube->map_width)
+		while (x < cube->map_width && cube->all_maps[y][x])
 		{
 			if (cube->all_maps[y][x] == '1')
 				draw_block(cube, x, y, 0xFFFFFF);

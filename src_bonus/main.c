@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 16:33:27 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/02/10 14:53:38 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/10 15:16:25 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ int	main(int ac, char **av)
 		mlx_hook(cube.win, 17, 0, close_window, &cube);
 		mlx_hook(cube.win, 2, 1L << 0, key_press, &cube);
 		mlx_loop_hook(cube.mlx, game_loop, &cube);
-		// if (cube.enable_mouse == 1)
 		mlx_hook(cube.win,6,1L<<6,mouse_move,&cube);
 		mlx_loop(cube.mlx);
 	}

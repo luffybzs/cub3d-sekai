@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 15:31:23 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/02/10 15:08:19 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/10 15:24:28 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	init_cub3d(t_cub3d *cube)
 		return (printf("fail to init MLX\n"), 1);
 	cube->z_buffer = malloc(sizeof(double) * cube->screen_width);
 	if (!cube->z_buffer)
-		return (cleanup(cube), 1);
+		return (1);
 	if (!open_images(cube))
 		return (printf("fail to init textures\n"), 1);
 	// printf("arriver dans init cubAAAAAAAAAAAAAAAAAAAAAAAAA\n");

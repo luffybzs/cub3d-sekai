@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 19:28:56 by ayarab            #+#    #+#             */
-/*   Updated: 2025/02/06 19:17:54 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/10 15:25:14 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ int	ft_add_cardinal_points(char *str, t_cub3d *cube3d, int i)
 		return (1);
 	if (ft_add_door(str, cube3d, i) == -1)
 		return (-1);
-	printf("WE = {%s}\nSO = {%s}\nEA = {%s}\nNO = {%s}\nF = {%s}\nC = {%s}\nDoor = {%s}\n",cube3d->WE,cube3d->SO,cube3d->EA,cube3d->NO,cube3d->F,cube3d->C, cube3d->door.path);
+	// printf("WE = {%s}\nSO = {%s}\nEA = {%s}\nNO = {%s}\nF = {%s}\nC = {%s}\nDoor = {%s}\n",cube3d->WE,cube3d->SO,cube3d->EA,cube3d->NO,cube3d->F,cube3d->C, cube3d->door.path);
 	
 	return (0);
 }
