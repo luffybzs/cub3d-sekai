@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 16:03:47 by ayarab            #+#    #+#             */
-/*   Updated: 2025/02/11 15:43:30 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/11 16:12:03 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,8 +117,8 @@ typedef struct s_cub3d
 	t_img buffer;        // gestion de la toile
 	t_textures textures; // Toutes les textures autre que le buffer
 	t_player player;     // Informations du joueur
-	double *z_buffer;   
-		// tableau qui stock la distance entre la camera et les points
+	double	*z_buffer;
+	// tableau qui stock la distance entre la camera et les points
 	int		map_width;
 	int		map_height;
 
@@ -184,15 +184,25 @@ void		draw_vertical_line(t_cub3d *cube, t_raycast *ray, int x,
 				t_draw *draw);
 void		calculate_draw_points(t_cub3d *cube, t_raycast *ray, t_draw *draw);
 int			draw_background(t_cub3d *cube);
+void		calculate_wall_x(t_cub3d *cube, t_raycast *ray, double *wall_x);
+void		select_wall_texture(t_cub3d *cube, t_raycast *ray, t_img **texture);
+int			get_texture_x(t_raycast *ray, double wall_x, t_img *texture);
+void		init_texture_values(t_cub3d *cube, t_draw *draw, t_img *texture,
+				double *tex_pos, double *step);
+int			get_pixel_color(t_img *texture, int tex_x, int tex_y, int side);
 
 /* raycasting */
 void		perform_dda(t_cub3d *cube, t_raycast *ray);
+int			check_boundaries(t_cub3d *cube, t_raycast *ray);
+void		calculate_distance(t_raycast *ray);
+void		intersection(t_cub3d *cube, t_raycast *ray);
+void		intersection2(t_cub3d *cube, t_raycast *ray);
 
 /* event in game */
 
 int			key_press(int keycode, t_cub3d *map);
 void		init_player(t_cub3d *cube);
-void	init_player2(t_cub3d *cube);
+void		init_player2(t_cub3d *cube);
 void		move_backward(t_cub3d *cube);
 void		rotate_left(t_cub3d *cube);
 void		rotate_right(t_cub3d *cube);

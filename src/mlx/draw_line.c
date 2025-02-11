@@ -6,13 +6,13 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 21:25:10 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/02/11 15:49:26 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/11 15:58:22 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-static void	calculate_wall_x(t_cub3d *cube, t_raycast *ray, double *wall_x)
+void	calculate_wall_x(t_cub3d *cube, t_raycast *ray, double *wall_x)
 {
 	// point exact ou le rayon touche le mur
 	if (ray->side == 0) // si side == 0 alors on a touche le mur vertical
@@ -21,7 +21,7 @@ static void	calculate_wall_x(t_cub3d *cube, t_raycast *ray, double *wall_x)
 		*wall_x = cube->player.pos_x + ray->wall_dist * ray->ray_dir_x;
 	*wall_x -= floor(*wall_x); // plus grand entier inferieur ou egale
 }
-static void	select_wall_texture(t_cub3d *cube, t_raycast *ray, t_img **texture)
+ void	select_wall_texture(t_cub3d *cube, t_raycast *ray, t_img **texture)
 {
 	// selection du mur a dessiner en fonction du side et de l orientation
 	// et la direction du rayon
@@ -34,7 +34,7 @@ static void	select_wall_texture(t_cub3d *cube, t_raycast *ray, t_img **texture)
 	else
 		*texture = &cube->textures.north;
 }
-static int	get_texture_x(t_raycast *ray, double wall_x, t_img *texture)
+int	get_texture_x(t_raycast *ray, double wall_x, t_img *texture)
 {
 	int	tex_x;
 
@@ -47,7 +47,7 @@ static int	get_texture_x(t_raycast *ray, double wall_x, t_img *texture)
 	return (tex_x);
 }
 
-static void	init_texture_values(t_cub3d *cube, t_draw *draw, t_img *texture,
+void	init_texture_values(t_cub3d *cube, t_draw *draw, t_img *texture,
 		double *tex_pos, double *step)
 {
 	// calcule la taille du pixel a dessiner en fonction de la taille de
@@ -58,7 +58,7 @@ static void	init_texture_values(t_cub3d *cube, t_draw *draw, t_img *texture,
 		* *step;
 }
 
-static int	get_pixel_color(t_img *texture, int tex_x, int tex_y, int side)
+int	get_pixel_color(t_img *texture, int tex_x, int tex_y, int side)
 {
 	char			*texture_pixel;
 	unsigned int	color;

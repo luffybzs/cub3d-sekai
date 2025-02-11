@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 16:33:27 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/02/10 15:05:16 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/11 16:14:44 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,15 @@ int	game_loop(t_cub3d *cube)
 
 int	main(int ac, char **av)
 {
-	t_cub3d cube = {0};
+	t_cub3d	cube;
 
-	//temporaire pour les tests
-    if (ac != 2)
-        return(ft_putendl_fd("Error\nNot Enough argument",2),1);
-    if (ft_fill_data(ac, av, &cube) == EXIT_FAILURE)
-		return (ft_fail_free(&cube),EXIT_FAILURE);
+	cube = {0};
+	if (ac != 2)
+		return (ft_putendl_fd("Error\nNot Enough argument", 2), 1);
+	if (ft_fill_data(ac, av, &cube) == EXIT_FAILURE)
+		return (ft_fail_free(&cube), EXIT_FAILURE);
 	if (init_cub3d(&cube) == 1)
-		return (cleanup(&cube),ft_fail_free(&cube), 1);
+		return (cleanup(&cube), ft_fail_free(&cube), 1);
 	if (cube.mlx && cube.win)
 	{
 		mlx_hook(cube.win, 17, 0, close_window, &cube);
@@ -49,7 +49,6 @@ int	main(int ac, char **av)
 		mlx_loop_hook(cube.mlx, game_loop, &cube);
 		mlx_loop(cube.mlx);
 	}
-	// printf("malgree esc ici\n");
 	cleanup(&cube);
-    return (ft_fail_free(&cube),EXIT_SUCCESS);
+	return (ft_fail_free(&cube), EXIT_SUCCESS);
 }
