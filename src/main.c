@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 16:33:27 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/02/11 16:14:44 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/11 16:15:54 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ int	game_loop(t_cub3d *cube)
 
 int	main(int ac, char **av)
 {
-	t_cub3d	cube;
+	t_cub3d cube;
 
-	cube = {0};
+	//temporaire pour les tests
 	if (ac != 2)
 		return (ft_putendl_fd("Error\nNot Enough argument", 2), 1);
 	if (ft_fill_data(ac, av, &cube) == EXIT_FAILURE)
@@ -49,6 +49,7 @@ int	main(int ac, char **av)
 		mlx_loop_hook(cube.mlx, game_loop, &cube);
 		mlx_loop(cube.mlx);
 	}
+	// printf("malgree esc ici\n");
 	cleanup(&cube);
 	return (ft_fail_free(&cube), EXIT_SUCCESS);
 }
