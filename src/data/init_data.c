@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 15:31:23 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/02/06 18:42:31 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/11 15:44:35 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	init_cub3d(t_cub3d *cube)
 {
 	if (!cube->all_maps)
 		return (1);
-	// printf("passer ici\n");
 	//calcule de la taille de la map
 	cube->map_height = 0;
 	while (cube->all_maps[cube->map_height])
@@ -24,19 +23,15 @@ int	init_cub3d(t_cub3d *cube)
 	if (cube->map_height > 0)
 		cube->map_width = ft_strlen(cube->all_maps[0]);
 	else
-		return ( 1);
+		return (1);
 	if (!init_textures_path(cube))
-		return (printf("fail to init paths\n"),1);
-	//ici joindre le parsing (trouver position ainsi qu orientation)
-	//  test_print(cube->all_maps);
-
+		return (printf("fail to init paths\n"), 1);
 	init_player(cube);
-	// printf("arriver dans init cub\n");
 	if (init_mlx(cube) || !cube->mlx || !cube->win)
 		return (printf("fail to init MLX\n"), 1);
 	cube->z_buffer = malloc(sizeof(double) * cube->screen_width);
 	if (!cube->z_buffer)
-		return ( 1);
+		return (1);
 	if (!open_images(cube))
 		return (printf("fail to init textures\n"), 1);
 	return (0);
@@ -61,8 +56,8 @@ int	init_buffer(t_cub3d *cube)
 	if (!cube->mlx)
 		return (0);
 	cube->buffer.img = mlx_new_image(cube->mlx, cube->screen_width,
-									cube->screen_height);
-									//	creer une image vide principe de la toile vierge
+			cube->screen_height);
+	//	creer une image vide principe de la toile vierge
 	if (!cube->buffer.img)
 		return (0);
 	cube->buffer.addr = mlx_get_data_addr(cube->buffer.img,
@@ -84,7 +79,6 @@ int	ft_init_img(t_cub3d *cube, t_img *img)
 	img->img = mlx_xpm_file_to_image(cube->mlx, img->path, &img->width,
 			&img->height);
 	printf("ici pour s occuper de %s\n", img->path);
-		
 	if (!img->img)
 		return (0);
 	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,
@@ -103,54 +97,4 @@ int	init_textures_path(t_cub3d *cube)
 		|| !cube->textures.east.path || !cube->textures.west.path)
 		return (0);
 	return (1);
-}
-
-
-int	load_texture(void *mlx, t_img *img, char *path)
-{
-	img->img = mlx_xpm_file_to_image(mlx, path, &img->width, &img->height);
-	if (!img->img)
-		return (0);
-	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,
-			&img->line_length, &img->endiant);
-	if (!img->addr)
-		return (mlx_destroy_image(mlx, img->img), 0);
-	return (1);
-}
-
-void	init_player(t_cub3d *cube)
-{
- // recuperation du parsing en cours
-	// position intiale
-	cube->player.pos_x = cube->x_spwan_p + 0.5;
-	cube->player.pos_y = cube->y_spwan_p + 0.5;
-
-	if (cube->direction == 'N')
-	{
-		cube->player.dir_x =0;
-		cube->player.dir_y = -1;
-		cube->player.plane_x = 0.66;
-		cube->player.plane_y = 0;
-	}
-	if (cube->direction == 'S')
-	{
-		cube->player.dir_x =0;
-		cube->player.dir_y = 1;
-		cube->player.plane_x = -0.66;
-		cube->player.plane_y = 0;
-	}
-	if (cube->direction == 'E')
-	{
-		cube->player.dir_x =1;
-		cube->player.dir_y = 0;
-		cube->player.plane_x = 0;
-		cube->player.plane_y = 0.66;
-	}
-	if (cube->direction == 'W')
-	{
-		cube->player.dir_x =-1;
-		cube->player.dir_y = 0;
-		cube->player.plane_x = 0;
-		cube->player.plane_y = -0.66;
-	}
 }
