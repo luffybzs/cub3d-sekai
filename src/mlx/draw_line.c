@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 21:25:10 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/01/31 15:08:33 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/11 15:49:26 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,41 +69,4 @@ static int	get_pixel_color(t_img *texture, int tex_x, int tex_y, int side)
 	if (side == 1)
 		color = (color >> 1) & 8355711; // assombrissement des mur horizontal
 	return (color);
-}
-
-static void	put_pixel_to_buffer(t_cub3d *cube, int x, int y, int color)
-{
-	char	*buffer_pixel;
-
-	buffer_pixel = cube->buffer.addr + (y * cube->buffer.size_line + x
-			* (cube->buffer.bits_per_pixel / 8));
-	*(unsigned int *)buffer_pixel = color;
-}
-
-void	draw_vertical_line(t_cub3d *cube, t_raycast *ray, int x, t_draw *draw)
-{
-	t_img			*texture;
-	double			wall_x;
-	double			step;
-	double			tex_pos;
-	int				tex_coords[2];
-	int				y;
-	unsigned int	color;
-
-	if (!cube->buffer.addr || !cube || !ray || !draw)
-		return ;
-	calculate_wall_x(cube, ray, &wall_x);
-	select_wall_texture(cube, ray, &texture);
-	tex_coords[0] = get_texture_x(ray, wall_x, texture);
-	init_texture_values(cube, draw, texture, &tex_pos, &step);
-	y = draw->start;
-	while (y < draw->end)
-	{
-		tex_coords[1] = (int)tex_pos & (texture->height - 1);
-		tex_pos += step;
-		color = get_pixel_color(texture, tex_coords[0], tex_coords[1],
-				ray->side);
-		put_pixel_to_buffer(cube, x, y, color);
-		y++;
-	}
 }
