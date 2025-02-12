@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 16:03:47 by ayarab            #+#    #+#             */
-/*   Updated: 2025/02/09 17:59:49 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/12 13:53:46 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include "./../libft/libft.h"
 # include "gc.h"
 # include <X11/keysym.h> //keycode
-# include <math.h> // math fonction
+# include <math.h>       // math fonction
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
@@ -32,9 +32,8 @@
 # define KEY_RIGHT XK_Right
 # define KEY_RETURN XK_Return
 
-
-#define MINIMAP_SCALE 0.2  // echelle de la minimap (en %) 
-#define BLOCK_SIZE 7 // taille du player
+# define MINIMAP_SCALE 0.2 // echelle de la minimap (en %)
+# define BLOCK_SIZE 7      // taille du player
 
 # define ERROR_FOR_INFO "Error\nThere is missing information or there are duplicates"
 
@@ -109,7 +108,7 @@ typedef struct s_raycast
 
 	// indicateur de face quel mur est touchee
 	int		side;
-	int ray_hit_door;
+	int		ray_hit_door;
 
 }			t_raycast;
 
@@ -155,12 +154,12 @@ typedef struct s_cub3d
 	int		x_spwan_p;
 	// implementation de la minimap
 	t_img	minimap;
-	int 	height;
-	int 	width;
+	int		height;
+	int		width;
 	// door
-	t_img door;
+	t_img	door;
 	// control on mouse mouvement
-	int enable_mouse;
+	int		enable_mouse;
 }			t_cub3d;
 
 int			ft_atoi_rgb(char *str, int start, int end);
@@ -206,6 +205,7 @@ void		perform_dda(t_cub3d *cube, t_raycast *ray);
 
 int			key_press(int keycode, t_cub3d *map);
 void		init_player(t_cub3d *cube);
+void		init_player2(t_cub3d *cube);
 void		move_backward(t_cub3d *cube);
 void		rotate_left(t_cub3d *cube);
 void		rotate_right(t_cub3d *cube);
@@ -242,18 +242,18 @@ int			ft_fill_color(t_cub3d *cube3d);
 /* bonus */
 int			init_mini_map(t_cub3d *cube);
 void		draw_minimap(t_cub3d *cube);
-void handle_door(t_cub3d *cube);
-int	mouse_move(int x, int y, t_cub3d *cube);
-void	rotate_angle(t_cub3d *cube, double angle);
-void rotate_left_mouse(t_cub3d *cube);
-void rotate_right_mouse(t_cub3d *cube);
+void		handle_door(t_cub3d *cube);
+int			mouse_move(int x, int y, t_cub3d *cube);
+void		rotate_angle(t_cub3d *cube, double angle);
+void		rotate_left_mouse(t_cub3d *cube);
+void		rotate_right_mouse(t_cub3d *cube);
 
 /* temporaire */
 char		**create_test_map(void);
 void		test_print(char **map);
 
 /* utils*/
-void *ft_realloc(void *ptr, size_t old_size, size_t new_size);
+void		*ft_realloc(void *ptr, size_t old_size, size_t new_size);
 
 /*
 - gerer les leaks
