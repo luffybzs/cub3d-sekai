@@ -6,7 +6,7 @@
 #    By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 16:20:22 by ayarab            #+#    #+#              #
-#    Updated: 2025/02/12 14:01:50 by wdaoudi-         ###   ########.fr        #
+#    Updated: 2025/02/12 14:36:52 by wdaoudi-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ SRCS = $(addprefix $(SRC), main.c parsing/ft_parsing.c parsing/ft_check_asset.c 
 	   utils/utils1.c )
 	   
 SRCS_BONUS =  $(addprefix $(SRC_BONUS), main.c parsing/ft_parsing.c parsing/ft_check_asset.c parsing/ft_add_info.c parsing/ft_add_map.c parsing/ft_fill_color.c \
-       data/init_data.c data/init_data2.c mlx/init_screen.c mlx/draw.c raycasting/raycasting.c event/player_handle.c event/player_handle2.c event/player_handle3.c \
+       data/init_data.c data/init_data2.c mlx/init_screen.c mlx/draw.c raycasting/raycasting.c raycasting/raycasting2.c event/player_handle.c event/player_handle2.c event/player_handle3.c \
 	    mlx/draw_line.c utils/utils1.c mlx/minimap.c event/handle_door.c )
 
 OBJS = $(SRCS:$(SRC)%.c=$(OBJ_DIR)%.o)
