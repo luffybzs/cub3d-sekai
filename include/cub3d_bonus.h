@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 16:03:47 by ayarab            #+#    #+#             */
-/*   Updated: 2025/02/12 14:00:43 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/12 14:11:56 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,6 +183,7 @@ int			ft_search_info(char *av1, t_cub3d *cube3d);
 int			init_mlx(t_cub3d *data);
 int			close_window(t_cub3d *data);
 void		cleanup(t_cub3d *data);
+void		cleanup2(t_cub3d *data);
 
 /* draw */
 int			init_textures(t_cub3d *cube);
@@ -197,6 +198,13 @@ void		draw_vertical_line(t_cub3d *cube, t_raycast *ray, int x,
 				t_draw *draw);
 void		calculate_draw_points(t_cub3d *cube, t_raycast *ray, t_draw *draw);
 int			draw_background(t_cub3d *cube);
+void		calculate_wall_x(t_cub3d *cube, t_raycast *ray, double *wall_x);
+void		select_wall_texture(t_cub3d *cube, t_raycast *ray, t_img **texture);
+int			get_texture_x(t_raycast *ray, double wall_x, t_img *texture);
+void		init_texture_values(t_cub3d *cube, t_draw *draw, t_img *texture,
+				double *tex_pos, double *step);
+int			get_pixel_color(t_img *texture, int tex_x, int tex_y, int side);
+void		put_pixel_to_buffer(t_cub3d *cube, int x, int y, int color);
 
 /* raycasting */
 void		perform_dda(t_cub3d *cube, t_raycast *ray);

@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 18:23:12 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/02/12 14:03:19 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/12 14:04:22 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	key_press(int keycode, t_cub3d *cube)
 			rotate_right(cube);
 	}
 	else
-		key_press2(cube,keycode);
+		key_press2(cube, keycode);
 	return (0);
 }
 
