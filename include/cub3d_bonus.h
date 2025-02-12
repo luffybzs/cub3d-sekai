@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 16:03:47 by ayarab            #+#    #+#             */
-/*   Updated: 2025/02/12 14:11:56 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/12 14:28:16 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,6 +208,8 @@ void		put_pixel_to_buffer(t_cub3d *cube, int x, int y, int color);
 
 /* raycasting */
 void		perform_dda(t_cub3d *cube, t_raycast *ray);
+int			perform_sub_dda(t_cub3d *cube, t_raycast *ray);
+void		handle_intersection(t_raycast *ray);
 
 /* event in game */
 

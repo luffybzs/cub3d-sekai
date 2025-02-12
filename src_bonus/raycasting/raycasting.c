@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 14:36:54 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/02/06 15:10:42 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/12 14:29:47 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	raycasting(t_cub3d *cube)
 		// Calcul des pas et distances initiales
 		calculate_step_and_side_dist(&ray);
 		// calcule pour trouver l intersection avec le mur
-		perform_dda(cube, &ray);//digital differential analysis
+		perform_dda(cube, &ray); //digital differential analysis
 		cube->z_buffer[x] = ray.wall_dist;
 		// Calcul des points de dessin et dessin
 		calculate_draw_points(cube, &ray, &draw);
@@ -58,7 +58,7 @@ void	init_ray(t_cub3d *cube, t_raycast *ray, double camera_x)
 	// Ces valeurs représentent la distance entre deux intersections x ou y
 	ray->delta_dist_x = fabs(1 / ray->ray_dir_x);
 	ray->delta_dist_y = fabs(1 / ray->ray_dir_y);
-		// prends toujours la valeurs absolue
+	// prends toujours la valeurs absolue
 }
 void	calculate_step_and_side_dist(t_raycast *ray)
 {
@@ -91,46 +91,44 @@ void	perform_dda(t_cub3d *cube, t_raycast *ray)
 	int	hit;
 
 	hit = 0;
-	if (!cube->all_maps)
-	{
-		printf("Error: Map is NULL\n");
+	if (!perform_sub_dda(cube, ray))
 		return ;
-	}
-	if (cube->map_width == 0 || cube->map_height == 0)
-	{
-		printf("Error: Invalid map dimensions\n");
-		return ;
-	}
 	while (!hit)
 	{
 		// On avance à la prochaine intersection
-		if (ray->side_dist_x < ray->side_dist_y)
-		{
-			ray->side_dist_x += ray->delta_dist_x;
-			ray->map_x += ray->step_x;
-			ray->side = 0;
-		}
-		else
-		{
-			ray->side_dist_y += ray->delta_dist_y;
-			ray->map_y += ray->step_y;
-			ray->side = 1;
-		}
+		handle_intersection(ray);
 		// Vérification des limites de la map
 		if (ray->map_y < 0 || ray->map_y >= cube->map_height ||
 			ray->map_x < 0 || ray->map_x >= cube->map_width)
 			break ;
 		// Vérification si on a touché un mur
-		if (cube->all_maps[ray->map_y][ray->map_x] == '1' || cube->all_maps[ray->map_y][ray->map_x] == 'D' )
+		if (cube->all_maps[ray->map_y][ray->map_x] == '1'
+			|| cube->all_maps[ray->map_y][ray->map_x] == 'D')
 		{
 			hit = 1;
-			if (cube->all_maps[ray->map_y][ray->map_x] == 'D' )
+			if (cube->all_maps[ray->map_y][ray->map_x] == 'D')
 				ray->ray_hit_door = 1;
-		}	
+		}
 	}
 	// Calcul de la distance perpendiculaire
 	if (ray->side == 0)
 		ray->wall_dist = (ray->side_dist_x - ray->delta_dist_x);
 	else
 		ray->wall_dist = (ray->side_dist_y - ray->delta_dist_y);
+}
+
+int	perform_sub_dda(t_cub3d *cube, t_raycast *ray)
+{
+	(void)ray;
+	if (!cube->all_maps)
+	{
+		printf("Error: Map is NULL\n");
+		return (0);
+	}
+	if (cube->map_width == 0 || cube->map_height == 0)
+	{
+		printf("Error: Invalid map dimensions\n");
+		return (0);
+	}
+	return (1);
 }
