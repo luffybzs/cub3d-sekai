@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 16:03:47 by ayarab            #+#    #+#             */
-/*   Updated: 2025/02/12 13:53:46 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/12 14:00:43 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -204,6 +204,7 @@ void		perform_dda(t_cub3d *cube, t_raycast *ray);
 /* event in game */
 
 int			key_press(int keycode, t_cub3d *map);
+void		key_press2(t_cub3d *cube, int keycode);
 void		init_player(t_cub3d *cube);
 void		init_player2(t_cub3d *cube);
 void		move_backward(t_cub3d *cube);

@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 18:23:12 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/02/09 18:29:47 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/12 14:03:19 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,23 +36,8 @@ int	key_press(int keycode, t_cub3d *cube)
 		else
 			rotate_right(cube);
 	}
-	else if (keycode == XK_Escape)
-		close_window(cube);
-	else if (keycode == XK_space)
-		handle_door(cube);
-	else if (keycode == XK_Return)
-	{
-		if (cube->enable_mouse == 0)
-		{
-			printf("enabling mouse movement\n");
-			cube->enable_mouse = 1;
-		}
-		else
-		{
-			printf("disabling mouse movement\n");
-			cube->enable_mouse = 0;
-		}
-	}
+	else
+		key_press2(cube,keycode);
 	return (0);
 }
 
@@ -130,89 +115,4 @@ void	move_left(t_cub3d *cube)
 	if (cube->all_maps[(int)newY][(int)cube->player.pos_x] != '1'
 		&& cube->all_maps[(int)newY][(int)cube->player.pos_x] != 'D')
 		cube->player.pos_y = newY;
-}
-
-void	rotate_right(t_cub3d *cube)
-{
-	double	oldDirX;
-	double	oldPlaneX;
-	double	rotSpeed;
-
-	rotSpeed = 0.1;
-	oldDirX = cube->player.dir_x;
-	// Rotation de la direction
-	cube->player.dir_x = cube->player.dir_x * cos(rotSpeed) - cube->player.dir_y
-		* sin(rotSpeed);
-	cube->player.dir_y = oldDirX * sin(rotSpeed) + cube->player.dir_y
-		* cos(rotSpeed);
-	// Rotation du plan de la caméra
-	oldPlaneX = cube->player.plane_x;
-	cube->player.plane_x = cube->player.plane_x * cos(rotSpeed)
-		- cube->player.plane_y * sin(rotSpeed);
-	cube->player.plane_y = oldPlaneX * sin(rotSpeed) + cube->player.plane_y
-		* cos(rotSpeed);
-}
-void	rotate_left(t_cub3d *cube)
-{
-	double	oldDirX;
-	double	oldPlaneX;
-	double	rotSpeed;
-
-	rotSpeed = 0.1;
-	oldDirX = cube->player.dir_x;
-	// Rotation de la direction (dans le sens inverse des aiguilles d'une montre)
-	cube->player.dir_x = cube->player.dir_x * cos(-rotSpeed)
-		- cube->player.dir_y * sin(-rotSpeed);
-	cube->player.dir_y = oldDirX * sin(-rotSpeed) + cube->player.dir_y
-		* cos(-rotSpeed);
-	// Rotation du plan de la caméra
-	oldPlaneX = cube->player.plane_x;
-	cube->player.plane_x = cube->player.plane_x * cos(-rotSpeed)
-		- cube->player.plane_y * sin(-rotSpeed);
-	cube->player.plane_y = oldPlaneX * sin(-rotSpeed) + cube->player.plane_y
-		* cos(-rotSpeed);
-}
-
-void	rotate_angle(t_cub3d *cube, double angle)
-{
-	double	old_dir_x;
-	double	old_plane_x;
-
-	old_dir_x = cube->player.dir_x;
-	//rotation du vecteur
-	cube->player.dir_x = cube->player.dir_x * cos(angle) - cube->player.dir_y* sin(angle);
-	cube->player.dir_y = old_dir_x * sin(angle) + cube->player.dir_y* cos(angle);
-	// Rotation du plan de la caméra
-	old_plane_x = cube->player.plane_x;
-	cube->player.plane_x = cube->player.plane_x * cos(angle)- cube->player.plane_y * sin(angle);
-	cube->player.plane_y = old_plane_x * sin(angle) + cube->player.plane_y* cos(angle);
-}
-void rotate_right_mouse(t_cub3d *cube)
-{
-	rotate_angle(cube,0.1);
-}
-void rotate_left_mouse(t_cub3d *cube)
-{
-	rotate_angle(cube,-0.1);
-}
-
-int	mouse_move(int x, int y, t_cub3d *cube)
-{
-	double	rotation_speed;
-
-	(void)y;
-	rotation_speed = 0.1;
-	(void)rotation_speed;
-	//check if mouse movement is enable
-	if(!cube->enable_mouse)
-		return (0);
-	// en fonction de la position de la souris dans l ecran tourne dans le sens indiquee
-	if (x > cube->screen_width / 2)
-		rotate_right_mouse(cube);
-	else if (x < cube->screen_width / 2)
-		rotate_left_mouse(cube);
-	//recentre la souris
-	mlx_mouse_move(cube->mlx, cube->win, cube->screen_width / 2,
-			cube->screen_height / 2);
-	return (0);
 }
