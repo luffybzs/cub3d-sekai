@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 16:42:05 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/02/10 15:38:12 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/13 17:14:47 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ void	put_pixel_to_minimap(t_cub3d *cube, int x, int y, int color)
 
 	if (x < 0 || x >= cube->screen_width || y < 0 || y >= cube->screen_height)
 		return ;
-	pos = (y * cube->buffer.size_line) + (x * (cube->buffer.bits_per_pixel / 8));
+	pos = (y * cube->buffer.size_line) + (x * (cube->buffer.bits_per_pixel
+				/ 8));
 	dst = cube->buffer.addr + pos;
 	*(unsigned int *)dst = color;
 }
@@ -86,7 +87,7 @@ void	draw_minimap(t_cub3d *cube)
 			else if (cube->all_maps[y][x] == 'D')
 				draw_block(cube, x, y, 0x660000);
 			else if (cube->all_maps[y][x] == 'O')
-				draw_block(cube,x,y,0x274E13);
+				draw_block(cube, x, y, 0x274E13);
 			x++;
 		}
 		y++;

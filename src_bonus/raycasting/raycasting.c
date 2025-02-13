@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 14:36:54 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/02/12 14:29:47 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/13 17:14:07 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void	init_ray(t_cub3d *cube, t_raycast *ray, double camera_x)
 	ray->delta_dist_y = fabs(1 / ray->ray_dir_y);
 	// prends toujours la valeurs absolue
 }
+
 void	calculate_step_and_side_dist(t_raycast *ray)
 {
 	// Calcul du sens et de la distance initiale en X
