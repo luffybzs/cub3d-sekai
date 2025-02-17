@@ -6,7 +6,7 @@
 #    By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 16:20:22 by ayarab            #+#    #+#              #
-#    Updated: 2025/02/12 14:36:52 by wdaoudi-         ###   ########.fr        #
+#    Updated: 2025/02/17 16:03:04 by wdaoudi-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ SRC = src/
 SRC_BONUS = src_bonus/
 OBJ_DIR = objs/
 OBJ_BONUS_DIR = objs_bonus/
-CFLAGS = -Wall -Wextra -Werror -g3 -O3
+CFLAGS = -Wall -Wextra -Werror -g3
 
 SRCS = $(addprefix $(SRC), main.c parsing/ft_parsing.c parsing/ft_check_asset.c parsing/ft_add_info.c parsing/ft_add_map.c parsing/ft_fill_color.c \
        data/init_data.c data/init_data2.c mlx/init_screen.c mlx/draw.c raycasting/raycasting.c event/player_handle.c event/player_handle2.c mlx/draw_line.c \

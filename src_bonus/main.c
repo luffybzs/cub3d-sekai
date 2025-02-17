@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 16:33:27 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/02/12 14:34:47 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/17 16:01:46 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ int	game_loop(t_cub3d *cube)
 
 int	main(int ac, char **av)
 {
-	t_cub3d	cube;
-
+	t_cub3d	cube = {0};
+	
 	if (ac != 2)
 		return (ft_putendl_fd("Error\nNot Enough argument", 2), 1);
 	if (ft_fill_data(ac, av, &cube) == EXIT_FAILURE)
