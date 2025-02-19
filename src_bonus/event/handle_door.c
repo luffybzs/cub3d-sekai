@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 14:23:39 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/02/07 13:11:58 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/19 17:58:58 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@
 // 	return (EXIT_SUCCESS);
 // } 
 
-void handle_door(t_cub3d *cube)//ouverture des portes gerer (gerer physique)
+void handle_door(t_cub3d *cube)
 {
     int player_x = cube->player.pos_x;
     int player_y = cube->player.pos_y;

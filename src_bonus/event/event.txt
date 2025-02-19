@@ -1,3 +1,4 @@
+rotate:
 matrice de rotation: (usage de vecteur trigonometrique et de matrice !!! geometrie)
 pour la faire tourner on multiplie par le vecteur (x,y)
 |cos(angle) -sin(angle)|  |x|
@@ -11,4 +12,7 @@ faire le calcule pour le vecteur de direction et le plan de la camera pas oublie
 pour calculer les nouveaux angle sinon calcule par rapport au nouveau resultat entraine un decalage 
 
 enfin calcul par rapport au cercle trigo cos pi/2 = 0 et sin pi/2 = 0;
-(revoir cercle trigo)
+
+rotate angle :
+sauvegarder chaque composante x pour l utiliser dans le calcule de y, comparer la 
+position de la souris par rapport au centre de l ecran.
