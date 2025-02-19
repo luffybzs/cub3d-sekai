@@ -1,0 +1,18 @@
+importance du vecteur direction (dir) et du vecteur camera (plane):
+vecteur dir(dir_x,dir_y):
+vecteur de longueur 1, qui represente la direction du player essentiel pour:
+navigation = le joueur avance ou recule a la maniere d une boussole
+calcules des rayons = permet de calculer la direction des rayons dans les rendus, important pour
+le raycasting;
+
+plan de la camera (plane_x,plane_y)
+vecteur perpendiculaire au vecteur dir, represente le plan de l ecran dans l espace en 2D.
+toujours perpendiculaire au  vecteur direction et sa longueur determine le FOV
+
+FOV = field of view, angle de vision du joueur in game. environ 0.66 
+avec fov plus large(determiner par plane car dir normalise) => plus grande zone visible , plus de distorsion sur les bords et sensation de vitesse
+fov plus etroit => plus petite vision, moins de distorsion et effet de zoom 
+
+draw :
+systeme de buffer , la position est determinee grace a position = (y * size_line) + (x * (bits_per_pixel / 8))
+systeme de dessin repose sur l algorithme de Bresenham :

@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 16:03:47 by ayarab            #+#    #+#             */
-/*   Updated: 2025/02/12 14:28:16 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/19 19:12:06 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,11 @@ typedef struct s_img
 {
 	void	*img;
 	char	*path;
-	char	*addr;
-	int		size_line;
+	char	*addr; // adresse du premier pixel
+	int		size_line; // nombre d octet par ligne
 	int		bits_per_pixel;
 	int		line_length;
-	int		endiant;
+	int		endiant; //format d encodage des couleurs
 	int		width;
 	int		height;
 }			t_img;
@@ -201,8 +201,8 @@ int			draw_background(t_cub3d *cube);
 void		calculate_wall_x(t_cub3d *cube, t_raycast *ray, double *wall_x);
 void		select_wall_texture(t_cub3d *cube, t_raycast *ray, t_img **texture);
 int			get_texture_x(t_raycast *ray, double wall_x, t_img *texture);
-void		init_texture_values(t_cub3d *cube, t_draw *draw, t_img *texture,
-				double *tex_pos, double *step);
+void		init_texture_values(t_draw *draw, t_img *texture, double *step);
+double		init_texture_values2(t_draw *draw, t_cub3d *cube, double *step);
 int			get_pixel_color(t_img *texture, int tex_x, int tex_y, int side);
 void		put_pixel_to_buffer(t_cub3d *cube, int x, int y, int color);
 

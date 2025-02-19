@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 18:01:34 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/02/12 14:08:17 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/19 19:09:53 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ int	draw_background(t_cub3d *cube)
 	int	i;
 
 	// definition de la couleur == (red << 16)|(green << 8)|(blue)
-	// les 8 bits les plus significatif correspondent au alpha == transparence
 	ceiling_color = (cube->C_R << 16) | (cube->C_G << 8) | cube->C_B;
 	floor_color = (cube->F_R << 16) | (cube->F_G << 8) | cube->F_B;
 	buffer = (int *)cube->buffer.addr;
@@ -54,6 +53,7 @@ int	draw_background(t_cub3d *cube)
 	}
 	return (0);
 }
+
 void	put_pixel_to_buffer(t_cub3d *cube, int x, int y, int color)
 {
 	char	*buffer_pixel;
@@ -78,7 +78,8 @@ void	draw_vertical_line(t_cub3d *cube, t_raycast *ray, int x, t_draw *draw)
 	calculate_wall_x(cube, ray, &wall_x);
 	select_wall_texture(cube, ray, &texture);
 	tex_coords[0] = get_texture_x(ray, wall_x, texture);
-	init_texture_values(cube, draw, texture, &tex_pos, &step);
+	init_texture_values(draw, texture, &step);
+	tex_pos = init_texture_values2(draw,cube,&step);
 	y = draw->start;
 	while (y < draw->end)
 	{
@@ -89,4 +90,10 @@ void	draw_vertical_line(t_cub3d *cube, t_raycast *ray, int x, t_draw *draw)
 		put_pixel_to_buffer(cube, x, y, color);
 		y++;
 	}
+}
+
+double init_texture_values2(t_draw *draw,t_cub3d *cube,double *step)
+{
+	return ((draw->start - cube->screen_height / 2 + draw->line_height / 2)
+	* *step);
 }
