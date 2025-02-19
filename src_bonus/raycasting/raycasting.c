@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 14:36:54 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/02/13 17:14:07 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/19 19:31:39 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	raycasting(t_cub3d *cube)
 	x = 0;
 	while (x < cube->screen_width)
 	{
-		// Calcul de la position du rayon sur le plan caméra
+		// Calcul de la position du rayon sur le plan caméra(varie de -1 a 1)
 		camera_x = 2 * x / (double)cube->screen_width - 1;
 		// Initialisation du rayon
 		init_ray(cube, &ray, camera_x);
@@ -56,6 +56,7 @@ void	init_ray(t_cub3d *cube, t_raycast *ray, double camera_x)
 	ray->map_y = (int)ray->pos_y;
 	// Calcul des delta_dist
 	// Ces valeurs représentent la distance entre deux intersections x ou y
+	// difference entre deux lignes paralleles;
 	ray->delta_dist_x = fabs(1 / ray->ray_dir_x);
 	ray->delta_dist_y = fabs(1 / ray->ray_dir_y);
 	// prends toujours la valeurs absolue

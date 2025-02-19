@@ -1,0 +1,2 @@
+DDA: digital differential analysis
+permet de trouver rapidement l intersection entre le rayon et le mur
