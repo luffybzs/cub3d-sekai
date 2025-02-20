@@ -6,12 +6,12 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 16:03:47 by ayarab            #+#    #+#             */
-/*   Updated: 2025/02/20 16:05:06 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/20 18:34:26 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef cube3d_h
-# define cube3d_h
+#ifndef CUB3D_H
+# define CUB3D_H
 
 # include "../minilibx-linux/mlx.h"
 # include "./../libft/get_next_line/get_next_line.h"
@@ -24,14 +24,12 @@
 # include <string.h>
 # include <unistd.h>
 
-# define KEY_W XK_w
-# define KEY_A XK_a
-# define KEY_S XK_s
-# define KEY_D XK_d
-# define KEY_LEFT XK_Left
-# define KEY_RIGHT XK_Right
-
-# define ERROR_FOR_INFO "Error\nThere is missing information or there are duplicates"
+# define KEY_W XK_W
+# define KEY_A XK_A
+# define KEY_S XK_S
+# define KEY_D XK_D
+# define KEY_LEFT XK_LEFT
+# define KEY_RIGHT XK_RIGHT
 
 typedef struct s_img
 {
@@ -58,7 +56,7 @@ typedef struct s_trash
 }					t_trash;
 
 typedef struct s_draw
-{ // gestion des lignes de dessins point de depart fin et taille
+{
 	int				start;
 	int				end;
 	int				line_height;
@@ -66,95 +64,69 @@ typedef struct s_draw
 
 typedef struct s_textures
 {
-	t_img north; // Texture du mur nord
-	t_img south; // Texture du mur sud
-	t_img west;  // Texture du mur ouest
-	t_img east;  // Texture du mur est
+	t_img			north;
+	t_img			south;
+	t_img			west;
+	t_img			east;
 }					t_textures;
 
 typedef struct s_player
 {
-	char direction; // N,S,E,W
-	double pos_x;   // Position X du joueur
-	double pos_y;   // Position Y du joueur
-	double dir_x;   // Direction X du joueur
-	double dir_y;   // Direction Y du joueur
-	double plane_x; // Plan de la caméra X
-	double plane_y; // Plan de la caméra Y
+	char			direction;
+	double			pos_x;
+	double			pos_y;
+	double			dir_x;
+	double			dir_y;
+	double			plane_x;
+	double			plane_y;
 }					t_player;
 
 typedef struct s_raycast
 {
-	// position de depart du rayon == position du player
 	double			pos_x;
 	double			pos_y;
-
-	// direction du rayon == plan camera et direction du joueur
 	double			ray_dir_x;
 	double			ray_dir_y;
-
-	// case de la grille origine du rayon
 	int				map_x;
 	int				map_y;
-
-	// distance aux prochaines intersections (jusqu a la prochaine case de map)
 	double			side_dist_x;
 	double			side_dist_y;
-
-	// distance entre deux lignes vertciale/horizontale
 	double			delta_dist_x;
 	double			delta_dist_y;
-
-	// direction de progression des rayons si il doit aller vers la gauche ou la droite
 	int				step_x;
 	int				step_y;
-
-	// distance finale == point d impact
-	//- joueur(distance perpendiculaire au mur eviter le flou)
 	double			wall_dist;
-
-	// indicateur de face quel mur est touchee
 	int				side;
-
 }					t_raycast;
 
 typedef struct s_cub3d
 {
-	void *mlx;           // Pointeur MLX
-	void *win;           // Pointeur fenêtre
-	int screen_width;    // Largeur de l'écran
-	int screen_height;   // Hauteur de l'écran
-	t_img buffer;        // gestion de la toile
-	t_textures textures; // Toutes les textures autre que le buffer
-	t_player player;     // Informations du joueur
+	void			*mlx;
+	void			*win;
+	int				screen_width;
+	int				screen_height;
+	t_img			buffer;
+	t_textures		textures;
+	t_player		player;
 	double			*z_buffer;
-
-	// tableau qui stock la distance entre la camera et les points
 	int				map_width;
 	int				map_height;
-
-	// partie parsing
 	char			**all_maps;
 	char			**map;
 	char			*av1;
 	int				ac;
-	// point cardinaux
 	char			*EA;
 	char			*WE;
 	char			*SO;
 	char			*NO;
-	// parsing de couleurs
 	char			*F;
 	char			*C;
-	// couleur floor
 	int				F_R;
 	int				F_G;
 	int				F_B;
-	// couleur ceiling
 	int				C_R;
 	int				C_G;
 	int				C_B;
-	// player info
 	char			direction;
 	int				y_spwan_p;
 	int				x_spwan_p;
@@ -234,8 +206,6 @@ void				calculate_step_and_side_dist(t_raycast *ray);
 void				init_ray(t_cub3d *cube, t_raycast *ray, double camera_x);
 void				raycasting(t_cub3d *cube);
 
-// parsing
-
 int					ft_atoi_rgb(char *str, int start, int end);
 int					ft_search_maps(char *av1, t_cub3d *cube3d);
 int					ft_all_one(char *str);
@@ -266,11 +236,5 @@ void				ft_init_pos(t_cub3d *cube3d, int i, int j);
 /* temporaire */
 char				**create_test_map(void);
 void				test_print(char **map);
-
-/*
-- gerer les leaks
-- finir de gerer les keyhook (principalement les mouvements de souris dans le cadre des bonus)
--
-*/
 
 #endif
