@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 18:01:34 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/02/20 15:25:55 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/02/20 16:07:30 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,34 +62,24 @@ static void	put_pixel_to_buffer(t_cub3d *cube, int x, int y, int color)
 
 void	draw_vertical_line(t_cub3d *cube, t_raycast *ray, int x, t_draw *draw)
 {
-	t_img			*texture;
-	double			wall_x;
-	double			step;
-	double			tex_pos;
-	int				tex_coords[2];
-	int				y;
-	unsigned int	color;
+	t_trash	full;
+	int		y;
 
 	if (!cube->buffer.addr || !cube || !ray || !draw)
 		return ;
-	calculate_wall_x(cube, ray, &wall_x);
-	select_wall_texture(cube, ray, &texture);
-	tex_coords[0] = get_texture_x(ray, wall_x, texture);
-	init_texture_values(draw, texture, &step);
-	init_textures_values2(draw,cube,&tex_pos,&step);
+	calculate_wall_x(cube, ray, &full.wall_x);
+	select_wall_texture(cube, ray, &full.texture);
+	full.tex_coords[0] = get_texture_x(ray, full.wall_x, full.texture);
+	init_texture_values(draw, full.texture, &full.step);
+	init_textures_values2(draw, cube, &full.tex_pos, &full.step);
 	y = draw->start;
 	while (y < draw->end)
 	{
-		tex_coords[1] = (int)tex_pos & (texture->height - 1);
-		tex_pos += step;
-		color = get_pixel_color(texture, tex_coords[0], tex_coords[1],
-				ray->side);
-		put_pixel_to_buffer(cube, x, y, color);
+		full.tex_coords[1] = (int)full.tex_pos & (full.texture->height - 1);
+		full.tex_pos += full.step;
+		full.color = get_pixel_color(full.texture, full.tex_coords[0],
+				full.tex_coords[1], ray->side);
+		put_pixel_to_buffer(cube, x, y, full.color);
 		y++;
 	}
-}
-void	init_textures_values2(t_draw *draw, t_cub3d *cube, double *tex_pos,double *step)
-{
-	*tex_pos = (draw->start - cube->screen_height / 2 + draw->line_height / 2)
-		* *step;
 }

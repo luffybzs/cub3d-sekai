@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 15:30:08 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/02/11 15:49:36 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/20 15:54:47 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,7 @@ int	init_mlx(t_cub3d *data)
 			data->screen_height, "Cub3D-Sekai");
 	if (!data->win)
 		return (ft_putendl_fd("Error: Failed to initialize MLX", 2),
-				mlx_destroy_display(data->mlx),
-				1);
+			mlx_destroy_display(data->mlx), 1);
 	return (0);
 }
 
@@ -65,4 +64,11 @@ void	cleanup(t_cub3d *cube)
 		free(cube->z_buffer);
 		cube->z_buffer = NULL;
 	}
+}
+
+void	init_textures_values2(t_draw *draw, t_cub3d *cube, double *tex_pos,
+		double *step)
+{
+	*tex_pos = (draw->start - cube->screen_height / 2 + draw->line_height / 2)
+		* *step;
 }

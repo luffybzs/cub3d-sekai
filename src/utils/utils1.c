@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 23:35:33 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/02/20 14:27:10 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/02/20 15:57:02 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	test_print(char **map)
 		i++;
 	}
 }
+
 void	calculate_distance(t_raycast *ray)
 {
 	if (ray->side == 0)
@@ -53,6 +54,7 @@ void	intersection(t_cub3d *cube, t_raycast *ray)
 	ray->map_x += ray->step_x;
 	ray->side = 0;
 }
+
 void	intersection2(t_cub3d *cube, t_raycast *ray)
 {
 	(void)cube;

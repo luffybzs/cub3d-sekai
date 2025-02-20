@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 15:43:59 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/02/11 15:44:33 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/20 15:52:13 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,8 @@ int	load_texture(void *mlx, t_img *img, char *path)
 
 void	init_player(t_cub3d *cube)
 {
-	// position intiale
 	cube->player.pos_x = cube->x_spwan_p + 0.5;
 	cube->player.pos_y = cube->y_spwan_p + 0.5;
-	// +0.5 pour centrer l apparition du personnage
 	if (cube->direction == 'N')
 	{
 		cube->player.dir_x = 0;
