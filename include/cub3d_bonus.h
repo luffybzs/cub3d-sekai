@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 16:03:47 by ayarab            #+#    #+#             */
-/*   Updated: 2025/02/20 18:41:29 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/20 20:39:55 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,18 +132,18 @@ typedef struct s_cub3d
 	char			**map;
 	char			*av1;
 	int				ac;
-	char			*EA;
-	char			*WE;
-	char			*SO;
-	char			*NO;
-	char			*F;
-	char			*C;
-	int				F_R;
-	int				F_G;
-	int				F_B;
-	int				C_R;
-	int				C_G;
-	int				C_B;
+	char			*ea;
+	char			*we;
+	char			*so;
+	char			*no;
+	char			*f;
+	char			*c;
+	int				f_r;
+	int				f_g;
+	int				f_b;
+	int				c_r;
+	int				c_g;
+	int				c_b;
 	char			direction;
 	int				y_spwan_p;
 	int				x_spwan_p;
