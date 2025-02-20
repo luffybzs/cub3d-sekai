@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 23:35:33 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/02/11 16:14:22 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/20 14:27:10 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,9 @@
 
 void	ft_error(t_cub3d *cube, char *msg, int error_code)
 {
-	//choisir si garder error_code
-	//centralisation de la gestion des erreur
 	ft_putendl_fd(msg, 2);
 	cleanup(cube);
-	exit(error_code); //garder exit ou prendre un simple return
+	exit(error_code);
 }
 
 void	test_print(char **map)
@@ -42,7 +40,6 @@ void	test_print(char **map)
 }
 void	calculate_distance(t_raycast *ray)
 {
-	//calcul de la distance perpendiculaire
 	if (ray->side == 0)
 		ray->wall_dist = (ray->side_dist_x - ray->delta_dist_x);
 	else

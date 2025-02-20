@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 16:03:47 by ayarab            #+#    #+#             */
-/*   Updated: 2025/02/11 16:12:03 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/20 14:53:45 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -222,20 +222,29 @@ int			ft_atoi_rgb(char *str, int start, int end);
 int			ft_search_maps(char *av1, t_cub3d *cube3d);
 int			ft_all_one(char *str);
 int			ft_cmp_xpm(char *str, int i, char *cmp);
-int			ft_add_C(char *str, t_cub3d *cube3d);
-int			ft_add_F(char *str, t_cub3d *cube3d);
+int			ft_add_c(char *str, t_cub3d *cube3d);
+int			ft_add_f(char *str, t_cub3d *cube3d);
 char		*ft_add_just_info(char *str, int i);
-int			ft_add_NO(char *str, t_cub3d *cube3d, int i);
-int			ft_add_EA(char *str, t_cub3d *cube3d, int i);
-int			ft_add_SO(char *str, t_cub3d *cube3d, int i);
-int			ft_add_WE(char *str, t_cub3d *cube3d, int i);
+int			ft_add_no(char *str, t_cub3d *cube3d, int i);
+int			ft_add_ea(char *str, t_cub3d *cube3d, int i);
+int			ft_add_so(char *str, t_cub3d *cube3d, int i);
+int			ft_add_we(char *str, t_cub3d *cube3d, int i);
 int			ft_add_cardinal_points(char *str, t_cub3d *cube3d, int i);
 int			ft_check_av1(t_cub3d *cube3d);
 void		ft_fail_free(t_cub3d *cube3d);
 int			ft_fill_data(int ac, char **av, t_cub3d *cube3d);
 int			ft_search_info(char *av1, t_cub3d *cube3d);
 int			ft_fill_color(t_cub3d *cube3d);
-
+int			ft_check_player(t_cub3d *cube3d);
+int			ft_maps_is_good(t_cub3d *cube3d);
+int			ft_check_line(char **tab);
+int			ft_fill_info(t_cub3d *cube3d, char *str);
+int			ft_ft(t_cub3d *cube3d, int i, int j);
+int			ft_is_good(t_cub3d *cube3d, int j, int i);
+int			ft_player(char c);
+int			ft_is_all_good_char(t_cub3d *cube3d);
+int			ft_skip(char **tab, int j);
+void		ft_init_pos(t_cub3d *cube3d, int i, int j);
 /* temporaire */
 char		**create_test_map(void);
 void		test_print(char **map);

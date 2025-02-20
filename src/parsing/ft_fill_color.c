@@ -6,12 +6,11 @@
 /*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 19:30:57 by ayarab            #+#    #+#             */
-/*   Updated: 2025/02/06 16:53:44 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/02/20 14:53:16 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../include/cub3d.h"
-
 
 int	ft_add_last_color(int *start, int *j, char *str)
 {
@@ -66,6 +65,7 @@ int	ft_fill_floor_color(t_cub3d *cube3d)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
+
 int	ft_fill_cloud_color(t_cub3d *cube3d)
 {
 	int	j;
@@ -93,11 +93,7 @@ int	ft_fill_color(t_cub3d *cube3d)
 {
 	if (ft_fill_floor_color(cube3d) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
-	//printf("la valeur de R_F = {%d}\nla valeur de G_F = {%d}\nla valeur de B_F = {%d}\n",
-		//cube3d->F_R, cube3d->F_G, cube3d->F_B);
 	if (ft_fill_cloud_color(cube3d) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
-	//printf("la valeur de R_C = {%d}\nla valeur de G_C = {%d}\nla valeur de B_C = {%d}\n",
-		//cube3d->C_R, cube3d->C_G, cube3d->C_B);
 	return (EXIT_SUCCESS);
 }

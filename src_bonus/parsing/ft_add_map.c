@@ -6,13 +6,13 @@
 /*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 16:58:05 by ayarab            #+#    #+#             */
-/*   Updated: 2025/02/05 17:44:55 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/02/20 15:10:55 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../include/cub3d_bonus.h"
 
-int	ft_add_F(char *str, t_cub3d *cube3d)
+int	ft_add_f(char *str, t_cub3d *cube3d)
 {
 	if (!ft_strncmp(str, "F", 1))
 	{
@@ -25,7 +25,8 @@ int	ft_add_F(char *str, t_cub3d *cube3d)
 	}
 	return (EXIT_SUCCESS);
 }
-int	ft_add_C(char *str, t_cub3d *cube3d)
+
+int	ft_add_c(char *str, t_cub3d *cube3d)
 {
 	if (!ft_strncmp(str, "C", 1))
 	{

@@ -6,13 +6,13 @@
 /*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 16:58:05 by ayarab            #+#    #+#             */
-/*   Updated: 2025/02/06 18:20:01 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/02/20 14:51:27 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../include/cub3d.h"
 
-int	ft_add_F(char *str, t_cub3d *cube3d)
+int	ft_add_f(char *str, t_cub3d *cube3d)
 {
 	if (!ft_strncmp(str, "F", 1))
 	{
@@ -25,7 +25,8 @@ int	ft_add_F(char *str, t_cub3d *cube3d)
 	}
 	return (EXIT_SUCCESS);
 }
-int	ft_add_C(char *str, t_cub3d *cube3d)
+
+int	ft_add_c(char *str, t_cub3d *cube3d)
 {
 	if (!ft_strncmp(str, "C", 1))
 	{
@@ -91,5 +92,5 @@ int	ft_search_maps(char *av1, t_cub3d *cube3d)
 	cube3d->all_maps = ft_split(res, '\n');
 	if (!cube3d->all_maps)
 		return (close(fd), free(res), EXIT_FAILURE);
-	return (close(fd), free(res),free(line), EXIT_SUCCESS);
+	return (close(fd), free(res), free(line), EXIT_SUCCESS);
 }

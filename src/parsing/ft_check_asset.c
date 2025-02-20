@@ -6,7 +6,7 @@
 /*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 17:44:11 by ayarab            #+#    #+#             */
-/*   Updated: 2025/01/20 17:11:17 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/02/20 14:47:50 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	ft_atoi_rgb(char *str, int start, int end)
 	return (res);
 }
 
-void ft_fail_free(t_cub3d *cube3d)
+void	ft_fail_free(t_cub3d *cube3d)
 {
 	if (cube3d->EA)
 		free(cube3d->EA);
@@ -41,8 +41,15 @@ void ft_fail_free(t_cub3d *cube3d)
 	if (cube3d->F)
 		free(cube3d->F);
 	if (cube3d->C)
-		free(cube3d->C);	
+		free(cube3d->C);
 	if (cube3d->all_maps)
 		ft_free_2d(cube3d->all_maps);
 	return ;
+}
+
+void	ft_init_pos(t_cub3d *cube3d, int i, int j)
+{
+	cube3d->direction = cube3d->all_maps[j][i];
+	cube3d->x_spwan_p = i;
+	cube3d->y_spwan_p = j;
 }

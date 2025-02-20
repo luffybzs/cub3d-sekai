@@ -6,13 +6,13 @@
 /*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 16:52:32 by ayarab            #+#    #+#             */
-/*   Updated: 2025/02/05 18:02:55 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/02/20 14:55:24 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../include/cub3d.h"
 
-int	ft_add_WE(char *str, t_cub3d *cube3d, int i)
+int	ft_add_we(char *str, t_cub3d *cube3d, int i)
 {
 	if (!ft_strncmp(str + i, "WE", 2))
 	{
@@ -26,7 +26,7 @@ int	ft_add_WE(char *str, t_cub3d *cube3d, int i)
 	return (EXIT_SUCCESS);
 }
 
-int	ft_add_SO(char *str, t_cub3d *cube3d, int i)
+int	ft_add_so(char *str, t_cub3d *cube3d, int i)
 {
 	if (!ft_strncmp(str + i, "SO", 2))
 	{
@@ -40,7 +40,7 @@ int	ft_add_SO(char *str, t_cub3d *cube3d, int i)
 	return (EXIT_SUCCESS);
 }
 
-int	ft_add_NO(char *str, t_cub3d *cube3d, int i)
+int	ft_add_no(char *str, t_cub3d *cube3d, int i)
 {
 	if (!ft_strncmp(str + i, "NO", 2))
 	{
@@ -53,7 +53,8 @@ int	ft_add_NO(char *str, t_cub3d *cube3d, int i)
 	}
 	return (0);
 }
-int	ft_add_EA(char *str, t_cub3d *cube3d, int i)
+
+int	ft_add_ea(char *str, t_cub3d *cube3d, int i)
 {
 	if (!ft_strncmp(str + i, "EA", 2))
 	{
@@ -66,7 +67,6 @@ int	ft_add_EA(char *str, t_cub3d *cube3d, int i)
 	}
 	return (0);
 }
-
 
 char	*ft_add_just_info(char *str, int i)
 {
@@ -89,4 +89,3 @@ char	*ft_add_just_info(char *str, int i)
 	}
 	return (NULL);
 }
-
