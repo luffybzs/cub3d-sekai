@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 18:01:34 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/02/20 16:16:57 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/20 16:17:37 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,8 @@ void	draw_vertical_line(t_cub3d *cube, t_raycast *ray, int x, t_draw *draw)
 	{
 		full.tex_coords[1] = (int)full.tex_pos & (full.texture->height - 1);
 		full.tex_pos += full.step;
-		full.color = get_pixel_color(full.texture, full.tex_coords[0], full.tex_coords[1],
-				ray->side);
+		full.color = get_pixel_color(full.texture, full.tex_coords[0],
+				full.tex_coords[1], ray->side);
 		put_pixel_to_buffer(cube, x, y, full.color);
 		y++;
 	}

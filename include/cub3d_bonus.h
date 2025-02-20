@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 16:03:47 by ayarab            #+#    #+#             */
-/*   Updated: 2025/02/20 16:13:45 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/20 18:10:00 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,17 @@ typedef struct s_trash
 	unsigned int	color;
 
 }	t_trash;
+
+typedef struct s_trash_2
+{
+	int				player_x;
+	int				player_y;
+	double	max_interact_distance;
+	int				target_x;
+	int				target_y;
+	double			distance;
+
+}	t_trash_2;
 
 typedef struct s_draw
 { // gestion des lignes de dessins point de depart fin et taille

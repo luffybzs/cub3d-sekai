@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 15:31:23 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/02/12 13:52:41 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/20 18:11:29 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,33 +38,29 @@ int	init_cub3d(t_cub3d *cube)
 
 int	open_images(t_cub3d *cube)
 {
-	// creee un buffer une toile blanche qui va permetttre apres de mettre le rendu
 	if (!init_buffer(cube))
 		return (0);
-	// initialisation des textures
-	if (!ft_init_img(cube, &cube->textures.north) ||
-		!ft_init_img(cube, &cube->textures.south) ||
-		!ft_init_img(cube, &cube->textures.west) ||
-		!ft_init_img(cube, &cube->textures.east))
+	if (!ft_init_img(cube, &cube->textures.north) || !ft_init_img(cube,
+			&cube->textures.south) || !ft_init_img(cube, &cube->textures.west)
+		|| !ft_init_img(cube, &cube->textures.east))
 		return (0);
 	if (cube->door.path)
-			if(!ft_init_img(cube,&cube->door))
-				return (0);
+		if (!ft_init_img(cube, &cube->door))
+			return (0);
 	return (1);
 }
+
 int	init_buffer(t_cub3d *cube)
 {
 	if (!cube->mlx)
 		return (0);
 	cube->buffer.img = mlx_new_image(cube->mlx, cube->screen_width,
-										cube->screen_height);
-										//creer une image vide principe de la toile vierge
+			cube->screen_height);
 	if (!cube->buffer.img)
 		return (0);
 	cube->buffer.addr = mlx_get_data_addr(cube->buffer.img,
-											&cube->buffer.bits_per_pixel,
-											&cube->buffer.size_line,
-											&cube->buffer.endiant);
+			&cube->buffer.bits_per_pixel, &cube->buffer.size_line,
+			&cube->buffer.endiant);
 	if (!cube->buffer.addr)
 		return (0);
 	return (1);
@@ -78,7 +74,7 @@ int	ft_init_img(t_cub3d *cube, t_img *img)
 		return (0);
 	}
 	img->img = mlx_xpm_file_to_image(cube->mlx, img->path, &img->width,
-			&img->height);	
+			&img->height);
 	if (!img->img)
 		return (0);
 	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,
@@ -87,6 +83,7 @@ int	ft_init_img(t_cub3d *cube, t_img *img)
 		return (mlx_destroy_image(cube->mlx, img->img), 0);
 	return (1);
 }
+
 int	init_textures_path(t_cub3d *cube)
 {
 	cube->textures.north.path = cube->NO;
