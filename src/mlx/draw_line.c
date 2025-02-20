@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_line.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 21:25:10 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/02/11 15:58:22 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/20 15:27:14 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	calculate_wall_x(t_cub3d *cube, t_raycast *ray, double *wall_x)
 		*wall_x = cube->player.pos_x + ray->wall_dist * ray->ray_dir_x;
 	*wall_x -= floor(*wall_x); // plus grand entier inferieur ou egale
 }
- void	select_wall_texture(t_cub3d *cube, t_raycast *ray, t_img **texture)
+void	select_wall_texture(t_cub3d *cube, t_raycast *ray, t_img **texture)
 {
 	// selection du mur a dessiner en fonction du side et de l orientation
 	// et la direction du rayon
@@ -38,7 +38,7 @@ int	get_texture_x(t_raycast *ray, double wall_x, t_img *texture)
 {
 	int	tex_x;
 
-	//permet de savoir quelle texture apposee et entraine l inversion des textures
+	// permet de savoir quelle texture apposee et entraine l inversion des textures
 	// afin d avoir les bonnes textures des deux cotees
 	tex_x = (int)(wall_x * texture->width);
 	if ((ray->side == 0 && ray->ray_dir_x < 0) || (ray->side == 1
@@ -47,15 +47,12 @@ int	get_texture_x(t_raycast *ray, double wall_x, t_img *texture)
 	return (tex_x);
 }
 
-void	init_texture_values(t_cub3d *cube, t_draw *draw, t_img *texture,
-		double *tex_pos, double *step)
+void	init_texture_values(t_draw *draw, t_img *texture, double *step)
 {
 	// calcule la taille du pixel a dessiner en fonction de la taille de
-	//la ligne/taille de l ecran et la taille de l image
-	//ainsi que le point de depart de la texture dans l image
+	// la ligne/taille de l ecran et la taille de l image
+	// ainsi que le point de depart de la texture dans l image
 	*step = 1.0 * texture->height / draw->line_height;
-	*tex_pos = (draw->start - cube->screen_height / 2 + draw->line_height / 2)
-		* *step;
 }
 
 int	get_pixel_color(t_img *texture, int tex_x, int tex_y, int side)

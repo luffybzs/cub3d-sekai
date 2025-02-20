@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 18:01:34 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/02/13 17:16:52 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/20 15:25:55 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,7 @@
 
 void	calculate_draw_points(t_cub3d *cube, t_raycast *ray, t_draw *draw)
 {
-	// Calcul de la hauteur de la ligne à dessiner
 	draw->line_height = (int)(cube->screen_height / ray->wall_dist);
-	// Calcul des points de début et de fin
 	draw->start = -draw->line_height / 2 + cube->screen_height / 2;
 	if (draw->start < 0)
 		draw->start = 0;
@@ -33,7 +31,6 @@ int	draw_background(t_cub3d *cube)
 	int	half_screen;
 	int	i;
 
-	// definition de la couleur == (red << 16)|(green << 8)|(blue)
 	ceiling_color = (cube->C_R << 16) | (cube->C_G << 8) | cube->C_B;
 	floor_color = (cube->F_R << 16) | (cube->F_G << 8) | cube->F_B;
 	buffer = (int *)cube->buffer.addr;
@@ -78,7 +75,8 @@ void	draw_vertical_line(t_cub3d *cube, t_raycast *ray, int x, t_draw *draw)
 	calculate_wall_x(cube, ray, &wall_x);
 	select_wall_texture(cube, ray, &texture);
 	tex_coords[0] = get_texture_x(ray, wall_x, texture);
-	init_texture_values(cube, draw, texture, &tex_pos, &step);
+	init_texture_values(draw, texture, &step);
+	init_textures_values2(draw,cube,&tex_pos,&step);
 	y = draw->start;
 	while (y < draw->end)
 	{
@@ -89,4 +87,9 @@ void	draw_vertical_line(t_cub3d *cube, t_raycast *ray, int x, t_draw *draw)
 		put_pixel_to_buffer(cube, x, y, color);
 		y++;
 	}
+}
+void	init_textures_values2(t_draw *draw, t_cub3d *cube, double *tex_pos,double *step)
+{
+	*tex_pos = (draw->start - cube->screen_height / 2 + draw->line_height / 2)
+		* *step;
 }

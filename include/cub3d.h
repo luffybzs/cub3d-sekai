@@ -6,7 +6,7 @@
 /*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 16:03:47 by ayarab            #+#    #+#             */
-/*   Updated: 2025/02/20 14:53:45 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/02/20 15:27:07 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,9 +187,10 @@ int			draw_background(t_cub3d *cube);
 void		calculate_wall_x(t_cub3d *cube, t_raycast *ray, double *wall_x);
 void		select_wall_texture(t_cub3d *cube, t_raycast *ray, t_img **texture);
 int			get_texture_x(t_raycast *ray, double wall_x, t_img *texture);
-void		init_texture_values(t_cub3d *cube, t_draw *draw, t_img *texture,
-				double *tex_pos, double *step);
+void		init_texture_values(t_draw *draw, t_img *texture, double *step);
 int			get_pixel_color(t_img *texture, int tex_x, int tex_y, int side);
+void		init_textures_values2(t_draw *draw, t_cub3d *cube, double *tex_pos,
+				double *step);
 
 /* raycasting */
 void		perform_dda(t_cub3d *cube, t_raycast *ray);
