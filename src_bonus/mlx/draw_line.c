@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 21:25:10 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/02/20 16:11:19 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/20 16:12:35 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	calculate_wall_x(t_cub3d *cube, t_raycast *ray, double *wall_x)
 		*wall_x = cube->player.pos_x + ray->wall_dist * ray->ray_dir_x;
 	*wall_x -= floor(*wall_x);
 }
+
 void	select_wall_texture(t_cub3d *cube, t_raycast *ray, t_img **texture)
 {
 	if (cube->all_maps[ray->map_y][ray->map_x] == 'D')

@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 18:01:34 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/02/19 19:09:53 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/20 16:16:57 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,7 @@
 
 void	calculate_draw_points(t_cub3d *cube, t_raycast *ray, t_draw *draw)
 {
-	// Calcul de la hauteur de la ligne à dessiner
 	draw->line_height = (int)(cube->screen_height / ray->wall_dist);
-	// Calcul des points de début et de fin
 	draw->start = -draw->line_height / 2 + cube->screen_height / 2;
 	if (draw->start < 0)
 		draw->start = 0;
@@ -33,7 +31,6 @@ int	draw_background(t_cub3d *cube)
 	int	half_screen;
 	int	i;
 
-	// definition de la couleur == (red << 16)|(green << 8)|(blue)
 	ceiling_color = (cube->C_R << 16) | (cube->C_G << 8) | cube->C_B;
 	floor_color = (cube->F_R << 16) | (cube->F_G << 8) | cube->F_B;
 	buffer = (int *)cube->buffer.addr;
@@ -65,35 +62,30 @@ void	put_pixel_to_buffer(t_cub3d *cube, int x, int y, int color)
 
 void	draw_vertical_line(t_cub3d *cube, t_raycast *ray, int x, t_draw *draw)
 {
-	t_img			*texture;
-	double			wall_x;
-	double			step;
-	double			tex_pos;
-	int				tex_coords[2];
-	int				y;
-	unsigned int	color;
+	t_trash	full;
+	int		y;
 
 	if (!cube->buffer.addr || !cube || !ray || !draw)
 		return ;
-	calculate_wall_x(cube, ray, &wall_x);
-	select_wall_texture(cube, ray, &texture);
-	tex_coords[0] = get_texture_x(ray, wall_x, texture);
-	init_texture_values(draw, texture, &step);
-	tex_pos = init_texture_values2(draw,cube,&step);
+	calculate_wall_x(cube, ray, &full.wall_x);
+	select_wall_texture(cube, ray, &full.texture);
+	full.tex_coords[0] = get_texture_x(ray, full.wall_x, full.texture);
+	init_texture_values(draw, full.texture, &full.step);
+	full.tex_pos = init_texture_values2(draw, cube, &full.step);
 	y = draw->start;
 	while (y < draw->end)
 	{
-		tex_coords[1] = (int)tex_pos & (texture->height - 1);
-		tex_pos += step;
-		color = get_pixel_color(texture, tex_coords[0], tex_coords[1],
+		full.tex_coords[1] = (int)full.tex_pos & (full.texture->height - 1);
+		full.tex_pos += full.step;
+		full.color = get_pixel_color(full.texture, full.tex_coords[0], full.tex_coords[1],
 				ray->side);
-		put_pixel_to_buffer(cube, x, y, color);
+		put_pixel_to_buffer(cube, x, y, full.color);
 		y++;
 	}
 }
 
-double init_texture_values2(t_draw *draw,t_cub3d *cube,double *step)
+double	init_texture_values2(t_draw *draw, t_cub3d *cube, double *step)
 {
 	return ((draw->start - cube->screen_height / 2 + draw->line_height / 2)
-	* *step);
+		* *step);
 }

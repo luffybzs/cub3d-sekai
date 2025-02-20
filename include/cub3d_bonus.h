@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 16:03:47 by ayarab            #+#    #+#             */
-/*   Updated: 2025/02/20 15:11:54 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/02/20 16:13:45 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,17 @@ typedef struct s_img
 	int		width;
 	int		height;
 }			t_img;
+
+typedef struct s_trash
+{
+	t_img			*texture;
+	double			wall_x;
+	double			step;
+	double			tex_pos;
+	int				tex_coords[2];
+	unsigned int	color;
+
+}	t_trash;
 
 typedef struct s_draw
 { // gestion des lignes de dessins point de depart fin et taille
