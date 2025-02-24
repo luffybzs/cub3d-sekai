@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_utils_parsing.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 14:29:53 by ayarab            #+#    #+#             */
-/*   Updated: 2025/02/24 12:40:03 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/24 14:38:06 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ int	ft_search_info(char *av1, t_cub3d *cube3d)
 
 	fd = open(av1, O_RDONLY);
 	if (fd == -1)
-		return (EXIT_FAILURE);
+		(ft_putendl_fd("Error\nFail Open", 2), exit(1));
 	count = 0;
 	line = get_next_line(fd);
 	while (line)
