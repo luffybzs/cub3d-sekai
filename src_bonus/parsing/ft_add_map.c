@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 16:58:05 by ayarab            #+#    #+#             */
-/*   Updated: 2025/02/24 12:05:38 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/24 12:06:20 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ int	ft_add_c(char *str, t_cub3d *cube3d)
 {
 	if (!ft_strncmp(str, "C", 1))
 	{
-		if (cube3d->C)
+		if (cube3d->c)
 			return (-1);
-		cube3d->C = ft_strdup(str + 1);
-		if (!cube3d->C)
+		cube3d->c = ft_strdup(str + 1);
+		if (!cube3d->c)
 			return (-1);
 		return (1);
 	}
