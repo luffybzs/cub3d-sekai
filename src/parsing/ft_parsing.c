@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parsing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 19:28:56 by ayarab            #+#    #+#             */
-/*   Updated: 2025/02/20 14:53:04 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/02/24 12:33:36 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int	ft_fill_data(int ac, char **av, t_cub3d *cube3d)
 	if (ft_check_av1(cube3d) == EXIT_FAILURE)
 		return (ft_putstr_fd("Error\n", 2), EXIT_FAILURE);
 	if (ft_search_info(cube3d->av1, cube3d) == EXIT_FAILURE)
-		return (ft_putendl_fd(ERROR_FOR_INFO, 2), EXIT_FAILURE);
+		return (ft_putendl_fd("Error\nCan not find info", 2), EXIT_FAILURE);
 	if (ft_search_maps(cube3d->av1, cube3d) == EXIT_FAILURE)
 		return (ft_putendl_fd("Error\nMap Not Found", 2), EXIT_FAILURE);
 	if (ft_fill_color(cube3d) == EXIT_FAILURE)

@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 16:03:47 by ayarab            #+#    #+#             */
-/*   Updated: 2025/02/20 20:39:05 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/24 12:41:55 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@
 # include <string.h>
 # include <unistd.h>
 
-# define KEY_W XK_W
-# define KEY_A XK_A
-# define KEY_S XK_S
-# define KEY_D XK_D
-# define KEY_LEFT XK_LEFT
-# define KEY_RIGHT XK_RIGHT
+# define KEY_W XK_w
+# define KEY_A XK_a
+# define KEY_S XK_s
+# define KEY_D XK_d
+# define KEY_LEFT XK_Left
+# define KEY_RIGHT XK_Right
 
 typedef struct s_img
 {

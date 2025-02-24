@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 18:01:34 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/02/20 16:07:30 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/24 12:39:08 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ int	draw_background(t_cub3d *cube)
 	int	half_screen;
 	int	i;
 
-	ceiling_color = (cube->C_R << 16) | (cube->C_G << 8) | cube->C_B;
-	floor_color = (cube->F_R << 16) | (cube->F_G << 8) | cube->F_B;
+	ceiling_color = (cube->c_r << 16) | (cube->c_g << 8) | cube->c_b;
+	floor_color = (cube->f_r << 16) | (cube->f_g << 8) | cube->f_b;
 	buffer = (int *)cube->buffer.addr;
 	if (!buffer)
 		return (printf("Error: empty buffer\n"), 1);
