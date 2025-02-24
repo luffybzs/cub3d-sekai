@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parsing_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 15:01:40 by ayarab            #+#    #+#             */
-/*   Updated: 2025/02/20 15:03:45 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/02/24 12:22:51 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ int	ft_search_info(char *av1, t_cub3d *cube3d)
 		free(line);
 		line = get_next_line(fd);
 	}
-	if (!cube3d->WE || !cube3d->SO || !cube3d->EA || !cube3d->NO || !cube3d->F
-		|| !cube3d->C)
+	if (!cube3d->we || !cube3d->so || !cube3d->ea || !cube3d->no || !cube3d->f
+		|| !cube3d->c)
 		return (close(fd), EXIT_FAILURE);
 	return (close(fd), EXIT_SUCCESS);
 }

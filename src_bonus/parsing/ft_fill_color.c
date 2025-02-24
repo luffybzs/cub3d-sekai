@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_fill_color.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 19:30:57 by ayarab            #+#    #+#             */
-/*   Updated: 2025/02/20 15:08:11 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/02/24 12:18:48 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,14 @@ int	ft_fill_floor_color(t_cub3d *cube3d)
 	start = 0;
 	j = 0;
 	comma = 0;
-	while (cube3d->F[j] && cube3d->F[j] <= 32)
+	while (cube3d->f[j] && cube3d->f[j] <= 32)
 		j++;
-	cube3d->F_R = ft_add_color(&start, &j, &comma, cube3d->F);
+	cube3d->f_r = ft_add_color(&start, &j, &comma, cube3d->f);
 	if (comma == 1)
-		cube3d->F_G = ft_add_color(&start, &j, &comma, cube3d->F);
+		cube3d->f_g = ft_add_color(&start, &j, &comma, cube3d->f);
 	if (comma == 2)
-		cube3d->F_B = ft_add_last_color(&start, &j, cube3d->F);
-	if (cube3d->F_R < 0 || cube3d->F_G < 0 || cube3d->F_B < 0)
+		cube3d->f_b = ft_add_last_color(&start, &j, cube3d->f);
+	if (cube3d->f_r < 0 || cube3d->f_g < 0 || cube3d->f_b < 0)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
@@ -75,16 +75,16 @@ int	ft_fill_cloud_color(t_cub3d *cube3d)
 	start = 0;
 	j = 0;
 	comma = 0;
-	while (cube3d->C[j] && cube3d->C[j] <= 32)
+	while (cube3d->c[j] && cube3d->c[j] <= 32)
 		j++;
-	cube3d->C_R = ft_add_color(&start, &j, &comma, cube3d->C);
+	cube3d->c_r = ft_add_color(&start, &j, &comma, cube3d->c);
 	if (comma == 1)
-		cube3d->C_G = ft_add_color(&start, &j, &comma, cube3d->C);
+		cube3d->c_g = ft_add_color(&start, &j, &comma, cube3d->c);
 	if (comma == 2)
-		cube3d->C_B = ft_add_last_color(&start, &j, cube3d->C);
+		cube3d->c_b = ft_add_last_color(&start, &j, cube3d->c);
 	if (comma != 2)
 		return (EXIT_FAILURE);
-	if (cube3d->C_R < 0 || cube3d->C_G < 0 || cube3d->C_B < 0)
+	if (cube3d->c_r < 0 || cube3d->c_g < 0 || cube3d->c_b < 0)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
