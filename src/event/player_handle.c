@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_handle.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 18:23:12 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/02/24 12:42:26 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/24 16:40:33 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,25 @@
 
 int	key_press(int keycode, t_cub3d *cube)
 {
-	if (keycode == KEY_W || keycode == KEY_S || keycode == KEY_A
-		|| keycode == KEY_D)
+	if (keycode == 119 || keycode == 115 || keycode == 97 || keycode == 100)
 	{
-		if (keycode == KEY_W)
+		if (keycode == 119)
 			move_forward(cube);
-		else if (keycode == KEY_S)
+		else if (keycode == 115)
 			move_backward(cube);
-		else if (keycode == KEY_A)
+		else if (keycode == 97)
 			move_left(cube);
-		else if (keycode == KEY_D)
+		else if (keycode == 100)
 			move_right(cube);
 	}
-	else if (keycode == KEY_LEFT || keycode == KEY_RIGHT)
+	else if (keycode == 65361 || keycode == 65363)
 	{
-		if (keycode == KEY_LEFT)
+		if (keycode == 65361)
 			rotate_left(cube);
 		else
 			rotate_right(cube);
 	}
-	else if (keycode == XK_Escape)
+	else if (keycode == 65307)
 		close_window(cube);
 	return (0);
 }

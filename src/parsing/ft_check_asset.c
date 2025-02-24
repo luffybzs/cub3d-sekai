@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_check_asset.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 17:44:11 by ayarab            #+#    #+#             */
-/*   Updated: 2025/02/24 12:34:30 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/24 16:24:15 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,26 @@ void	ft_init_pos(t_cub3d *cube3d, int i, int j)
 	cube3d->direction = cube3d->all_maps[j][i];
 	cube3d->x_spwan_p = i;
 	cube3d->y_spwan_p = j;
+}
+
+int	ft_fill_space_in_wall(t_cub3d *cube3d)
+{
+	int	i;
+	int	j;
+
+	j = 0;
+	if (!cube3d->all_maps)
+		return (EXIT_FAILURE);
+	while (cube3d->all_maps[j])
+	{
+		i = 0;
+		while (cube3d->all_maps[j][i])
+		{
+			if (cube3d->all_maps[j][i] == 32)
+				cube3d->all_maps[j][i] = '1';
+			i++;
+		}
+		j++;
+	}
+	return (EXIT_SUCCESS);
 }

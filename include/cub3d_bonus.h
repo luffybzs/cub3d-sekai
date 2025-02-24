@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 16:03:47 by ayarab            #+#    #+#             */
-/*   Updated: 2025/02/24 12:30:04 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/24 16:39:19 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,6 @@
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
-
-# define KEY_W XK_w
-# define KEY_A XK_a
-# define KEY_S XK_s
-# define KEY_D XK_d
-# define KEY_LEFT XK_Left
-# define KEY_RIGHT XK_Right
-# define KEY_RETURN XK_Return
 
 # define MINIMAP_SCALE 0.2
 # define BLOCK_SIZE 7
@@ -170,7 +162,7 @@ int					ft_check_av1(t_cub3d *cube3d);
 void				ft_fail_free(t_cub3d *cube3d);
 int					ft_fill_data(int ac, char **av, t_cub3d *cube3d);
 int					ft_search_info(char *av1, t_cub3d *cube3d);
-
+int					ft_fill_space_in_wall(t_cub3d *cube3d);
 /* screen handler */
 int					init_mlx(t_cub3d *data);
 int					close_window(t_cub3d *data);

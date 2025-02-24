@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parsing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 19:28:56 by ayarab            #+#    #+#             */
-/*   Updated: 2025/02/24 12:03:25 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/24 16:23:16 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,8 @@ int	ft_fill_data(int ac, char **av, t_cub3d *cube3d)
 		return (ft_putendl_fd("Error\nRGB Is Not Good", 2), EXIT_FAILURE);
 	if (ft_is_all_good_char(cube3d) == EXIT_FAILURE)
 		return (ft_putendl_fd("Error\nMap Invalid Char", 2), EXIT_FAILURE);
+	if (ft_fill_space_in_wall(cube3d) == EXIT_FAILURE)
+		return (EXIT_FAILURE);
 	if (ft_maps_is_good(cube3d) == EXIT_FAILURE)
 		return (ft_putendl_fd("Error\nMap Is Not Close", 2), EXIT_FAILURE);
 	if (ft_check_player(cube3d) == EXIT_FAILURE)

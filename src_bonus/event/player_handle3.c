@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_handle3.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 13:56:44 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/02/20 16:17:59 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/24 16:39:31 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,11 @@ int	mouse_move(int x, int y, t_cub3d *cube)
 
 void	key_press2(t_cub3d *cube, int keycode)
 {
-	if (keycode == XK_Escape)
+	if (keycode == 65307)
 		close_window(cube);
-	else if (keycode == XK_space)
+	else if (keycode == 32)
 		handle_door(cube);
-	else if (keycode == XK_Return)
+	else if (keycode == 65293)
 	{
 		if (cube->enable_mouse == 0)
 		{
