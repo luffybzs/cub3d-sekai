@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_add_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 16:58:05 by ayarab            #+#    #+#             */
-/*   Updated: 2025/02/20 15:10:55 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/02/24 12:05:38 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ int	ft_add_f(char *str, t_cub3d *cube3d)
 {
 	if (!ft_strncmp(str, "F", 1))
 	{
-		if (cube3d->F)
+		if (cube3d->f)
 			return (-1);
-		cube3d->F = ft_strdup(str + 1);
-		if (!cube3d->F)
+		cube3d->f = ft_strdup(str + 1);
+		if (!cube3d->f)
 			return (-1);
 		return (1);
 	}

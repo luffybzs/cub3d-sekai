@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_add_info.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 16:52:32 by ayarab            #+#    #+#             */
-/*   Updated: 2025/02/20 15:09:14 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/02/24 12:05:20 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ int	ft_add_we(char *str, t_cub3d *cube3d, int i)
 {
 	if (!ft_strncmp(str + i, "WE", 2))
 	{
-		if (cube3d->WE)
+		if (cube3d->we)
 			return (-1);
-		cube3d->WE = ft_add_just_info(str, i + 2);
-		if (!cube3d->WE)
+		cube3d->we = ft_add_just_info(str, i + 2);
+		if (!cube3d->we)
 			return (-1);
 		return (1);
 	}
@@ -30,10 +30,10 @@ int	ft_add_so(char *str, t_cub3d *cube3d, int i)
 {
 	if (!ft_strncmp(str + i, "SO", 2))
 	{
-		if (cube3d->SO)
+		if (cube3d->so)
 			return (-1);
-		cube3d->SO = ft_add_just_info(str, i + 2);
-		if (!cube3d->SO)
+		cube3d->so = ft_add_just_info(str, i + 2);
+		if (!cube3d->so)
 			return (-1);
 		return (1);
 	}
@@ -44,10 +44,10 @@ int	ft_add_no(char *str, t_cub3d *cube3d, int i)
 {
 	if (!ft_strncmp(str + i, "NO", 2))
 	{
-		if (cube3d->NO)
+		if (cube3d->no)
 			return (-1);
-		cube3d->NO = ft_add_just_info(str, i + 2);
-		if (!cube3d->NO)
+		cube3d->no = ft_add_just_info(str, i + 2);
+		if (!cube3d->no)
 			return (-1);
 		return (1);
 	}
@@ -58,10 +58,10 @@ int	ft_add_ea(char *str, t_cub3d *cube3d, int i)
 {
 	if (!ft_strncmp(str + i, "EA", 2))
 	{
-		if (cube3d->EA)
+		if (cube3d->ea)
 			return (-1);
-		cube3d->EA = ft_add_just_info(str, i + 2);
-		if (!cube3d->EA)
+		cube3d->ea = ft_add_just_info(str, i + 2);
+		if (!cube3d->ea)
 			return (-1);
 		return (1);
 	}
