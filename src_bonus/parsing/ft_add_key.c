@@ -6,7 +6,7 @@
 /*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 17:12:59 by ayarab            #+#    #+#             */
-/*   Updated: 2025/03/03 17:14:08 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/03/03 17:26:24 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ int	ft_add_key(t_cub3d *cube3d, int fd)
 	count = 0;
 	while (line && count != 7)
 	{
-		// line = skip space
-		if (ft_check_key(line) == EXIT_FAILURE)
+		line = skip_space(line);
+		if (!line || ft_check_key(line) == EXIT_FAILURE)
 			return (free(line), EXIT_FAILURE);
 		tmp = ft_fill_info(cube3d, line);
 		if (tmp == -1)
@@ -103,7 +103,7 @@ int	ft_check_key(char *line)
 
 int	ft_search_info(char *av1, t_cub3d *cube3d)
 {
-	int fd;
+	int	fd;
 
 	fd = open(av1, O_RDONLY);
 	if (fd == -1)

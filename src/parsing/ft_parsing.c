@@ -6,7 +6,7 @@
 /*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 19:28:56 by ayarab            #+#    #+#             */
-/*   Updated: 2025/03/03 17:08:12 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/03/03 17:23:59 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	ft_is_all_good_char(t_cub3d *cube3d)
 {
 	int	i;
 	int	j;
-	
+
 	j = 0;
 	while (cube3d->all_maps[j])
 	{

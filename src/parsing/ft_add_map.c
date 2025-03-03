@@ -6,12 +6,11 @@
 /*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 16:58:05 by ayarab            #+#    #+#             */
-/*   Updated: 2025/02/28 17:26:26 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/03/03 17:23:48 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../include/cub3d.h"
-
 
 int	ft_add_f(char *str, t_cub3d *cube3d)
 {
@@ -67,5 +66,3 @@ int	ft_all_one(char *str)
 		return (1);
 	return (0);
 }
-
-

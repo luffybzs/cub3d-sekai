@@ -6,7 +6,7 @@
 /*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 14:33:49 by ayarab            #+#    #+#             */
-/*   Updated: 2025/03/03 17:07:58 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/03/03 17:23:42 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ int	ft_is_good(t_cub3d *cube3d, int j, int i)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
+
 int	ft_add_cardinal_points(char *str, t_cub3d *cube3d, int i)
 {
 	if (ft_strncmp(str + i, "WE", 2) == 0)

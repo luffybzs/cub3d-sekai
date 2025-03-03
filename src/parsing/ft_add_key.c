@@ -6,7 +6,7 @@
 /*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 17:06:28 by ayarab            #+#    #+#             */
-/*   Updated: 2025/03/03 17:09:13 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/03/03 17:23:28 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int	ft_add_key(t_cub3d *cube3d, int fd)
 
 int	ft_strdup_maps(t_cub3d *cube3d, int fd, char *line)
 {
-	char *res;
+	char	*res;
 
 	res = NULL;
 	while (line)
