@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parsing_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 15:01:40 by ayarab            #+#    #+#             */
-/*   Updated: 2025/02/24 12:22:51 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/03/03 17:18:00 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,31 +44,6 @@ int	ft_fill_info(t_cub3d *cube3d, char *str)
 	return (0);
 }
 
-int	ft_search_info(char *av1, t_cub3d *cube3d)
-{
-	int		fd;
-	char	*line;
-	int		count;
-
-	fd = open(av1, O_RDONLY);
-	if (fd == -1)
-		return (EXIT_FAILURE);
-	count = 0;
-	line = get_next_line(fd);
-	while (line)
-	{
-		count += ft_fill_info(cube3d, line);
-		if (count == -1 || count > 6)
-			return (free(line), close(fd), EXIT_FAILURE);
-		free(line);
-		line = get_next_line(fd);
-	}
-	if (!cube3d->we || !cube3d->so || !cube3d->ea || !cube3d->no || !cube3d->f
-		|| !cube3d->c)
-		return (close(fd), EXIT_FAILURE);
-	return (close(fd), EXIT_SUCCESS);
-}
-
 int	ft_add_door(char *str, t_cub3d *cube3d, int i)
 {
 	if (!ft_strncmp(str, "D", 1))
@@ -85,21 +60,20 @@ int	ft_add_door(char *str, t_cub3d *cube3d, int i)
 
 int	ft_add_cardinal_points(char *str, t_cub3d *cube3d, int i)
 {
-	if (ft_add_no(str, cube3d, i) == -1 || ft_add_ea(str, cube3d, i) == -1)
-		return (-1);
-	if (ft_add_we(str, cube3d, i) == -1 || ft_add_so(str, cube3d, i) == -1)
-		return (-1);
-	if (ft_add_f(str, cube3d) == -1 || ft_add_c(str, cube3d) == -1)
-		return (-1);
-	if (ft_add_we(str, cube3d, i) == 1 || ft_add_so(str, cube3d, i) == 1)
-		return (1);
-	if (ft_add_no(str, cube3d, i) == 1 || ft_add_ea(str, cube3d, i) == 1)
-		return (1);
-	if (ft_add_f(str, cube3d) == 1 || ft_add_c(str, cube3d) == 1)
-		return (1);
-	if (ft_add_door(str, cube3d, i) == 1)
-		return (1);
-	if (ft_add_door(str, cube3d, i) == -1)
-		return (-1);
-	return (0);
+	if (ft_strncmp(str + i, "WE", 2) == 0)
+		return (ft_add_we(str, cube3d, i));
+	else if (ft_strncmp(str + i, "SO", 2) == 0)
+		return (ft_add_so(str, cube3d, i));
+	else if (ft_strncmp(str + i, "NO", 2) == 0)
+		return (ft_add_no(str, cube3d, i));
+	else if (ft_strncmp(str + i, "EA", 2) == 0)
+		return (ft_add_ea(str, cube3d, i));
+	else if (ft_strncmp(str + i, "C", 1) == 0)
+		return (ft_add_c(str, cube3d));
+	else if (ft_strncmp(str + i, "F", 1) == 0)
+		return (ft_add_f(str, cube3d));
+	else if (ft_strncmp(str + i, "D", 1) == 0)
+		return (ft_add_door(str, cube3d, i));
+	else
+		return (0);
 }

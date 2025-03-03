@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_add_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 16:58:05 by ayarab            #+#    #+#             */
-/*   Updated: 2025/02/24 12:35:56 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/02/28 17:26:26 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../include/cub3d.h"
+
 
 int	ft_add_f(char *str, t_cub3d *cube3d)
 {
@@ -67,30 +68,4 @@ int	ft_all_one(char *str)
 	return (0);
 }
 
-int	ft_search_maps(char *av1, t_cub3d *cube3d)
-{
-	int		fd;
-	char	*line;
-	char	*res;
 
-	res = NULL;
-	fd = open(av1, O_RDONLY);
-	if (fd == -1)
-		return (EXIT_FAILURE);
-	line = get_next_line(fd);
-	while (line)
-	{
-		if (ft_all_one(line) || res)
-		{
-			res = ft_strjoin_free(res, line);
-			if (!res)
-				return (free(line), close(fd), EXIT_FAILURE);
-		}
-		free(line);
-		line = get_next_line(fd);
-	}
-	cube3d->all_maps = ft_split(res, '\n');
-	if (!cube3d->all_maps)
-		return (close(fd), free(res), EXIT_FAILURE);
-	return (close(fd), free(res), free(line), EXIT_SUCCESS);
-}

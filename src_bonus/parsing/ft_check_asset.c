@@ -6,7 +6,7 @@
 /*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 17:44:11 by ayarab            #+#    #+#             */
-/*   Updated: 2025/02/24 16:24:01 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/03/03 17:14:48 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,4 +76,17 @@ int	ft_fill_space_in_wall(t_cub3d *cube3d)
 		j++;
 	}
 	return (EXIT_SUCCESS);
+}
+char	*skip_space(char *line)
+{
+	char	*temp;
+
+	if (!line)
+		return (NULL);
+	temp = line;
+	while (*line && *line <= 32 && *line != '\n')
+		++line;
+	line = ft_strdup(line);
+	free(temp);
+	return (line);
 }

@@ -6,7 +6,7 @@
 /*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 19:28:56 by ayarab            #+#    #+#             */
-/*   Updated: 2025/02/24 16:20:12 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/03/03 17:08:12 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	ft_is_all_good_char(t_cub3d *cube3d)
 {
 	int	i;
 	int	j;
-
+	
 	j = 0;
 	while (cube3d->all_maps[j])
 	{
@@ -78,8 +78,6 @@ int	ft_fill_data(int ac, char **av, t_cub3d *cube3d)
 		return (ft_putstr_fd("Error\nPath Not Good\n", 2), EXIT_FAILURE);
 	if (ft_search_info(cube3d->av1, cube3d) == EXIT_FAILURE)
 		return (ft_putendl_fd("Error\nCan not find info", 2), EXIT_FAILURE);
-	if (ft_search_maps(cube3d->av1, cube3d) == EXIT_FAILURE)
-		return (ft_putendl_fd("Error\nMap Not Found", 2), EXIT_FAILURE);
 	if (ft_fill_color(cube3d) == EXIT_FAILURE)
 		return (ft_putendl_fd("Error\nRGB Is Not Good", 2), EXIT_FAILURE);
 	if (ft_is_all_good_char(cube3d) == EXIT_FAILURE)

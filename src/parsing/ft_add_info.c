@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_add_info.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 16:52:32 by ayarab            #+#    #+#             */
-/*   Updated: 2025/02/24 12:35:32 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/03/03 17:09:42 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	ft_add_we(char *str, t_cub3d *cube3d, int i)
 {
 	if (!ft_strncmp(str + i, "WE", 2))
 	{
-		if (cube3d->we)
+		if (cube3d->we != NULL)
 			return (-1);
 		cube3d->we = ft_add_just_info(str, i + 2);
 		if (!cube3d->we)

@@ -6,11 +6,12 @@
 /*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 14:29:53 by ayarab            #+#    #+#             */
-/*   Updated: 2025/02/24 14:38:06 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/03/03 17:09:32 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../include/cub3d.h"
+#include <stdio.h>
 
 int	ft_check_line(char **tab)
 {
@@ -97,44 +98,28 @@ int	ft_check_player(t_cub3d *cube3d)
 	return (EXIT_SUCCESS);
 }
 
+int	ft_line_space(char *line)
+{
+	int	i;
+
+	i = 0;
+	while (line[i])
+	{
+		if (line[i] > 32 && line[i] != '1')
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
 int	ft_search_info(char *av1, t_cub3d *cube3d)
 {
-	int		fd;
-	char	*line;
-	int		count;
+	int	fd;
 
 	fd = open(av1, O_RDONLY);
 	if (fd == -1)
 		(ft_putendl_fd("Error\nFail Open", 2), exit(1));
-	count = 0;
-	line = get_next_line(fd);
-	while (line)
-	{
-		count += ft_fill_info(cube3d, line);
-		if (count == -1 || count > 6)
-			return (free(line), close(fd), EXIT_FAILURE);
-		free(line);
-		line = get_next_line(fd);
-	}
-	if (!cube3d->we || !cube3d->so || !cube3d->ea || !cube3d->no || !cube3d->f
-		|| !cube3d->c)
-		return (close(fd), EXIT_FAILURE);
+	if (ft_add_key(cube3d, fd) == 1)
+		return (close(fd), 1);
 	return (close(fd), EXIT_SUCCESS);
-}
-
-int	ft_add_cardinal_points(char *str, t_cub3d *cube3d, int i)
-{
-	if (ft_add_no(str, cube3d, i) == -1 || ft_add_ea(str, cube3d, i) == -1)
-		return (-1);
-	if (ft_add_we(str, cube3d, i) == -1 || ft_add_so(str, cube3d, i) == -1)
-		return (-1);
-	if (ft_add_f(str, cube3d) == -1 || ft_add_c(str, cube3d) == -1)
-		return (-1);
-	if (ft_add_we(str, cube3d, i) == 1 || ft_add_so(str, cube3d, i) == 1)
-		return (1);
-	if (ft_add_no(str, cube3d, i) == 1 || ft_add_ea(str, cube3d, i) == 1)
-		return (1);
-	if (ft_add_f(str, cube3d) == 1 || ft_add_c(str, cube3d) == 1)
-		return (1);
-	return (0);
 }

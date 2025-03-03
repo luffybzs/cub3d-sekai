@@ -6,7 +6,7 @@
 /*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 16:03:47 by ayarab            #+#    #+#             */
-/*   Updated: 2025/02/24 16:39:19 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/03/03 17:15:44 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include "./../libft/libft.h"
 # include "gc.h"
 # include <X11/keysym.h>
+# include <fcntl.h>
 # include <math.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -163,6 +164,13 @@ void				ft_fail_free(t_cub3d *cube3d);
 int					ft_fill_data(int ac, char **av, t_cub3d *cube3d);
 int					ft_search_info(char *av1, t_cub3d *cube3d);
 int					ft_fill_space_in_wall(t_cub3d *cube3d);
+int					ft_strdup_maps(t_cub3d *cube3d, int fd, char *line);
+int					ft_line_space(char *line);
+int					ft_add_key(t_cub3d *cube3d, int fd);
+int					ft_check_key(char *line);
+int					ft_fill_info(t_cub3d *cube3d, char *str);
+char				*skip_space(char *line);
+
 /* screen handler */
 int					init_mlx(t_cub3d *data);
 int					close_window(t_cub3d *data);

@@ -5,122 +5,92 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/26 20:11:28 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/01/11 03:20:16 by ayarab           ###   ########.fr       */
+/*   Created: 2024/06/25 16:27:49 by ayarab            #+#    #+#             */
+/*   Updated: 2024/10/24 17:32:57 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t	ft_strlen_spe(char *s)
+int	ft_check_gnl(char *stock, char x)
 {
-	size_t	i;
-
-	i = 0;
-	if (!s)
-		return (0);
-	while (s[i] != '\0')
-		i++;
-	return (i);
-}
-
-char	*ft_strchr_spe(char *s, int c)
-{
-	int	i;
-
-	i = 0;
-	if (!s)
-		return (0);
-	if (c == '\0')
-		return ((char *)&s[ft_strlen_spe(s)]);
-	while (s[i] != '\0')
+	while (*stock)
 	{
-		if (s[i] == (char)c)
-			return ((char *)&s[i]);
-		i++;
+		if (*stock == x)
+			return (1);
+		stock++;
 	}
 	return (0);
 }
 
-char	*ft_strjoin_spe(char *left_str, char *buff)
-{
-	size_t	i;
-	size_t	j;
-	char	*str;
-
-	if (!left_str)
-	{
-		left_str = (char *)malloc(1 * sizeof(char));
-		left_str[0] = '\0';
-	}
-	if (!left_str || !buff)
-		return (NULL);
-	str = malloc(sizeof(char) * ((ft_strlen_spe(left_str)
-					+ ft_strlen_spe(buff)) + 1));
-	if (str == NULL)
-		return (NULL);
-	i = -1;
-	j = 0;
-	if (left_str)
-		while (left_str[++i] != '\0')
-			str[i] = left_str[i];
-	while (buff[j] != '\0')
-		str[i++] = buff[j++];
-	str[ft_strlen_spe(left_str) + ft_strlen_spe(buff)] = '\0';
-	free(left_str);
-	return (str);
-}
-
-char	*ft_get_line(char *left_str)
-{
-	int		i;
-	char	*str;
-
-	i = 0;
-	if (!left_str[i])
-		return (NULL);
-	while (left_str[i] && left_str[i] != '\n')
-		i++;
-	str = (char *)malloc(sizeof(char) * (i + 2));
-	if (!str)
-		return (NULL);
-	i = 0;
-	while (left_str[i] && left_str[i] != '\n')
-	{
-		str[i] = left_str[i];
-		i++;
-	}
-	if (left_str[i] == '\n')
-	{
-		str[i] = left_str[i];
-		i++;
-	}
-	str[i] = '\0';
-	return (str);
-}
-
-char	*ft_new_left_str(char *left_str)
+char	*ft_strjoin_gnl(char *s1, char *s2)
 {
 	int		i;
 	int		j;
-	char	*str;
+	char	*res;
 
 	i = 0;
-	while (left_str[i] && left_str[i] != '\n')
-		i++;
-	if (!left_str[i])
-	{
-		free(left_str);
-		return (NULL);
-	}
-	str = (char *)malloc(sizeof(char) * (ft_strlen_spe(left_str) - i + 1));
-	if (!str)
-		return (NULL);
-	i++;
 	j = 0;
-	while (left_str[i])
-		str[j++] = left_str[i++];
-	str[j] = '\0';
-	free(left_str);
-	return (str);
+	res = malloc((sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1)));
+	if (!res)
+		return (free(s1), NULL);
+	while (s1[i])
+	{
+		res[i] = s1[i];
+		i++;
+	}
+	while (s2[j])
+	{
+		res[i] = s2[j];
+		j++;
+		i++;
+	}
+	res[i] = '\0';
+	return (free(s1), res);
+}
+
+char	*ft_strdup_gnl(char *stock, char c)
+{
+	int		i;
+	char	*line;
+
+	i = 0;
+	while (stock[i] != c && stock[i])
+		i++;
+	line = malloc(sizeof(char) * (i + 1));
+	if (!line)
+		return (NULL);
+	i = 0;
+	while (stock[i] != c && stock[i])
+	{
+		line[i] = stock[i];
+		i++;
+	}
+	line[i] = '\0';
+	return (line);
+}
+
+void	ft_clean_buf(char *buff)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (buff[i])
+	{
+		if (buff[i] == '\n')
+		{
+			i++;
+			break ;
+		}
+		i++;
+	}
+	while (buff[i])
+	{
+		buff[j] = buff[i];
+		j++;
+		i++;
+	}
+	buff[j] = '\0';
 }

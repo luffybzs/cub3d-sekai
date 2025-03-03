@@ -6,7 +6,7 @@
 #    By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 16:20:22 by ayarab            #+#    #+#              #
-#    Updated: 2025/02/20 15:10:32 by ayarab           ###   ########.fr        #
+#    Updated: 2025/03/03 17:16:37 by ayarab           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,11 +18,11 @@ CFLAGS = -Wall -Wextra -Werror -g3
 
 SRCS = $(addprefix $(SRC), main.c parsing/ft_parsing.c parsing/ft_check_asset.c parsing/ft_add_info.c parsing/ft_add_map.c parsing/ft_fill_color.c \
        data/init_data.c data/init_data2.c mlx/init_screen.c mlx/draw.c raycasting/raycasting.c event/player_handle.c event/player_handle2.c mlx/draw_line.c \
-	   utils/utils1.c parsing/ft_utils_parsing.c parsing/ft_utils_parsing2.c)
+	   utils/utils1.c parsing/ft_utils_parsing.c parsing/ft_utils_parsing2.c parsing/ft_add_key.c)
 	   
 SRCS_BONUS =  $(addprefix $(SRC_BONUS), main.c parsing/ft_parsing.c parsing/ft_check_asset.c parsing/ft_add_info.c parsing/ft_add_map.c parsing/ft_fill_color.c \
        data/init_data.c data/init_data2.c mlx/init_screen.c mlx/draw.c raycasting/raycasting.c raycasting/raycasting2.c event/player_handle.c event/player_handle2.c event/player_handle3.c \
-	    mlx/draw_line.c utils/utils1.c mlx/minimap.c event/handle_door.c parsing/ft_parsing_utils.c parsing/ft_parsing_utils2.c)
+	    mlx/draw_line.c utils/utils1.c mlx/minimap.c event/handle_door.c parsing/ft_parsing_utils.c parsing/ft_parsing_utils2.c parsing/ft_add_key.c)
 
 OBJS = $(SRCS:$(SRC)%.c=$(OBJ_DIR)%.o)
 OBJS_BONUS = $(SRCS_BONUS:$(SRC_BONUS)%.c=$(OBJ_BONUS_DIR)%.o)

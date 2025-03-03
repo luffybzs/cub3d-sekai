@@ -5,95 +5,89 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/26 20:11:39 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/01/16 23:27:33 by ayarab           ###   ########.fr       */
+/*   Created: 2024/06/25 16:26:41 by ayarab            #+#    #+#             */
+/*   Updated: 2024/10/17 15:03:00 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_read_to_left_str(int fd, char *left_str)
-{
-	char	*buff;
-	int		rd_bytes;
-
-	buff = malloc((BUFFER_SIZE + 1) * sizeof(char));
-	if (!buff)
-		return (NULL);
-	rd_bytes = 1;
-	while (!ft_strchr_spe(left_str, '\n') && rd_bytes != 0)
-	{
-		rd_bytes = read(fd, buff, BUFFER_SIZE);
-		if (rd_bytes == -1)
-		{
-			free(buff);
-			return (NULL);
-		}
-		buff[rd_bytes] = '\0';
-		left_str = ft_strjoin_spe(left_str, buff);
-	}
-	free(buff);
-	return (left_str);
-}
+void	copy_after_newline(char *all, char *buff);
+char	*before_newline(char *all);
+char	ft_get_line(char *line, char *buff, int lu, int fd);
 
 char	*get_next_line(int fd)
 {
 	char		*line;
-	static char	*left_str;
+	static char	buff[BUFFER_SIZE + 1];
+	int			lu;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
-	{
-		if (left_str)
-		{
-			free(left_str);
-			left_str = NULL;
-		}
+	lu = 1;
+	if (fd > 1024 || fd < 0 || BUFFER_SIZE < 1)
 		return (NULL);
-	}
-	left_str = ft_read_to_left_str(fd, left_str);
-	if (!left_str)
+	line = ft_strdup(buff);
+	if (!line)
 		return (NULL);
-	line = ft_get_line(left_str);
-	left_str = ft_new_left_str(left_str);
-	if (!line && left_str)
+	while (lu > 0 && ft_check_gnl(line, '\n') == 0)
 	{
-		free(left_str);
-		left_str = NULL;
+		lu = read(fd, buff, BUFFER_SIZE);
+		if (lu < 0)
+			return (ft_clean_buf(buff), free(line), NULL);
+		if (lu == 0)
+			break ;
+		free((buff[lu] = '\0', line = ft_strjoin_gnl(line, buff), NULL));
+		if (!line)
+			return (NULL);
 	}
-	return (line);
+	ft_bzero(buff, BUFFER_SIZE + 1);
+	if (!line || line[0] == '\0')
+		return (ft_clean_buf(buff), free(line), NULL);
+	return (copy_after_newline(line, buff), before_newline(line));
 }
 
-// int	main(void)
-// {
-// 	char *line;
-// 	// int		i;
-// 	int fd1;
-// 	// int		fd2;
-// 	// int		fd3;
-// 	fd1 = open("tests/test.txt", O_RDONLY);
-// 	// fd2 = open("tests/test2.txt", O_RDONLY);
-// 	// fd3 = open("tests/test3.txt", O_RDONLY);
-// 	// i = 1;
-// 	line = get_next_line(fd1);
-// 		// printf("line : %s", line);
+void	copy_after_newline(char *all, char *buff)
+{
+	int	i;
+	int	j;
 
-// 	while (line != NULL)
-// 	{
+	j = 0;
+	i = 0;
+	while (all[i] != '\0' && all[i] != '\n')
+		i++;
+	if (all[i] == '\n')
+		i++;
+	while (all[i])
+	{
+		buff[j] = all[i];
+		j++;
+		i++;
+	}
+}
 
-// 		printf("line : %s", line);
-// 		free(line);
-// 		line = get_next_line(fd1);
-// 		// line = get_next_line(fd2);
-// 		// printf("line [%02d]: %s", i, line);
-// 		// free(line);
-// 		// line = get_next_line(fd3);
-// 		// printf("line [%02d]: %s", i, line);
-// 		// free(line);
-// 		// i++;
-// 	}
-// 	free(line);
-// 	close(fd1);
-// 	// close(fd2);
-// 	// close(fd3);
-// 	return (0);
-// }
+char	*before_newline(char *all)
+{
+	int		i;
+	char	*line;
+
+	i = 0;
+	while (all[i] != '\0' && all[i] != '\n')
+		i++;
+	if (all[i] == '\n')
+		i++;
+	line = malloc(sizeof(char) * (i + 1));
+	if (!line)
+		return (free(all), NULL);
+	i = 0;
+	while (all[i] && all[i] != '\n')
+	{
+		line[i] = all[i];
+		i++;
+	}
+	if (all[i] == '\n')
+	{
+		line[i++] = '\n';
+	}
+	line[i] = '\0';
+	free(all);
+	return (line);
+}
