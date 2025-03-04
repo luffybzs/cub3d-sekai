@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 23:35:33 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/03/04 16:33:01 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/03/04 16:44:48 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,12 @@ void	ft_error(t_cub3d *cube, char *msg, int error_code)
 	cleanup(cube);
 	exit(error_code);
 }
+
 int	find_width(t_cub3d *cube)
 {
 	int	i;
-	int cmp;
-	
+	int	cmp;
+
 	i = 0;
 	cube->map_width = 0;
 	if (cube->map_height <= 0)
@@ -31,8 +32,8 @@ int	find_width(t_cub3d *cube)
 	{
 		cmp = ft_strlen(cube->all_maps[i]);
 		if (cmp > cube->map_width)
-			cube->map_width = cmp;	
-		i++; 
+			cube->map_width = cmp;
+		i++;
 	}
 	return (0);
 }

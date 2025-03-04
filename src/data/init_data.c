@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 15:31:23 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/03/04 16:28:39 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/03/04 16:44:59 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,8 @@ int	init_cub3d(t_cub3d *cube)
 	cube->map_height = 0;
 	while (cube->all_maps[cube->map_height])
 		cube->map_height++;
-	if (find_width(cube)== 1)
+	if (find_width(cube) == 1)
 		return (1);
-	// while (i < cube->map_height)
-	// {
-	// 	if (cube->map_height > 0)
-	// 		cube->map_width = ft_strlen(cube->all_maps[0]);
-	// 	else
-	// 		return (1);
-	// }
 	if (!init_textures_path(cube))
 		return (printf("fail to init paths\n"), 1);
 	init_player(cube);

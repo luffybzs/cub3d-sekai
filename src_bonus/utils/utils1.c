@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 23:35:33 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/02/20 16:08:40 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/03/04 16:35:30 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,24 @@ void	test_print(char **map)
 	}
 }
 
+int	find_width(t_cub3d *cube)
+{
+	int	i;
+	int	cmp;
+
+	i = 0;
+	cube->map_width = 0;
+	if (cube->map_height <= 0)
+		return (1);
+	while (i <= cube->map_height)
+	{
+		cmp = ft_strlen(cube->all_maps[i]);
+		if (cmp > cube->map_width)
+			cube->map_width = cmp;
+		i++;
+	}
+	return (0);
+}
 // void *ft_realloc(void *ptr, size_t old_size, size_t new_size)
 // {
 //     void *new_ptr;

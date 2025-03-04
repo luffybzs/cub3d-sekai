@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 16:03:47 by ayarab            #+#    #+#             */
-/*   Updated: 2025/03/04 16:10:39 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/03/04 16:36:12 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -254,6 +254,8 @@ int					ft_skip(char **tab, int j);
 int					ft_maps_is_good(t_cub3d *cube3d);
 void				ft_init_pos(t_cub3d *cube3d, int i, int j);
 int					ft_player(char c);
+int					find_width(t_cub3d *cube);
+
 /* bonus */
 int					init_mini_map(t_cub3d *cube);
 void				draw_minimap(t_cub3d *cube);
