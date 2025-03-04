@@ -6,7 +6,7 @@
 #    By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 16:20:22 by ayarab            #+#    #+#              #
-#    Updated: 2025/03/04 14:51:12 by ayarab           ###   ########.fr        #
+#    Updated: 2025/03/04 15:39:22 by ayarab           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,43 +37,55 @@ BONUS = cub3D_bonus
 
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(MINI_LIBX) $(OBJS)
-	$(CC) $(OBJS) $(CFLAGS) $(INCLUDES) -L$(LIB_DIR) -lft -L$(MINI_LIBX_DIR) -lmlx -lX11 -lXext -lm -o $(NAME)
+#$(NAME): $(OBJS) $(LIBFT) $(MINI_LIBX)
+#	$(CC) $(OBJS) $(CFLAGS) $(INCLUDES) -L$(LIB_DIR) -lft -L$(MINI_LIBX_DIR) -lmlx -lX11 -lXext -lm -o $(NAME)
+$(NAME): $(OBJS) $(LIBFT) $(MINI_LIBX)
+	@if [ ! -f $(NAME) ] || [ -n "$$(find $(OBJS) -newer $(NAME) 2>/dev/null)" ]; then \
+		$(CC) $(OBJS) $(CFLAGS) $(INCLUDES) -L./libft -lft -L./minilibx-linux -lmlx -lX11 -lXext -lm -o $(NAME); \
+	else \
+		echo "$(NAME) is up to date"; \
+	fi
 
 bonus: $(BONUS)
 
-$(BONUS): $(LIBFT) $(MINI_LIBX) $(OBJS_BONUS)
-	$(CC) $(OBJS_BONUS) $(CFLAGS) $(INCLUDES) -L$(LIB_DIR) -lft -L$(MINI_LIBX_DIR) -lmlx -lX11 -lXext -lm -o $(BONUS)
+#$(BONUS): $(OBJS_BONUS) $(LIBFT) $(MINI_LIBX) 
+#	$(CC) $(OBJS_BONUS) $(CFLAGS) $(INCLUDES) -L$(LIB_DIR) -lft -L$(MINI_LIBX_DIR) -lmlx -lX11 -lXext -lm -o $(BONUS)
+$(BONUS): $(OBJS_BONUS) $(LIBFT) $(MINI_LIBX)
+	@if [ ! -f $(BONUS) ] || [ -n "$$(find $(OBJS_BONUS) -newer $(BONUS) 2>/dev/null)" ]; then \
+		$(CC) $(OBJS_BONUS) $(CFLAGS) $(INCLUDES) -L./libft -lft -L./minilibx-linux -lmlx -lX11 -lXext -lm -o $(BONUS); \
+	else \
+		echo "$(BONUS) is up to date"; \
+	fi
 
 $(LIBFT):
-	make -C $(LIB_DIR)
+	$(MAKE) -C $(LIB_DIR)
 
 $(MINI_LIBX):
-	make -C $(MINI_LIBX_DIR)
+	$(MAKE) -C $(MINI_LIBX_DIR)
 
 $(OBJ_DIR)%.o: $(SRC)%.c
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
-	@echo "Compiling: $<"
+#	@echo "Compiling: $<"
 
 $(OBJ_BONUS_DIR)%.o: $(SRC_BONUS)%.c
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
-	@echo "Compiling bonus: $<"
+#	@echo "Compiling bonus: $<"
 
 
 clean:
-	@echo "Cleaning object files..."
+#	@echo "Cleaning object files..."
 	@rm -rf $(OBJ_DIR) 
 	@rm -rf $(OBJ_BONUS_DIR)
 	make clean -C $(LIB_DIR)
 	make clean -C $(MINI_LIBX_DIR)
 
 fclean: clean
-	@echo "Cleaning executables..."
+#	 @echo "Cleaning executables..."
 	rm -f $(NAME) $(BONUS)
 	make fclean -C $(LIB_DIR)
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus
