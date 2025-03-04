@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_fill_color.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 19:30:57 by ayarab            #+#    #+#             */
-/*   Updated: 2025/02/24 12:18:48 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/03/04 14:25:55 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ int	ft_add_last_color(int *start, int *j, char *str)
 {
 	int	tmp;
 
+	if (str[*j] && str[*j] <= 32)
+		(*j)++;
 	if (str[*j] && !ft_isdigit(str[*j]))
 		return (-1);
 	(*start) = (*j);
@@ -31,6 +33,8 @@ int	ft_add_color(int *start, int *j, int *comma, char *str)
 {
 	int	tmp;
 
+	if (str[*j] && str[*j] <= 32)
+		(*j)++;
 	if (str[*j] && !ft_isdigit(str[*j]))
 		return (-1);
 	(*start) = (*j);

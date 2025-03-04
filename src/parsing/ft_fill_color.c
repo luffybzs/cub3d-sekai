@@ -6,7 +6,7 @@
 /*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 19:30:57 by ayarab            #+#    #+#             */
-/*   Updated: 2025/02/28 18:24:39 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/03/04 14:36:48 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ int	ft_add_last_color(int *start, int *j, char *str)
 {
 	int	tmp;
 
+	while (str[*j] && str[*j] <= 32)
+		(*j)++;
 	if (str[*j] && !ft_isdigit(str[*j]))
 		return (-1);
 	(*start) = (*j);
@@ -31,13 +33,15 @@ int	ft_add_color(int *start, int *j, int *comma, char *str)
 {
 	int	tmp;
 
+	while (str[*j] && str[*j] <= 32)
+		(*j)++;
 	if (str[*j] && !ft_isdigit(str[*j]))
 		return (-1);
 	(*start) = (*j);
 	while (str[*j] && ft_isdigit(str[*j]))
 		(*j)++;
 	tmp = ft_atoi_rgb(str, *start, *j);
-	if (str[*j] != ',' || !ft_isdigit(str[*j + 1]))
+	if (str[*j] && str[*j] != ',')
 		return (-1);
 	(*j)++;
 	(*start) = (*j);

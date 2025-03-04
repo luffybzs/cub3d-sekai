@@ -6,7 +6,7 @@
 /*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 17:12:59 by ayarab            #+#    #+#             */
-/*   Updated: 2025/03/03 17:26:24 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/03/04 13:25:00 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	ft_add_key(t_cub3d *cube3d, int fd)
 		line = get_next_line(fd);
 	}
 	if (!cube3d->we || !cube3d->so || !cube3d->ea || !cube3d->no || !cube3d->f
-		|| !cube3d->c)
+		|| !cube3d->c || !cube3d->door.path)
 		return (close(fd), EXIT_FAILURE);
 	if (ft_strdup_maps(cube3d, fd, line) == 1)
 		return (close(fd), 1);
