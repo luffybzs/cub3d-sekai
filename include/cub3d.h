@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 16:03:47 by ayarab            #+#    #+#             */
-/*   Updated: 2025/03/03 17:11:16 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/03/04 16:31:39 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -238,6 +238,8 @@ int					ft_player(char c);
 int					ft_is_all_good_char(t_cub3d *cube3d);
 int					ft_skip(char **tab, int j);
 void				ft_init_pos(t_cub3d *cube3d, int i, int j);
+int					find_width(t_cub3d *cube);
+
 /* temporaire */
 char				**create_test_map(void);
 void				test_print(char **map);

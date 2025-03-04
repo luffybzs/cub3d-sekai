@@ -6,7 +6,7 @@
 /*   By: wdaoudi- <wdaoudi-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 23:35:33 by wdaoudi-          #+#    #+#             */
-/*   Updated: 2025/02/20 15:57:02 by wdaoudi-         ###   ########.fr       */
+/*   Updated: 2025/03/04 16:33:01 by wdaoudi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,25 +18,23 @@ void	ft_error(t_cub3d *cube, char *msg, int error_code)
 	cleanup(cube);
 	exit(error_code);
 }
-
-void	test_print(char **map)
+int	find_width(t_cub3d *cube)
 {
 	int	i;
-	int	j;
-
+	int cmp;
+	
 	i = 0;
-	printf("\n=== Map Content ===\n");
-	while (map[i])
+	cube->map_width = 0;
+	if (cube->map_height <= 0)
+		return (1);
+	while (i <= cube->map_height)
 	{
-		j = 0;
-		while (map[i][j])
-		{
-			printf("[%c]", map[i][j]);
-			j++;
-		}
-		printf("\n");
-		i++;
+		cmp = ft_strlen(cube->all_maps[i]);
+		if (cmp > cube->map_width)
+			cube->map_width = cmp;	
+		i++; 
 	}
+	return (0);
 }
 
 void	calculate_distance(t_raycast *ray)
