@@ -6,7 +6,7 @@
 /*   By: ayarab <ayarab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 16:03:47 by ayarab            #+#    #+#             */
-/*   Updated: 2025/03/03 17:15:44 by ayarab           ###   ########.fr       */
+/*   Updated: 2025/03/04 16:10:39 by ayarab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # include <unistd.h>
 
 # define MINIMAP_SCALE 0.2
-# define BLOCK_SIZE 7
+# define BLOCK_SIZE 5
 
 typedef struct s_img
 {
